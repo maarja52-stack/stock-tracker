@@ -1,0 +1,12 @@
+# Node
+node_modules/
+
+# Python cache
+__pycache__/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/

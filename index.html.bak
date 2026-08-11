@@ -34,73 +34,6 @@
       color: #d4af37;
     }
 
-    .home-shell {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 2rem 1.25rem 2rem;
-      display: grid;
-      gap: 1.1rem;
-    }
-
-    .home-hero {
-      background: rgba(13, 27, 42, 0.82);
-      border: 1px solid rgba(212, 175, 55, 0.24);
-      border-radius: 24px;
-      padding: 2rem;
-      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.2);
-    }
-
-    .home-brand {
-      color: #d4af37;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      margin-bottom: 0.7rem;
-    }
-
-    .home-title {
-      margin: 0 0 0.55rem;
-      font-size: 2.1rem;
-      font-weight: 700;
-      color: #d4af37;
-      line-height: 1.2;
-    }
-
-    .home-subtitle {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 1.03rem;
-      max-width: 720px;
-    }
-
-    .home-department-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-
-    .home-department-card {
-      min-height: 148px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 0.7rem;
-      padding: 1.3rem 1rem;
-    }
-
-    .home-department-card .card-emoji {
-      font-size: 2.4rem;
-      margin-bottom: 0;
-    }
-
-    .home-department-card .card-title {
-      font-size: 1.05rem;
-      margin: 0;
-    }
-
     .premium-card {
       background: rgba(13, 27, 42, 0.7);
       border: 2px solid #d4af37;
@@ -146,10 +79,12 @@
     .footer-text {
       text-align: center;
       color: rgba(255, 255, 255, 0.6);
-      padding: 0.25rem 1rem 1.5rem;
-      font-size: 0.8rem;
-      display: grid;
-      gap: 0.15rem;
+      padding: 2rem;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .footer-version {
@@ -217,148 +152,23 @@
       width: 100%;
     }
 
-    /* Front desk palette overrides */
-    body {
-      color: #1f1f1f;
-      font-family: "Manrope", sans-serif;
-      background:
-        radial-gradient(1600px 500px at 0% -10%, #f9dca3 0%, transparent 65%),
-        radial-gradient(1200px 600px at 100% -10%, #cbe4e7 0%, transparent 60%),
-        #f3efe7;
-    }
-
-    .main-wrapper {
-      background: transparent;
-      font-family: "Manrope", sans-serif;
-    }
-
-    .home-shell,
-    .grid-container {
-      max-width: 1240px;
-    }
-
-    .home-hero,
-    .premium-card,
-    .storage-card,
-    .storage-card-v2,
-    .stock-health-item,
-    .supplyhub-card,
-    .dropdown-panel,
-    .message,
-    .build-badge {
-      background: #fffaf2 !important;
-      border-color: #d8cab5 !important;
-      color: #1f1f1f !important;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1) !important;
-    }
-
-    .home-hero,
-    .premium-card,
-    .storage-card,
-    .storage-card-v2,
-    .stock-health-item,
-    .supplyhub-card {
-      border: 1px solid #d8cab5 !important;
-    }
-
-    .home-brand,
-    .home-title,
-    .main-title,
-    .card-title,
-    .notification-section-title,
-    .storage-id,
-    .stock-health-row,
-    .storage-preview.prominent,
-    .footer-version,
-    .gold-text {
-      color: #1f6f78 !important;
-      text-shadow: none !important;
-    }
-
-    .home-subtitle,
-    .hero-meta,
-    .stock-health-meta,
-    .footer-text {
-      color: #5f5a54 !important;
-    }
-
-    .footer-text {
-      background: transparent !important;
-      border: 0 !important;
-      box-shadow: none !important;
-    }
-
-    .premium-card:hover,
-    .storage-card:hover {
-      border-color: #1f6f78 !important;
-      box-shadow: 0 12px 40px rgba(31, 111, 120, 0.18) !important;
-    }
-
-    .supplyhub-card input,
-    .supplyhub-card select,
-    .supplyhub-card button {
-      border: 1px solid #d8cab5 !important;
-      background: #ffffff !important;
-      color: #1f1f1f !important;
-    }
-
-    .supplyhub-card button,
-    .report-btn,
-    .login-btn,
-    .primary-action {
-      background: #1f6f78 !important;
-      color: #ffffff !important;
-      border-color: #1f6f78 !important;
-    }
-
-    .notification-badge {
-      background: #b62f2f !important;
-      color: #ffffff !important;
-      box-shadow: 0 2px 8px rgba(182, 47, 47, 0.35) !important;
-    }
-
-    .stock-health-bar {
-      background: #e8dfd2 !important;
-    }
-
-    .stock-health-bar > span {
-      background: linear-gradient(90deg, #1f6f78 0%, #5da7ae 100%) !important;
-    }
-
-    .stock-health-full,
-    .stock-health-low,
-    .stock-health-below {
-      color: #1f6f78 !important;
-    }
-
-    .build-badge {
-      bottom: 16px;
-      right: 16px;
-      border: 1px solid #d8cab5 !important;
-      color: #1f6f78 !important;
-    }
-
     .back-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      width: fit-content;
-      margin: 1.25rem 1rem 0;
-      padding: 0.6rem 0.95rem;
-      border: 2px solid #d8cab5;
-      border-radius: 999px;
-      background: rgba(255, 250, 242, 0.92);
-      color: #1f1f1f;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 8px 18px rgba(56, 44, 30, 0.08);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      background: #0d1b2a;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      margin-bottom: 2rem;
+      display: inline-block;
     }
 
     .back-button:hover {
-      transform: translateY(-1px);
-      border-color: #1f6f78;
-      box-shadow: 0 12px 22px rgba(56, 44, 30, 0.12);
+      background: rgba(212, 175, 55, 0.2);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
     }
 
     .hidden {
@@ -568,7 +378,6 @@
       height: 100%;
       border-radius: inherit;
       transition: width 0.2s ease;
-      background: linear-gradient(90deg, #d4af37 0%, #f4cf5c 100%);
     }
 
     .stock-health-meta {
@@ -579,15 +388,15 @@
     }
 
     .stock-health-full {
-      color: #f4e4a8;
+      color: #5ee7a8;
     }
 
     .stock-health-low {
-      color: #f4e4a8;
+      color: #f7cf5e;
     }
 
     .stock-health-below {
-      color: #f4e4a8;
+      color: #ff6b6b;
     }
 
     .message {
@@ -673,15 +482,13 @@
     .expiration-page {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1.5rem 1rem 2rem;
-      color: #1f1f1f;
-      font-family: "Manrope", sans-serif;
+      padding: 2rem;
     }
 
     .date-header {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      border-radius: 18px;
+      background: rgba(13, 27, 42, 0.7);
+      border: 2px solid #d4af37;
+      border-radius: 16px;
       padding: 2rem;
       margin-bottom: 2rem;
       display: flex;
@@ -689,13 +496,12 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1);
     }
 
     .date-display {
       font-size: 1.5rem;
       font-weight: 600;
-      color: #1f6f78;
+      color: #d4af37;
     }
 
     .stats-container {
@@ -716,23 +522,24 @@
     }
 
     .stat-label {
-      font-size: 1rem;
-      color: #5f5a54;
-      opacity: 0.9;
+      color: #d4af37;
+      font-size: 2.4rem;
+      opacity: 0.8;
       margin-bottom: 0.5rem;
+      font-size: 1rem;
       line-height: 1.2;
     }
 
     .stat-value {
-      color: #1f6f78;
+      color: #d4af37;
       font-size: 2rem;
       font-weight: 700;
     }
 
     .add-button {
-      background: #1f6f78;
+      background: #28a745;
       color: white;
-      border: 1px solid #1f6f78;
+      border: none;
       padding: 1rem 2rem;
       border-radius: 8px;
       font-size: 1.1rem;
@@ -744,9 +551,9 @@
     }
 
     .add-button:hover {
-      background: #225f8e;
+      background: #218838;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(31, 111, 120, 0.22);
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
     }
 
     .add-button:disabled {
@@ -756,12 +563,11 @@
     }
 
     .form-container {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      border-radius: 18px;
+      background: rgba(13, 27, 42, 0.7);
+      border: 2px solid #d4af37;
+      border-radius: 16px;
       padding: 2rem;
       margin-bottom: 2rem;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1);
     }
 
     .form-row {
@@ -777,23 +583,23 @@
     }
 
     .form-label {
-      color: #5f5a54;
+      color: #d4af37;
       font-weight: 600;
       margin-bottom: 0.5rem;
       font-size: 0.95rem;
     }
 
     .form-input, .form-select {
-      background: #ffffff;
-      border: 1px solid #d8cab5;
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #d4af37;
+      border-radius: 6px;
       padding: 0.75rem;
-      color: #1f1f1f;
+      color: white;
       font-size: 1rem;
     }
 
     .form-input::placeholder {
-      color: #8a8076;
+      color: rgba(255, 255, 255, 0.5);
     }
 
     .form-select {
@@ -801,14 +607,14 @@
     }
 
     .form-select option {
-      background: #ffffff;
-      color: #1f1f1f;
+      background: #0d1b2a;
+      color: white;
       padding: 0.5rem;
     }
 
     .form-select optgroup {
-      background: #f3efe7;
-      color: #1f6f78;
+      background: #1a2942;
+      color: #d4af37;
       font-weight: 700;
       font-style: normal;
     }
@@ -820,18 +626,18 @@
     }
 
     .btn-submit {
-      background: #1f6f78;
+      background: #28a745;
       color: white;
-      border: 1px solid #1f6f78;
+      border: none;
       padding: 0.75rem 2rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .btn-submit:hover {
-      background: #225f8e;
+      background: #218838;
     }
 
     .btn-submit:disabled {
@@ -840,18 +646,18 @@
     }
 
     .btn-cancel {
-      background: #fffaf2;
-      color: #1f6f78;
-      border: 1px solid #d8cab5;
+      background: rgba(212, 175, 55, 0.2);
+      color: #d4af37;
+      border: 2px solid #d4af37;
       padding: 0.75rem 2rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .btn-cancel:hover {
-      background: #d7eeef;
+      background: rgba(212, 175, 55, 0.3);
     }
 
     .empty-state {
@@ -860,20 +666,6 @@
       background: rgba(13, 27, 42, 0.7);
       border: 2px solid #d4af37;
       border-radius: 16px;
-    }
-
-    #stockCountPage .empty-state {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1);
-    }
-
-    #stockCountPage .empty-title {
-      color: #1f6f78;
-    }
-
-    #stockCountPage .empty-subtitle {
-      color: #5f5a54;
     }
 
     .empty-icon {
@@ -1050,11 +842,11 @@
     }
 
     .btn-archive {
-      background: #d7eeef;
-      border: 1px solid #1f6f78;
-      color: #1f6f78;
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid #d4af37;
+      color: #d4af37;
       padding: 0.6rem 1.2rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -1062,7 +854,7 @@
     }
 
     .btn-archive:hover {
-      background: #c7e5e7;
+      background: rgba(212, 175, 55, 0.4);
       transform: scale(1.05);
     }
 
@@ -1103,9 +895,9 @@
     }
 
     .date-banner {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      border-radius: 18px;
+      background: rgba(13, 27, 42, 0.9);
+      border: 2px solid #d4af37;
+      border-radius: 12px;
       padding: 1.25rem 1.5rem;
       display: flex;
       justify-content: space-between;
@@ -1115,12 +907,11 @@
       cursor: pointer;
       transition: all 0.3s ease;
       margin-bottom: 1rem;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.08);
     }
 
     .date-banner:hover {
-      border-color: #1f6f78;
-      box-shadow: 0 16px 32px rgba(31, 111, 120, 0.14);
+      background: rgba(13, 27, 42, 1);
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
     }
 
     .date-banner-left {
@@ -1130,7 +921,7 @@
     }
 
     .expand-arrow {
-      color: #1f6f78;
+      color: #d4af37;
       font-size: 1.2rem;
       display: inline-flex;
       align-items: center;
@@ -1149,12 +940,12 @@
     .date-title {
       font-size: 1.3rem;
       font-weight: 700;
-      color: #1f1f1f;
+      color: #d4af37;
     }
 
     .item-count-badge {
-      background: #d7eeef;
-      color: #1f6f78;
+      background: rgba(212, 175, 55, 0.3);
+      color: #d4af37;
       padding: 0.3rem 0.8rem;
       border-radius: 20px;
       font-size: 0.9rem;
@@ -1163,10 +954,10 @@
 
     .btn-delete-all {
       background: rgba(220, 53, 69, 0.2);
-      border: 1px solid #dc3545;
+      border: 2px solid #dc3545;
       color: #dc3545;
       padding: 0.6rem 1.2rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -1397,26 +1188,22 @@
     }
 
     .modal-buttons {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      width: fit-content;
-      margin: 1.25rem 1rem 0;
-      padding: 0.6rem 0.95rem;
-      border: 2px solid #d8cab5;
-      border-radius: 999px;
-      background: rgba(255, 250, 242, 0.92);
-      color: #1f1f1f;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 8px 18px rgba(56, 44, 30, 0.08);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+
+    .btn-modal-cancel {
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      transform: translateY(-1px);
-      border-color: #1f6f78;
-      box-shadow: 0 12px 22px rgba(56, 44, 30, 0.12);
+    }
+
     .btn-modal-cancel:hover {
       background: rgba(212, 175, 55, 0.3);
     }
@@ -1544,11 +1331,11 @@
     }
 
     .btn-save-pdf, .btn-print-pdf {
-      background: #d7eeef;
-      border: 1px solid #1f6f78;
-      color: #1f6f78;
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid #d4af37;
+      color: #d4af37;
       padding: 0.6rem 1rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -1557,7 +1344,7 @@
     }
 
     .btn-save-pdf:hover, .btn-print-pdf:hover {
-      background: #c7e5e7;
+      background: rgba(212, 175, 55, 0.4);
       transform: scale(1.05);
     }
 
@@ -1574,32 +1361,30 @@
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
-      padding: 0 1rem;
-      color: #1f1f1f;
-      font-family: "Manrope", sans-serif;
+      padding: 0 1.25rem;
     }
 
     .progress-indicator {
       text-align: center;
-      color: #1f6f78;
+      color: #d4af37;
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 2rem;
     }
 
     .counter-panel {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      border-radius: 18px;
+      background: rgba(13, 27, 42, 0.9);
+      border: 2px solid #d4af37;
+      border-radius: 16px;
       padding: 2.5rem;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1);
+      box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
       width: 100%;
       max-width: none;
     }
 
     .display-area {
-      background: #ffffff;
-      border: 1px solid #d8cab5;
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid #d4af37;
       border-radius: 12px;
       padding: 0.75rem;
       text-align: center;
@@ -1609,19 +1394,19 @@
     }
 
     .display-area:hover {
-      border-color: #1f6f78;
-      box-shadow: 0 10px 24px rgba(56, 44, 30, 0.08);
+      background: rgba(0, 0, 0, 0.4);
+      border-color: #f4cf5c;
     }
 
     .display-number {
       font-size: 2rem;
       font-weight: 700;
-      color: #1f6f78;
+      color: #d4af37;
     }
 
     .display-hint {
       font-size: 0.8rem;
-      color: #5f5a54;
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .number-pad {
@@ -1632,9 +1417,9 @@
     }
 
     .num-button {
-      background: #ffffff;
-      border: 1px solid #d8cab5;
-      color: #1f1f1f;
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid #d4af37;
+      color: #d4af37;
       font-size: 2rem;
       font-weight: 700;
       padding: 1.5rem;
@@ -1644,8 +1429,7 @@
     }
 
     .num-button:hover {
-      border-color: #1f6f78;
-      box-shadow: 0 10px 24px rgba(56, 44, 30, 0.1);
+      background: rgba(212, 175, 55, 0.4);
       transform: scale(1.05);
     }
 
@@ -1665,9 +1449,9 @@
 
     .quick-btn {
       flex: 1;
-      background: #d7eeef;
-      border: 1px solid #1f6f78;
-      color: #1f6f78;
+      background: rgba(40, 167, 69, 0.2);
+      border: 2px solid #28a745;
+      color: #28a745;
       font-size: 1.1rem;
       font-weight: 600;
       padding: 0.75rem;
@@ -1677,13 +1461,13 @@
     }
 
     .quick-btn:hover {
-      background: #c7e5e7;
+      background: rgba(40, 167, 69, 0.4);
       transform: scale(1.05);
     }
 
     .save-item-btn {
-      background: #1f6f78;
-      border: 1px solid #1f6f78;
+      background: #28a745;
+      border: 2px solid #28a745;
       color: white;
       font-size: 1.2rem;
       font-weight: 700;
@@ -1695,9 +1479,9 @@
     }
 
     .save-item-btn:hover {
-      background: #225f8e;
+      background: #218838;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(31, 111, 120, 0.22);
+      box-shadow: 0 8px 24px rgba(40, 167, 69, 0.4);
     }
 
     .save-item-btn:disabled {
@@ -2707,7 +2491,7 @@
       .counter-panel {
         padding: 1rem 0.75rem;
         margin: 0;
-        border-radius: 18px;
+        border-radius: 12px;
       }
 
       #stockCountPage.expiration-page {
@@ -2717,29 +2501,13 @@
       #stockCountPage .progress-indicator,
       #stockCountPage .form-label,
       #stockCountPage .display-hint {
-        color: #5f5a54;
+        color: #f4e4a8;
       }
 
       #stockCountPage .form-select {
-        color: #1f1f1f;
-        background: #ffffff;
-        border-color: #d8cab5;
-      }
-
-      #stockCountPage .counter-panel,
-      #stockCountPage .date-header,
-      #stockCountPage .form-container {
-        background: #fffaf2;
-        border-color: #d8cab5;
-      }
-
-      .back-button {
-        width: fit-content;
-        margin: 1rem 0.75rem 0;
-        padding: 0.5rem 0.85rem;
-        border-color: #d8cab5;
-        background: rgba(255, 250, 242, 0.92);
-        color: #1f1f1f;
+        color: #f4e4a8;
+        background: rgba(10, 17, 40, 0.85);
+        border-color: rgba(212, 175, 55, 0.6);
       }
 
       .date-header {
@@ -2890,6 +2658,354 @@
         width: 100%;
       }
     }
+
+    .frontdesk-inventory-card {
+      --card-bg: rgba(7, 18, 39, 0.96);
+      --card-panel: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(212, 175, 55, 0.28);
+      --card-text: #f5e8b7;
+      --card-muted: #9fb0cb;
+      --card-accent: #d4af37;
+      --card-success: #5ee7a8;
+      --card-warning: #f7cf5e;
+      --card-danger: #ff6b6b;
+      --card-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+      background: var(--card-bg);
+      color: var(--card-text);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s ease;
+    }
+
+    .frontdesk-inventory-card[data-theme="light"] {
+      --card-bg: #f8f4e7;
+      --card-panel: #ffffff;
+      --card-border: rgba(16, 37, 63, 0.16);
+      --card-text: #11253f;
+      --card-muted: #5d708b;
+      --card-accent: #b07d00;
+      --card-shadow: 0 16px 36px rgba(16, 37, 63, 0.12);
+    }
+
+    .frontdesk-header,
+    .frontdesk-toolbar,
+    .frontdesk-summary-grid,
+    .frontdesk-main-grid,
+    .frontdesk-reports {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .frontdesk-header {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .frontdesk-header-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .frontdesk-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--card-accent);
+      margin: 0.35rem 0 0.25rem;
+    }
+
+    .frontdesk-summary-grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-bottom: 1rem;
+    }
+
+    .frontdesk-summary-card,
+    .frontdesk-list-card,
+    .frontdesk-form-card,
+    .frontdesk-history-card,
+    .frontdesk-modal-card {
+      background: var(--card-panel);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1rem;
+      backdrop-filter: blur(12px);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .frontdesk-summary-card:hover,
+    .frontdesk-list-card:hover,
+    .frontdesk-form-card:hover,
+    .frontdesk-history-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212, 175, 55, 0.5);
+    }
+
+    .summary-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--card-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .summary-value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--card-accent);
+    }
+
+    .summary-value.low { color: var(--card-warning); }
+    .summary-value.out { color: var(--card-danger); }
+
+    .frontdesk-toolbar {
+      grid-template-columns: 2fr repeat(4, minmax(140px, 1fr)) auto;
+      align-items: end;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .frontdesk-field {
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--card-muted);
+    }
+
+    .frontdesk-field input,
+    .frontdesk-field select,
+    .frontdesk-field textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      padding: 0.7rem 0.8rem;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--card-text);
+      font: inherit;
+      box-sizing: border-box;
+    }
+
+    .frontdesk-field textarea {
+      resize: vertical;
+      min-height: 88px;
+    }
+
+    .frontdesk-main-grid {
+      grid-template-columns: 1.5fr 0.9fr;
+      align-items: start;
+    }
+
+    .frontdesk-section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .frontdesk-section-heading h3 {
+      margin: 0;
+      color: var(--card-accent);
+      font-size: 1.05rem;
+    }
+
+    .frontdesk-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid var(--card-border);
+      color: var(--card-muted);
+    }
+
+    .frontdesk-inventory-list {
+      display: grid;
+      gap: 0.85rem;
+      max-height: 760px;
+      overflow-y: auto;
+      padding-right: 0.2rem;
+    }
+
+    .frontdesk-item-card {
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 0.9rem;
+      background: rgba(255, 255, 255, 0.04);
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .frontdesk-item-header,
+    .frontdesk-item-details,
+    .frontdesk-item-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .frontdesk-item-name {
+      font-weight: 700;
+      color: var(--card-text);
+    }
+
+    .frontdesk-item-meta,
+    .frontdesk-item-footer {
+      color: var(--card-muted);
+      font-size: 0.85rem;
+    }
+
+    .frontdesk-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .frontdesk-status.instock { background: rgba(94, 231, 168, 0.16); color: var(--card-success); border-color: rgba(94, 231, 168, 0.32); }
+    .frontdesk-status.low { background: rgba(247, 207, 94, 0.16); color: var(--card-warning); border-color: rgba(247, 207, 94, 0.32); }
+    .frontdesk-status.out { background: rgba(255, 107, 107, 0.16); color: var(--card-danger); border-color: rgba(255, 107, 107, 0.32); }
+
+    .frontdesk-item-details {
+      justify-content: flex-start;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--card-muted);
+    }
+
+    .frontdesk-item-details > div {
+      display: grid;
+      gap: 0.15rem;
+      min-width: 110px;
+    }
+
+    .frontdesk-item-actions {
+      justify-content: flex-start;
+      margin-top: 0.25rem;
+    }
+
+    .frontdesk-item-actions button,
+    .frontdesk-form-actions button,
+    .frontdesk-reports button,
+    .frontdesk-modal-header button {
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--card-text);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .frontdesk-item-actions button:hover,
+    .frontdesk-form-actions button:hover,
+    .frontdesk-reports button:hover,
+    .frontdesk-modal-header button:hover {
+      transform: translateY(-1px);
+      border-color: var(--card-accent);
+    }
+
+    .frontdesk-history-list {
+      display: grid;
+      gap: 0.65rem;
+      max-height: 360px;
+      overflow-y: auto;
+    }
+
+    .frontdesk-history-entry {
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 0.7rem;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .frontdesk-history-entry strong {
+      color: var(--card-accent);
+    }
+
+    .frontdesk-reports {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      margin-top: 1rem;
+    }
+
+    .frontdesk-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 8, 20, 0.72);
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      z-index: 999;
+    }
+
+    .frontdesk-modal-card {
+      width: min(760px, 100%);
+      max-height: 85vh;
+      overflow: auto;
+    }
+
+    .frontdesk-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .frontdesk-report-content {
+      white-space: pre-wrap;
+      font-family: Consolas, monospace;
+      color: var(--card-text);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .frontdesk-empty-state {
+      padding: 1.25rem;
+      text-align: center;
+      color: var(--card-muted);
+      border: 1px dashed var(--card-border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    @media (max-width: 980px) {
+      .frontdesk-main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .frontdesk-toolbar {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .frontdesk-header {
+        grid-template-columns: 1fr;
+      }
+
+      .frontdesk-header-actions {
+        justify-content: flex-start;
+      }
+
+      .frontdesk-toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .frontdesk-summary-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
   <style>@view-transition { navigation: auto; }</style>
  </head>
@@ -2910,17 +3026,49 @@
     </div>
    </div>
    <div id="mainMenuContainer">
-    <div id="mainMenu" class="home-shell">
-     <div class="home-hero">
-      <div class="home-brand">◈ VOS</div>
-      <h1 class="home-title">Inventory &amp; Operations System</h1>
-      <p class="home-subtitle">One platform. Every department.</p>
+    <div id="mainMenu" class="grid-container">
+    <div class="premium-card" data-page="minibar" onclick="goTo('minibar')"><span class="card-emoji">🍾</span>
+      <div class="card-title">
+       Minibar Operations
+      </div>
+      </div>
+    <div class="premium-card" data-page="orders" onclick="goTo('orders')">
+      <div class="notification-badge" id="notificationBadge">
+       0
+      </div><span class="card-emoji">📦</span>
+      <div class="card-title">
+       Order Management
+      </div>
      </div>
-     <div class="home-department-grid">
-      <div class="premium-card home-department-card" data-page="minibar" onclick="goTo('minibar')"><span class="card-emoji">🍾</span><div class="card-title">Minibar</div></div>
-      <div class="premium-card home-department-card" data-page="housekeeping" onclick="goTo('housekeeping')"><span class="card-emoji">🧹</span><div class="card-title">Housekeeping</div></div>
-      <div class="premium-card home-department-card" data-page="frontdesk" onclick="window.location.href='dashboard.html'"><span class="card-emoji">🧾</span><div class="card-title">Front Office</div></div>
-      <div class="premium-card home-department-card" data-page="supplyhub" onclick="goTo('supplyhub')"><span class="card-emoji">🔧</span><div class="card-title">Technical</div></div>
+    <div class="premium-card" data-page="housekeeping" onclick="goTo('housekeeping')"><span class="card-emoji">🧹</span>
+      <div class="card-title">
+       Housekeeping Stock
+      </div>
+     </div>
+    <div class="premium-card" data-page="supplyhub" onclick="goTo('supplyhub')"><span class="card-emoji">🏢</span>
+      <div class="card-title">
+       SupplyHub
+      </div>
+     </div>
+    <div class="premium-card" data-page="frontdesk" onclick="goTo('frontdesk')"><span class="card-emoji">🧾</span>
+      <div class="card-title">
+       Frontdesk Stock
+      </div>
+     </div>
+    <div class="premium-card" data-page="archive" onclick="goTo('archive')"><span class="card-emoji">📚</span>
+      <div class="card-title">
+       Archive
+      </div>
+     </div>
+    <div class="premium-card" data-page="room-registry" onclick="goTo('room-registry')"><span class="card-emoji">🏨</span>
+      <div class="card-title">
+       Room Registry
+      </div>
+     </div>
+    <div class="premium-card" data-page="stock-locations" onclick="goTo('stock-locations')"><span class="card-emoji">📍</span>
+      <div class="card-title">
+       Stock Locations
+      </div>
      </div>
     </div>
 
@@ -2994,68 +3142,171 @@
     </div>
 
     <div id="frontdeskPage" class="expiration-page hidden">
-     <div class="frontdesk-shell">
-      <section class="frontdesk-header">
-        <div>
-          <div class="home-brand">Front Desk Inventory</div>
-          <h2>Front Desk Inventory</h2>
-          <p>Live overview • fast restocks • full history</p>
+     <div class="supplyhub-shell">
+      <article class="supplyhub-card frontdesk-inventory-card" id="frontdeskInventoryShell" data-theme="dark">
+        <div class="frontdesk-header">
+          <div>
+            <div class="dashboard-badge">Front Desk Inventory</div>
+            <h2 class="frontdesk-title">Frontdesk Stock</h2>
+            <p class="pin-subtitle" style="margin-bottom: 0; text-align: left;">Manage guest amenities, office supplies, and operational stock with live status insights.</p>
+          </div>
+          <div class="frontdesk-header-actions">
+            <button type="button" class="secondary-btn" id="frontdeskThemeToggle">☀ Light</button>
+            <button type="button" class="btn-submit" id="frontdeskAddBtn">➕ Add Item</button>
+          </div>
         </div>
-        <div class="frontdesk-actions-row">
-          <button type="button" class="secondary-btn" id="frontdeskAddToggle">➕ Add Item</button>
+
+        <div class="frontdesk-summary-grid">
+          <div class="frontdesk-summary-card">
+            <div class="summary-label">Total Items</div>
+            <div class="summary-value" id="frontdeskTotalItems">0</div>
+          </div>
+          <div class="frontdesk-summary-card">
+            <div class="summary-label">Low Stock</div>
+            <div class="summary-value low" id="frontdeskLowStockItems">0</div>
+          </div>
+          <div class="frontdesk-summary-card">
+            <div class="summary-label">Out of Stock</div>
+            <div class="summary-value out" id="frontdeskOutOfStockItems">0</div>
+          </div>
+          <div class="frontdesk-summary-card">
+            <div class="summary-label">Recently Updated</div>
+            <div class="summary-value" id="frontdeskRecentlyUpdatedItems">0</div>
+          </div>
         </div>
-      </section>
-      <section class="frontdesk-summary-grid" id="frontdeskSummaryCards"></section>
-      <section class="frontdesk-toolbar">
-        <input id="frontdeskSearch" type="text" placeholder="Search inventory" />
-        <select id="frontdeskCategoryFilter">
-          <option value="All">Category: All</option>
-          <option value="Guest Amenities">Guest Amenities</option>
-          <option value="Office Supplies">Office Supplies</option>
-          <option value="Operations">Operations</option>
-        </select>
-        <select id="frontdeskStatusFilter">
-          <option value="All">Status: All</option>
-          <option value="In Stock">In Stock</option>
-          <option value="Low Stock">Low Stock</option>
-          <option value="Out of Stock">Out of Stock</option>
-        </select>
-        <button type="button" class="secondary-btn" id="frontdeskResetFilters">Reset</button>
-      </section>
-      <section class="frontdesk-grid">
-        <div class="frontdesk-panel">
-          <div class="frontdesk-panel-title">Inventory Items</div>
-          <div id="frontdeskInventoryList"></div>
+
+        <div class="frontdesk-toolbar">
+          <label class="frontdesk-field">
+            <span>Search</span>
+            <input id="frontdeskSearch" type="text" placeholder="Search item, SKU, supplier..." />
+          </label>
+          <label class="frontdesk-field">
+            <span>Category</span>
+            <select id="frontdeskCategoryFilter">
+              <option value="All">All</option>
+            </select>
+          </label>
+          <label class="frontdesk-field">
+            <span>Location</span>
+            <select id="frontdeskLocationFilter">
+              <option value="All">All</option>
+            </select>
+          </label>
+          <label class="frontdesk-field">
+            <span>Supplier</span>
+            <select id="frontdeskSupplierFilter">
+              <option value="All">All</option>
+            </select>
+          </label>
+          <label class="frontdesk-field">
+            <span>Status</span>
+            <select id="frontdeskStatusFilter">
+              <option value="All">All</option>
+              <option value="In Stock">In Stock</option>
+              <option value="Low Stock">Low Stock</option>
+              <option value="Out of Stock">Out of Stock</option>
+            </select>
+          </label>
+          <button type="button" class="secondary-btn" id="frontdeskResetFilters">Reset</button>
         </div>
-        <div class="frontdesk-panel">
-          <div class="frontdesk-panel-title">Add New Item</div>
-          <form id="frontdeskItemForm" class="frontdesk-form-grid">
-            <label class="field-row"><span>SKU</span><input id="frontdeskSku" name="sku" type="text" placeholder="GA-003" /></label>
-            <label class="field-row"><span>Item name</span><input id="frontdeskItemName" name="frontdeskItemName" type="text" placeholder="e.g. Hand towels" required /></label>
-            <label class="field-row"><span>Category</span><select id="frontdeskCategory" name="category"><option>Guest Amenities</option><option>Office Supplies</option><option>Operations</option></select></label>
-            <label class="field-row"><span>Storage location</span><input id="frontdeskLocation" name="location" type="text" placeholder="Front Desk Cabinet" /></label>
-            <label class="field-row"><span>Current stock</span><input id="frontdeskCurrentStock" name="frontdeskCurrentStock" type="number" min="0" value="0" required /></label>
-            <label class="field-row"><span>Minimum stock</span><input id="frontdeskMinimumStock" name="frontdeskMinimumStock" type="number" min="1" value="10" required /></label>
-            <label class="field-row"><span>Maximum stock</span><input id="frontdeskMaximumStock" name="frontdeskMaximumStock" type="number" min="1" value="100" /></label>
-            <label class="field-row"><span>Reorder quantity</span><input id="frontdeskReorderQty" name="frontdeskReorderQty" type="number" min="1" value="10" /></label>
-            <label class="field-row"><span>Supplier</span><input id="frontdeskSupplier" name="supplier" type="text" placeholder="Hotel Supplies Co." /></label>
-            <label class="field-row"><span>Unit</span><input id="frontdeskUnit" name="unit" type="text" placeholder="boxes" /></label>
-            <label class="field-row"><span>Notes</span><textarea id="frontdeskNotes" name="notes" rows="3" placeholder="Short note"></textarea></label>
-            <div class="frontdesk-actions-row"><button type="submit">Save Item</button><button type="button" class="secondary-btn" id="frontdeskCancelBtn">Cancel</button></div>
-          </form>
-          <div id="frontdeskFormMessage" class="message" style="margin-top: 0.3rem;"></div>
+
+        <div class="frontdesk-main-grid">
+          <div class="frontdesk-list-card">
+            <div class="frontdesk-section-heading">
+              <h3>Inventory Items</h3>
+              <span class="frontdesk-chip" id="frontdeskResultsCount">0 items</span>
+            </div>
+            <div class="frontdesk-inventory-list" id="frontdeskInventoryList"></div>
+          </div>
+
+          <div class="frontdesk-side-stack">
+            <div class="frontdesk-form-card">
+              <div class="frontdesk-section-heading">
+                <h3 id="frontdeskFormTitle">Add New Item</h3>
+                <span class="frontdesk-chip">Item details</span>
+              </div>
+              <form id="frontdeskInventoryForm" class="qr-controls" style="margin-top: 0.25rem;">
+                <input type="hidden" id="frontdeskItemId" />
+                <label class="field-row">
+                  <span>SKU</span>
+                  <input id="frontdeskSku" name="sku" type="text" placeholder="SKU-001" required />
+                </label>
+                <label class="field-row">
+                  <span>Item name</span>
+                  <input id="frontdeskItemName" name="itemName" type="text" placeholder="e.g. Water bottles" required />
+                </label>
+                <label class="field-row">
+                  <span>Category</span>
+                  <select id="frontdeskCategory" name="category" required></select>
+                </label>
+                <label class="field-row">
+                  <span>Storage location</span>
+                  <input id="frontdeskLocation" name="storageLocation" type="text" placeholder="Front Desk Cabinet" required />
+                </label>
+                <label class="field-row">
+                  <span>Current stock</span>
+                  <input id="frontdeskCurrentStock" name="currentStock" type="number" min="0" value="0" required />
+                </label>
+                <label class="field-row">
+                  <span>Minimum stock</span>
+                  <input id="frontdeskMinimumStock" name="minimumStock" type="number" min="0" value="10" required />
+                </label>
+                <label class="field-row">
+                  <span>Maximum stock</span>
+                  <input id="frontdeskMaximumStock" name="maximumStock" type="number" min="1" value="50" required />
+                </label>
+                <label class="field-row">
+                  <span>Reorder quantity</span>
+                  <input id="frontdeskReorderQuantity" name="reorderQuantity" type="number" min="1" value="10" required />
+                </label>
+                <label class="field-row">
+                  <span>Supplier</span>
+                  <input id="frontdeskSupplier" name="supplier" type="text" placeholder="Supplier name" required />
+                </label>
+                <label class="field-row">
+                  <span>Unit</span>
+                  <input id="frontdeskUnit" name="unit" type="text" placeholder="pcs / box / bottle" required />
+                </label>
+                <label class="field-row">
+                  <span>Notes</span>
+                  <textarea id="frontdeskNotes" name="notes" rows="3" placeholder="Any extra notes..."></textarea>
+                </label>
+                <div class="frontdesk-form-actions">
+                  <button type="submit" class="btn-submit">Save Item</button>
+                  <button type="button" class="secondary-btn" id="frontdeskCancelEdit">Cancel</button>
+                </div>
+              </form>
+              <div id="frontdeskFormMessage" class="message" style="margin-top: 0.3rem;"></div>
+            </div>
+
+            <div class="frontdesk-history-card">
+              <div class="frontdesk-section-heading">
+                <h3>Item History</h3>
+                <span class="frontdesk-chip" id="frontdeskHistoryTitle">Select item</span>
+              </div>
+              <div class="frontdesk-history-list" id="frontdeskHistoryList"></div>
+            </div>
+          </div>
         </div>
-      </section>
-      <section class="frontdesk-panel">
-        <div class="frontdesk-panel-title">Item History</div>
-        <div class="frontdesk-history-list" id="frontdeskHistoryList"></div>
-      </section>
-      <section class="frontdesk-actions-row">
-        <button type="button" class="secondary-btn" id="frontdeskLowStockBtn">Low Stock Report</button>
-        <button type="button" class="secondary-btn" id="frontdeskOutOfStockBtn">Out of Stock Report</button>
-        <button type="button" class="secondary-btn" id="frontdeskExportPdfBtn">Export to PDF</button>
-        <button type="button" class="secondary-btn" id="frontdeskExportExcelBtn">Export to Excel</button>
-      </section>
+
+        <div class="frontdesk-reports">
+          <button type="button" class="secondary-btn" data-report="current">Current Stock Report</button>
+          <button type="button" class="secondary-btn" data-report="low">Low Stock Report</button>
+          <button type="button" class="secondary-btn" data-report="out">Out of Stock Report</button>
+          <button type="button" class="secondary-btn" data-report="pdf">Export to PDF</button>
+          <button type="button" class="secondary-btn" data-report="excel">Export to Excel</button>
+        </div>
+
+        <div id="frontdeskReportModal" class="frontdesk-modal hidden">
+          <div class="frontdesk-modal-card">
+            <div class="frontdesk-modal-header">
+              <h3 id="frontdeskReportTitle">Report</h3>
+              <button type="button" class="secondary-btn" id="frontdeskReportClose">Close</button>
+            </div>
+            <pre id="frontdeskReportContent" class="frontdesk-report-content"></pre>
+          </div>
+        </div>
+      </article>
      </div>
     </div>
     
@@ -3361,8 +3612,6 @@
 
     const mainMenu = document.getElementById('mainMenu');
     const pinOverlay = document.getElementById('pinOverlay');
-    isUnlocked = true;
-    localStorage.setItem('app_unlocked', 'true');
 
     if (simpleLoginForm) {
       simpleLoginForm.addEventListener('submit', (event) => {
@@ -3429,150 +3678,8 @@
     const supplyhubPage = document.getElementById('supplyhubPage');
     const frontdeskPage = document.getElementById('frontdeskPage');
     const backButton = document.getElementById('backButton');
-
-    function applyBackButtonStyle() {
-      if (!backButton) return;
-      backButton.style.display = 'inline-flex';
-      backButton.style.alignItems = 'center';
-      backButton.style.gap = '0.45rem';
-      backButton.style.width = 'fit-content';
-      backButton.style.padding = '0.6rem 0.95rem';
-      backButton.style.border = '2px solid #d8cab5';
-      backButton.style.borderRadius = '999px';
-      backButton.style.background = 'rgba(255, 250, 242, 0.92)';
-      backButton.style.color = '#1f1f1f';
-      backButton.style.fontWeight = '800';
-      backButton.style.textDecoration = 'none';
-      backButton.style.boxShadow = '0 8px 18px rgba(56, 44, 30, 0.08)';
-      backButton.style.transition = 'transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease';
-    }
-
-    function applyStockCountStyle() {
-      const isMobile = globalThis.innerWidth <= 768;
-      const stockCounterContainer = document.querySelector('#stockCountPage .stock-counter-container');
-      const counterPanel = document.querySelector('#stockCountPage .counter-panel');
-      const progressIndicator = document.getElementById('stockProgress');
-      const displayArea = document.getElementById('displayArea');
-      const displayNumber = document.getElementById('displayNumber');
-      const displayHint = document.querySelector('#stockCountPage .display-hint');
-      const saveButton = document.getElementById('saveStockBtn');
-      const stockCounterGrid = document.querySelector('#stockCountPage .stock-counter-grid');
-      const quickButtonsRow = document.querySelector('#stockCountPage .quick-buttons');
-      const numberPad = document.querySelector('#stockCountPage .number-pad');
-      const quickButtons = document.querySelectorAll('#stockCountPage .quick-btn');
-      const numButtons = document.querySelectorAll('#stockCountPage .num-button');
-      const stockFormSelects = document.querySelectorAll('#stockCountPage .form-select');
-
-      if (stockCounterContainer) {
-        stockCounterContainer.style.padding = isMobile ? '0 0.5rem' : '0 1rem';
-        stockCounterContainer.style.color = '#1f1f1f';
-        stockCounterContainer.style.fontFamily = 'Manrope, sans-serif';
-      }
-
-      if (counterPanel) {
-        counterPanel.style.background = '#fffaf2';
-        counterPanel.style.border = '1px solid #d8cab5';
-        counterPanel.style.borderRadius = '18px';
-        counterPanel.style.boxShadow = '0 16px 32px rgba(56, 44, 30, 0.1)';
-        counterPanel.style.padding = isMobile ? '1rem 0.75rem' : '2.5rem';
-      }
-
-      if (progressIndicator) {
-        progressIndicator.style.color = '#1f6f78';
-      }
-
-      if (displayArea) {
-        displayArea.style.background = '#ffffff';
-        displayArea.style.border = '1px solid #d8cab5';
-        displayArea.style.boxShadow = '0 10px 24px rgba(56, 44, 30, 0.08)';
-        displayArea.style.marginBottom = '1.35rem';
-      }
-
-      if (displayNumber) {
-        displayNumber.style.color = '#1f6f78';
-        displayNumber.style.fontSize = '2rem';
-        displayNumber.style.fontWeight = '700';
-        displayNumber.style.lineHeight = '1.1';
-        displayNumber.style.padding = '0.25rem 0';
-        displayNumber.style.textAlign = 'center';
-      }
-
-      if (displayHint) {
-        displayHint.style.color = '#5f5a54';
-      }
-
-      if (stockCounterGrid) {
-        stockCounterGrid.style.display = 'grid';
-        stockCounterGrid.style.gridTemplateColumns = isMobile ? '1fr' : '1fr 1fr';
-        stockCounterGrid.style.gap = isMobile ? '0.75rem' : '1rem';
-        stockCounterGrid.style.marginBottom = '1rem';
-        stockCounterGrid.style.width = '100%';
-      }
-
-      if (quickButtonsRow) {
-        quickButtonsRow.style.display = 'grid';
-        quickButtonsRow.style.gridTemplateColumns = 'repeat(4, minmax(0, 1fr))';
-        quickButtonsRow.style.gap = '0.5rem';
-        quickButtonsRow.style.width = '100%';
-        quickButtonsRow.style.margin = '0.6rem 0 1.1rem';
-      }
-
-      if (numberPad) {
-        numberPad.style.display = 'grid';
-        numberPad.style.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))';
-        numberPad.style.gap = '0.75rem';
-        numberPad.style.width = '100%';
-      }
-
-      if (saveButton) {
-        saveButton.style.display = 'block';
-        saveButton.style.width = '100%';
-        saveButton.style.background = '#1f6f78';
-        saveButton.style.border = '1px solid #1f6f78';
-        saveButton.style.color = '#ffffff';
-        saveButton.style.borderRadius = '12px';
-        saveButton.style.padding = '1.25rem';
-        saveButton.style.fontWeight = '700';
-        saveButton.style.marginTop = '0.15rem';
-      }
-
-      quickButtons.forEach((button) => {
-        button.style.display = 'inline-flex';
-        button.style.alignItems = 'center';
-        button.style.justifyContent = 'center';
-        button.style.background = '#d7eeef';
-        button.style.border = '1px solid #1f6f78';
-        button.style.color = '#1f6f78';
-        button.style.borderRadius = '8px';
-        button.style.padding = '0.75rem';
-        button.style.fontWeight = '600';
-      });
-
-      numButtons.forEach((button) => {
-        button.style.display = 'inline-flex';
-        button.style.alignItems = 'center';
-        button.style.justifyContent = 'center';
-        button.style.background = '#ffffff';
-        button.style.border = '1px solid #d8cab5';
-        button.style.color = '#1f1f1f';
-        button.style.borderRadius = '12px';
-        button.style.padding = '1.5rem';
-        button.style.fontWeight = '700';
-      });
-
-      stockFormSelects.forEach((select) => {
-        select.style.background = '#ffffff';
-        select.style.border = '1px solid #d8cab5';
-        select.style.color = '#1f1f1f';
-        select.style.borderRadius = '8px';
-      });
-    }
-
-    applyBackButtonStyle();
-    applyStockCountStyle();
-
     let currentPage = 'main';
-    var isUnlocked = true;
+    var isUnlocked = false;
     let roomRegistryContainer;
     let roomDetailContainer;
     let maintenanceQueueBtn;
@@ -3679,9 +3786,6 @@
         archivedItems = normalizedData.filter(item => !item.type && !item.stock_type && !item.equipment_type && item.is_archived);
         archivedNotifications = normalizedData.filter(item => item.type && item.is_archived);
         archivedStockCounts = normalizedData.filter(item => item.stock_type === 'minibar_count' && item.is_archived);
-        const syncedFrontdeskItems = getFrontdeskItemsFromData(normalizedData);
-        frontdeskItems = syncedFrontdeskItems.length ? syncedFrontdeskItems : cloneDefaultFrontdeskItems();
-        frontdeskSelectedItemId = frontdeskItems[0]?.id || null;
         
         updateExpirationDisplay();
         updateNotificationsDisplay();
@@ -3785,36 +3889,6 @@
 
       function selectPayload(payload) {
         if (!payload || typeof payload !== 'object') return payload;
-        const stockType = String(payload.stock_type || payload.type || '').toLowerCase();
-        if (stockType === 'frontdesk_inventory') {
-          return {
-            id: payload.id,
-            stock_type: payload.stock_type || payload.type,
-            type: payload.type || payload.stock_type,
-            item_name: payload.item_name,
-            sku: payload.sku,
-            category: payload.category,
-            location_name: payload.location_name,
-            location: payload.location || payload.location_name,
-            current_stock: payload.current_stock,
-            quantity: payload.quantity,
-            minimum_stock: payload.minimum_stock,
-            min_stock: payload.min_stock,
-            maximum_stock: payload.maximum_stock,
-            max_stock: payload.max_stock,
-            reorder_qty: payload.reorder_qty,
-            order_quantity: payload.order_quantity,
-            supplier: payload.supplier,
-            unit: payload.unit,
-            notes: payload.notes,
-            updated_by: payload.updated_by,
-            updated_at: payload.updated_at,
-            last_checked: payload.last_checked,
-            added_timestamp: payload.added_timestamp,
-            date_added: payload.date_added,
-            is_archived: payload.is_archived
-          };
-        }
         if (payload.type) {
           return {
             id: payload.id,
@@ -4052,326 +4126,457 @@
       }
     }
 
-    const DEFAULT_FRONTDESK_ITEMS = [
-      { id: 'water', sku: 'GA-001', name: 'Water', category: 'Guest Amenities', location: 'Front Desk Cabinet', current: 120, minimum: 50, maximum: 180, reorderQty: 20, supplier: 'Hotel Supplies Co.', unit: 'cases', notes: 'High demand during check-in', history: [{ title: 'Added item', detail: 'Initial stock', date: 'Jul 29, 2026' }] },
-      { id: 'coffee', sku: 'GA-002', name: 'Coffee Capsules', category: 'Guest Amenities', location: 'Lobby Pantry', current: 8, minimum: 20, maximum: 80, reorderQty: 12, supplier: 'Brew Supply', unit: 'boxes', notes: 'Reorder soon', history: [{ title: 'Restocked', detail: 'Added 6 units', date: 'Jul 30, 2026' }] },
-      { id: 'pens', sku: 'OS-001', name: 'Pens', category: 'Office Supplies', location: 'Front Desk Drawer', current: 0, minimum: 8, maximum: 40, reorderQty: 10, supplier: 'Office Essentials', unit: 'packs', notes: 'Out of stock', history: [{ title: 'Stock update', detail: 'Marked empty', date: 'Jul 31, 2026' }] },
-      { id: 'batteries', sku: 'OP-001', name: 'Batteries', category: 'Operations', location: 'Housekeeping Closet', current: 35, minimum: 15, maximum: 60, reorderQty: 8, supplier: 'Tech Supply', unit: 'packs', notes: 'Good standing', history: [{ title: 'Inventory review', detail: 'Verified count', date: 'Jul 31, 2026' }] }
+    const FRONTDESK_STORAGE_KEY = 'frontdeskInventoryDataV1';
+    const frontdeskCategories = [
+      'Guest Amenities',
+      'Office Supplies',
+      'Operations'
     ];
-    let frontdeskItems = cloneDefaultFrontdeskItems();
-    let frontdeskSelectedItemId = frontdeskItems[0]?.id || null;
-    let frontdeskSearchTerm = '';
-    let frontdeskCategoryFilter = 'All';
-    let frontdeskStatusFilter = 'All';
 
-    function cloneDefaultFrontdeskItems() {
-      return DEFAULT_FRONTDESK_ITEMS.map((item) => ({
-        ...item,
-        history: Array.isArray(item.history) ? item.history.map((entry) => ({ ...entry })) : []
-      }));
+    const defaultFrontdeskItems = [
+      { id: 1, sku: 'GA-001', itemName: 'Water', category: 'Guest Amenities', storageLocation: 'Front Desk Cabinet', currentStock: 120, minimumStock: 40, maximumStock: 200, reorderQuantity: 40, supplier: 'Hotel Supplies Co.', unit: 'bottle', lastUpdated: '2026-07-29', notes: 'High demand during check-ins.', history: [{ date: '2026-07-29', user: 'Front Office', action: 'Added item', quantity: 120, notes: 'Initial stock' }] },
+      { id: 2, sku: 'GA-002', itemName: 'Coffee Capsules', category: 'Guest Amenities', storageLocation: 'Lobby Pantry', currentStock: 18, minimumStock: 20, maximumStock: 80, reorderQuantity: 20, supplier: 'Brew Supply', unit: 'pack', lastUpdated: '2026-07-30', notes: 'Reorder soon.', history: [{ date: '2026-07-30', user: 'Front Office', action: 'Stock updated', quantity: 2, notes: 'Restocked' }] },
+      { id: 3, sku: 'OS-001', itemName: 'Pens', category: 'Office Supplies', storageLocation: 'Front Desk Drawer', currentStock: 0, minimumStock: 10, maximumStock: 60, reorderQuantity: 20, supplier: 'Office Essentials', unit: 'box', lastUpdated: '2026-07-31', notes: 'Out of stock.', history: [{ date: '2026-07-31', user: 'Front Office', action: 'Stock updated', quantity: -4, notes: 'Used in operations' }] },
+      { id: 4, sku: 'OP-001', itemName: 'Batteries', category: 'Operations', storageLocation: 'Housekeeping Closet', currentStock: 35, minimumStock: 15, maximumStock: 80, reorderQuantity: 20, supplier: 'Tech Supply', unit: 'pack', lastUpdated: '2026-07-28', notes: 'Routine restock.', history: [{ date: '2026-07-28', user: 'Front Office', action: 'Added item', quantity: 35, notes: 'Initial stock' }] }
+    ];
+
+    let frontdeskItems = [];
+    let frontdeskFilters = {
+      search: '',
+      category: 'All',
+      location: 'All',
+      supplier: 'All',
+      status: 'All'
+    };
+    let frontdeskEditId = null;
+
+    function loadFrontdeskItems() {
+      try {
+        const cached = localStorage.getItem(FRONTDESK_STORAGE_KEY);
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed) && parsed.length) {
+            frontdeskItems = parsed;
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn('Unable to load frontdesk inventory', error);
+      }
+      frontdeskItems = defaultFrontdeskItems.map(item => ({ ...item }));
     }
 
-    function getFrontdeskItemsFromData(data) {
-      return (Array.isArray(data) ? data : [])
-        .filter((item) => item && typeof item === 'object' && String(item.stock_type || item.type || '').toLowerCase() === 'frontdesk_inventory' && !item.is_archived)
-        .map((item) => {
-          const current = Number(item.current_stock ?? item.quantity ?? item.current ?? 0);
-          const minimum = Number(item.minimum_stock ?? item.min_stock ?? item.minimum ?? 0);
-          const maximum = Number(item.maximum_stock ?? item.max_stock ?? item.maximum ?? Math.max(minimum + 20, current + 20));
-          return {
-            id: String(item.id || item.sku || item.item_name || `frontdesk-${Date.now()}`),
-            sku: String(item.sku || item.article_number || item.id || '').trim() || `FD-${String(Date.now()).slice(-6)}`,
-            name: item.item_name || item.name || 'Unnamed Item',
-            category: item.category || 'Guest Amenities',
-            location: item.location_name || item.location || 'Front Desk',
-            current: Number.isFinite(current) ? current : 0,
-            minimum: Number.isFinite(minimum) ? minimum : 0,
-            maximum: Number.isFinite(maximum) ? maximum : Math.max((Number.isFinite(minimum) ? minimum : 0) + 20, (Number.isFinite(current) ? current : 0) + 20),
-            reorderQty: Number(item.reorder_qty ?? item.order_quantity ?? item.reorderQty ?? 10) || 10,
-            supplier: item.supplier || 'Hotel Supplies Co.',
-            unit: item.unit || 'units',
-            notes: item.notes || '',
-            history: Array.isArray(item.history) && item.history.length ? item.history : [{ title: 'Synced item', detail: 'Loaded from Google Sheets', date: item.updated_at || item.added_timestamp || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }]
-          };
-        });
+    function saveFrontdeskItems() {
+      localStorage.setItem(FRONTDESK_STORAGE_KEY, JSON.stringify(frontdeskItems));
     }
 
     function getFrontdeskStatus(item) {
-      if (item.current <= 0) return 'Out of Stock';
-      if (item.current < item.minimum) return 'Low Stock';
+      if (item.currentStock <= 0) return 'Out of Stock';
+      if (item.currentStock <= item.minimumStock) return 'Low Stock';
       return 'In Stock';
     }
 
-    function selectFrontdeskItem(itemId) {
-      frontdeskSelectedItemId = itemId;
-      renderFrontdeskInventory();
+    function getFrontdeskStatusClass(status) {
+      if (status === 'Out of Stock') return 'out';
+      if (status === 'Low Stock') return 'low';
+      return 'instock';
     }
 
-    function renderFrontdeskInventory() {
-      const inventoryList = document.getElementById('frontdeskInventoryList');
-      const historyList = document.getElementById('frontdeskHistoryList');
-      const summaryCards = document.getElementById('frontdeskSummaryCards');
-      const messageEl = document.getElementById('frontdeskFormMessage');
-      if (!inventoryList || !historyList || !summaryCards) return;
+    function formatFrontdeskDate(value) {
+      if (!value) return '—';
+      const parsed = new Date(value);
+      if (Number.isNaN(parsed.getTime())) return value;
+      return parsed.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
 
-      const searchTerm = (document.getElementById('frontdeskSearch')?.value || frontdeskSearchTerm || '').trim().toLowerCase();
-      const categoryFilter = document.getElementById('frontdeskCategoryFilter')?.value || frontdeskCategoryFilter;
-      const statusFilter = document.getElementById('frontdeskStatusFilter')?.value || frontdeskStatusFilter;
-      frontdeskSearchTerm = searchTerm;
-      frontdeskCategoryFilter = categoryFilter;
-      frontdeskStatusFilter = statusFilter;
-
-      const filteredItems = frontdeskItems.filter((item) => {
-        const matchesSearch = !searchTerm || item.name.toLowerCase().includes(searchTerm) || item.sku.toLowerCase().includes(searchTerm);
-        const matchesCategory = categoryFilter === 'All' || item.category === categoryFilter;
-        const matchesStatus = statusFilter === 'All' || getFrontdeskStatus(item) === statusFilter;
-        return matchesSearch && matchesCategory && matchesStatus;
+    function getFilteredFrontdeskItems() {
+      const term = frontdeskFilters.search.trim().toLowerCase();
+      return frontdeskItems.filter((item) => {
+        const matchesSearch = !term || [item.itemName, item.sku, item.supplier, item.storageLocation, item.category].some(value => String(value || '').toLowerCase().includes(term));
+        const matchesCategory = frontdeskFilters.category === 'All' || item.category === frontdeskFilters.category;
+        const matchesLocation = frontdeskFilters.location === 'All' || item.storageLocation === frontdeskFilters.location;
+        const matchesSupplier = frontdeskFilters.supplier === 'All' || item.supplier === frontdeskFilters.supplier;
+        const status = getFrontdeskStatus(item);
+        const matchesStatus = frontdeskFilters.status === 'All' || status === frontdeskFilters.status;
+        return matchesSearch && matchesCategory && matchesLocation && matchesSupplier && matchesStatus;
       });
+    }
 
-      const selectedItem = filteredItems.find((item) => item.id === frontdeskSelectedItemId) || filteredItems[0] || null;
-      if (selectedItem) {
-        frontdeskSelectedItemId = selectedItem.id;
+    function populateFrontdeskFilters() {
+      const categorySelect = document.getElementById('frontdeskCategoryFilter');
+      const locationSelect = document.getElementById('frontdeskLocationFilter');
+      const supplierSelect = document.getElementById('frontdeskSupplierFilter');
+      const categoryFormSelect = document.getElementById('frontdeskCategory');
+      if (categorySelect) {
+        const categories = ['All', ...new Set(frontdeskItems.map(item => item.category))];
+        categorySelect.innerHTML = categories.map(value => `<option value="${value}">${value}</option>`).join('');
+        if (frontdeskFilters.category && categories.includes(frontdeskFilters.category)) {
+          categorySelect.value = frontdeskFilters.category;
+        } else {
+          categorySelect.value = 'All';
+        }
       }
+      if (locationSelect) {
+        const locations = ['All', ...new Set(frontdeskItems.map(item => item.storageLocation))];
+        locationSelect.innerHTML = locations.map(value => `<option value="${value}">${value}</option>`).join('');
+        if (frontdeskFilters.location && locations.includes(frontdeskFilters.location)) {
+          locationSelect.value = frontdeskFilters.location;
+        } else {
+          locationSelect.value = 'All';
+        }
+      }
+      if (supplierSelect) {
+        const suppliers = ['All', ...new Set(frontdeskItems.map(item => item.supplier))];
+        supplierSelect.innerHTML = suppliers.map(value => `<option value="${value}">${value}</option>`).join('');
+        if (frontdeskFilters.supplier && suppliers.includes(frontdeskFilters.supplier)) {
+          supplierSelect.value = frontdeskFilters.supplier;
+        } else {
+          supplierSelect.value = 'All';
+        }
+      }
+      if (categoryFormSelect) {
+        categoryFormSelect.innerHTML = frontdeskCategories.map(value => `<option value="${value}">${value}</option>`).join('');
+      }
+    }
+
+    function renderFrontdeskDashboard() {
+      const totalItemsEl = document.getElementById('frontdeskTotalItems');
+      const lowStockEl = document.getElementById('frontdeskLowStockItems');
+      const outOfStockEl = document.getElementById('frontdeskOutOfStockItems');
+      const recentEl = document.getElementById('frontdeskRecentlyUpdatedItems');
+      if (!totalItemsEl || !lowStockEl || !outOfStockEl || !recentEl) return;
 
       const totalItems = frontdeskItems.length;
-      const lowStockItems = frontdeskItems.filter((item) => getFrontdeskStatus(item) === 'Low Stock').length;
-      const outOfStockItems = frontdeskItems.filter((item) => getFrontdeskStatus(item) === 'Out of Stock').length;
-      const recentlyUpdatedItems = frontdeskItems.filter((item) => item.history?.length > 1).length;
-      summaryCards.innerHTML = `
-        <div class="frontdesk-summary-card"><strong>${totalItems}</strong><span>Total Items</span></div>
-        <div class="frontdesk-summary-card"><strong>${lowStockItems}</strong><span>Low Stock</span></div>
-        <div class="frontdesk-summary-card"><strong>${outOfStockItems}</strong><span>Out of Stock</span></div>
-        <div class="frontdesk-summary-card"><strong>${recentlyUpdatedItems}</strong><span>Recently Updated</span></div>`;
+      const lowStockItems = frontdeskItems.filter(item => getFrontdeskStatus(item) === 'Low Stock').length;
+      const outOfStockItems = frontdeskItems.filter(item => getFrontdeskStatus(item) === 'Out of Stock').length;
+      const recentlyUpdatedItems = frontdeskItems.filter((item) => {
+        const parsedDate = new Date(item.lastUpdated);
+        const now = Date.now();
+        return !Number.isNaN(parsedDate.getTime()) && now - parsedDate.getTime() <= 7 * 24 * 60 * 60 * 1000;
+      }).length;
 
-      inventoryList.innerHTML = filteredItems.length ? filteredItems.map((item) => {
+      totalItemsEl.textContent = totalItems;
+      lowStockEl.textContent = lowStockItems;
+      outOfStockEl.textContent = outOfStockItems;
+      recentEl.textContent = recentlyUpdatedItems;
+    }
+
+    function renderFrontdeskInventoryList() {
+      const container = document.getElementById('frontdeskInventoryList');
+      const countEl = document.getElementById('frontdeskResultsCount');
+      if (!container) return;
+
+      const filteredItems = getFilteredFrontdeskItems();
+      if (!filteredItems.length) {
+        container.innerHTML = '<div class="frontdesk-empty-state">No items match the current filters. Try widening your search.</div>';
+        if (countEl) countEl.textContent = '0 items';
+        return;
+      }
+
+      if (countEl) countEl.textContent = `${filteredItems.length} item${filteredItems.length === 1 ? '' : 's'}`;
+
+      container.innerHTML = filteredItems.map((item) => {
         const status = getFrontdeskStatus(item);
-        const statusClass = status === 'Out of Stock' ? 'stock-health-below' : status === 'Low Stock' ? 'stock-health-low' : 'stock-health-full';
+        const statusClass = getFrontdeskStatusClass(status);
         return `
-          <div class="frontdesk-item-card ${selectedItem?.id === item.id ? 'active' : ''}" onclick="selectFrontdeskItem('${item.id}')">
-            <div class="frontdesk-item-row">
-              <strong>${item.name}</strong>
-              <span class="frontdesk-pill">${status}</span>
+          <div class="frontdesk-item-card">
+            <div class="frontdesk-item-header">
+              <div>
+                <div class="frontdesk-item-name">${item.itemName}</div>
+                <div class="frontdesk-item-meta">${item.sku} • ${item.category}</div>
+              </div>
+              <span class="frontdesk-status ${statusClass}">${status}</span>
             </div>
-            <div class="frontdesk-item-meta">
-              <span>${item.sku}</span>
-              <span>• ${item.category}</span>
-              <span>• ${item.location}</span>
+            <div class="frontdesk-item-details">
+              <div><span>Location</span><strong>${item.storageLocation}</strong></div>
+              <div><span>Stock</span><strong>${item.currentStock} ${item.unit}</strong></div>
+              <div><span>Min / Max</span><strong>${item.minimumStock} / ${item.maximumStock}</strong></div>
+              <div><span>Supplier</span><strong>${item.supplier}</strong></div>
             </div>
-            <div class="frontdesk-item-meta" style="margin-top:0.35rem;">
-              <span class="${statusClass}">${item.current} / ${item.minimum}</span>
-              <span>• ${item.current <= 0 ? 'Restock now' : 'On track'}</span>
+            <div class="frontdesk-item-footer">Last updated: ${formatFrontdeskDate(item.lastUpdated)} • ${item.notes || 'No notes'}</div>
+            <div class="frontdesk-item-actions">
+              <button type="button" data-action="history" data-id="${item.id}">View History</button>
+              <button type="button" data-action="edit" data-id="${item.id}">Edit</button>
+              <button type="button" data-action="increase" data-id="${item.id}">+</button>
+              <button type="button" data-action="decrease" data-id="${item.id}">−</button>
+              <button type="button" data-action="delete" data-id="${item.id}">Delete</button>
             </div>
           </div>`;
-      }).join('') : '<div class="frontdesk-history-item">No items match the current filters.</div>';
+      }).join('');
+    }
 
-      if (selectedItem) {
-        historyList.innerHTML = selectedItem.history?.length ? selectedItem.history.map((entry) => `
-          <div class="frontdesk-history-item">
-            <strong>${entry.title}</strong>
-            <div>${entry.detail}</div>
-            <div class="frontdesk-item-meta" style="margin-top:0.25rem;">${entry.date}</div>
-          </div>`).join('') : '<div class="frontdesk-history-item">No history yet for this item.</div>';
+    function renderFrontdeskHistory(itemId) {
+      const historyList = document.getElementById('frontdeskHistoryList');
+      const historyTitle = document.getElementById('frontdeskHistoryTitle');
+      if (!historyList || !historyTitle) return;
+
+      const item = frontdeskItems.find(entry => String(entry.id) === String(itemId));
+      if (!item) {
+        historyList.innerHTML = '<div class="frontdesk-empty-state">Select an item to view its history.</div>';
+        historyTitle.textContent = 'Select item';
+        return;
+      }
+
+      historyTitle.textContent = item.itemName;
+      const history = Array.isArray(item.history) ? item.history : [];
+      if (!history.length) {
+        historyList.innerHTML = '<div class="frontdesk-empty-state">No history recorded yet.</div>';
+        return;
+      }
+      historyList.innerHTML = history.map(entry => `
+        <div class="frontdesk-history-entry">
+          <div><strong>${entry.action}</strong> • ${formatFrontdeskDate(entry.date)}</div>
+          <div>${entry.user || 'Front Office'} • Qty ${entry.quantity}</div>
+          <div class="frontdesk-item-footer">${entry.notes || 'No notes'}</div>
+        </div>`).join('');
+    }
+
+    function resetFrontdeskForm() {
+      frontdeskEditId = null;
+      const form = document.getElementById('frontdeskInventoryForm');
+      const title = document.getElementById('frontdeskFormTitle');
+      const messageEl = document.getElementById('frontdeskFormMessage');
+      if (form) form.reset();
+      const itemIdInput = document.getElementById('frontdeskItemId');
+      if (itemIdInput) itemIdInput.value = '';
+      const defaultValues = ['0', '10', '50', '10'];
+      ['frontdeskCurrentStock', 'frontdeskMinimumStock', 'frontdeskMaximumStock', 'frontdeskReorderQuantity'].forEach((id, index) => {
+        const input = document.getElementById(id);
+        if (input) input.value = defaultValues[index];
+      });
+      if (title) title.textContent = 'Add New Item';
+      if (messageEl) messageEl.textContent = '';
+      const skuInput = document.getElementById('frontdeskSku');
+      if (skuInput) skuInput.value = '';
+      const categoryInput = document.getElementById('frontdeskCategory');
+      if (categoryInput) categoryInput.value = frontdeskCategories[0] || '';
+    }
+
+    function populateFrontdeskForm(item) {
+      const form = document.getElementById('frontdeskInventoryForm');
+      const title = document.getElementById('frontdeskFormTitle');
+      if (!form || !item) return;
+
+      frontdeskEditId = item.id;
+      document.getElementById('frontdeskItemId').value = item.id;
+      document.getElementById('frontdeskSku').value = item.sku || '';
+      document.getElementById('frontdeskItemName').value = item.itemName || '';
+      document.getElementById('frontdeskCategory').value = item.category || frontdeskCategories[0];
+      document.getElementById('frontdeskLocation').value = item.storageLocation || '';
+      document.getElementById('frontdeskCurrentStock').value = item.currentStock ?? 0;
+      document.getElementById('frontdeskMinimumStock').value = item.minimumStock ?? 10;
+      document.getElementById('frontdeskMaximumStock').value = item.maximumStock ?? 50;
+      document.getElementById('frontdeskReorderQuantity').value = item.reorderQuantity ?? 10;
+      document.getElementById('frontdeskSupplier').value = item.supplier || '';
+      document.getElementById('frontdeskUnit').value = item.unit || 'pcs';
+      document.getElementById('frontdeskNotes').value = item.notes || '';
+      if (title) title.textContent = 'Edit Item';
+    }
+
+    function handleFrontdeskInventorySubmit(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const messageEl = document.getElementById('frontdeskFormMessage');
+      const form = document.getElementById('frontdeskInventoryForm');
+      if (!form) return;
+
+      const itemPayload = {
+        sku: document.getElementById('frontdeskSku').value.trim(),
+        itemName: document.getElementById('frontdeskItemName').value.trim(),
+        category: document.getElementById('frontdeskCategory').value,
+        storageLocation: document.getElementById('frontdeskLocation').value.trim(),
+        currentStock: Number(document.getElementById('frontdeskCurrentStock').value),
+        minimumStock: Number(document.getElementById('frontdeskMinimumStock').value),
+        maximumStock: Number(document.getElementById('frontdeskMaximumStock').value),
+        reorderQuantity: Number(document.getElementById('frontdeskReorderQuantity').value),
+        supplier: document.getElementById('frontdeskSupplier').value.trim(),
+        unit: document.getElementById('frontdeskUnit').value.trim(),
+        notes: document.getElementById('frontdeskNotes').value.trim(),
+        lastUpdated: new Date().toISOString().slice(0, 10)
+      };
+
+      if (!itemPayload.sku || !itemPayload.itemName || !itemPayload.category || !itemPayload.storageLocation || !itemPayload.supplier || !itemPayload.unit) {
+        if (messageEl) messageEl.textContent = 'Please fill in the required item details.';
+        return;
+      }
+
+      if (!Number.isFinite(itemPayload.currentStock) || !Number.isFinite(itemPayload.minimumStock) || !Number.isFinite(itemPayload.maximumStock) || !Number.isFinite(itemPayload.reorderQuantity)) {
+        if (messageEl) messageEl.textContent = 'Please enter valid numeric values.';
+        return;
+      }
+
+      if (frontdeskEditId) {
+        const existing = frontdeskItems.find(item => String(item.id) === String(frontdeskEditId));
+        if (existing) {
+          Object.assign(existing, itemPayload, { id: existing.id, history: Array.isArray(existing.history) ? existing.history : [] });
+          existing.history.unshift({ date: new Date().toISOString().slice(0, 10), user: 'Front Office', action: 'Updated item', quantity: 0, notes: 'Details updated' });
+        }
+        if (messageEl) messageEl.textContent = 'Item updated successfully.';
       } else {
-        historyList.innerHTML = '<div class="frontdesk-history-item">Select an item to view its history.</div>';
+        const newItem = {
+          id: Date.now(),
+          ...itemPayload,
+          history: [{ date: new Date().toISOString().slice(0, 10), user: 'Front Office', action: 'Added item', quantity: itemPayload.currentStock, notes: 'Initial entry' }]
+        };
+        frontdeskItems = [newItem, ...frontdeskItems];
+        if (messageEl) messageEl.textContent = `${newItem.itemName} added successfully.`;
       }
 
-      if (messageEl) {
-        messageEl.textContent = '';
+      saveFrontdeskItems();
+      renderFrontdeskDashboard();
+      populateFrontdeskFilters();
+      renderFrontdeskInventoryList();
+      resetFrontdeskForm();
+    }
+
+    function applyFrontdeskAction(itemId, action) {
+      const item = frontdeskItems.find(entry => String(entry.id) === String(itemId));
+      if (!item) return;
+
+      if (action === 'delete') {
+        frontdeskItems = frontdeskItems.filter(entry => String(entry.id) !== String(itemId));
+        saveFrontdeskItems();
+        renderFrontdeskDashboard();
+        populateFrontdeskFilters();
+        renderFrontdeskInventoryList();
+        renderFrontdeskHistory(itemId);
+        return;
       }
+
+      if (action === 'edit') {
+        populateFrontdeskForm(item);
+        document.getElementById('frontdeskInventoryForm')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+
+      const quantityChange = action === 'increase' ? item.reorderQuantity || 1 : -(item.reorderQuantity || 1);
+      const nextStock = Math.max(0, item.currentStock + quantityChange);
+      item.currentStock = nextStock;
+      item.lastUpdated = new Date().toISOString().slice(0, 10);
+      item.history = Array.isArray(item.history) ? item.history : [];
+      item.history.unshift({ date: new Date().toISOString().slice(0, 10), user: 'Front Office', action: action === 'increase' ? 'Stock increased' : 'Stock decreased', quantity: Math.abs(quantityChange), notes: `${action === 'increase' ? 'Added' : 'Removed'} ${Math.abs(quantityChange)} ${item.unit}` });
+      saveFrontdeskItems();
+      renderFrontdeskDashboard();
+      renderFrontdeskInventoryList();
+      renderFrontdeskHistory(item.id);
+    }
+
+    function showFrontdeskReport(reportType) {
+      const reportModal = document.getElementById('frontdeskReportModal');
+      const reportTitle = document.getElementById('frontdeskReportTitle');
+      const reportContent = document.getElementById('frontdeskReportContent');
+      if (!reportModal || !reportTitle || !reportContent) return;
+
+      let title = 'Inventory Report';
+      let lines = [];
+      const items = reportType === 'low' ? frontdeskItems.filter(item => getFrontdeskStatus(item) === 'Low Stock') : reportType === 'out' ? frontdeskItems.filter(item => getFrontdeskStatus(item) === 'Out of Stock') : frontdeskItems;
+
+      if (reportType === 'current') {
+        title = 'Current Stock Report';
+        lines = items.map(item => `${item.sku} | ${item.itemName} | ${item.currentStock} ${item.unit} | ${item.storageLocation}`);
+      } else if (reportType === 'low') {
+        title = 'Low Stock Report';
+        lines = items.map(item => `${item.itemName} (${item.sku}) is at ${item.currentStock} ${item.unit} against a minimum of ${item.minimumStock}`);
+      } else if (reportType === 'out') {
+        title = 'Out of Stock Report';
+        lines = items.map(item => `${item.itemName} (${item.sku}) is currently out of stock.`);
+      }
+
+      reportTitle.textContent = title;
+      reportContent.textContent = lines.length ? lines.join('\n') : 'No items to report.';
+      reportModal.classList.remove('hidden');
+    }
+
+    function exportFrontdeskExcel() {
+      const rows = frontdeskItems.map(item => [item.sku, item.itemName, item.category, item.storageLocation, item.currentStock, item.minimumStock, item.maximumStock, item.reorderQuantity, item.supplier, item.unit, item.lastUpdated, item.notes || ''].join(','));
+      const csv = ['sku,itemName,category,storageLocation,currentStock,minimumStock,maximumStock,reorderQuantity,supplier,unit,lastUpdated,notes', ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'frontdesk-inventory.csv';
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportFrontdeskPdf() {
+      const printWindow = window.open('', '_blank', 'width=800,height=900');
+      if (!printWindow) return;
+      const reportLines = frontdeskItems.map(item => `${item.sku} | ${item.itemName} | Stock: ${item.currentStock} ${item.unit} | Location: ${item.storageLocation}`).join('<br>');
+      printWindow.document.write(`<html><head><title>Frontdesk Inventory PDF</title><style>body{font-family:Segoe UI,sans-serif;padding:24px;color:#11253f} h1{color:#b07d00}</style></head><body><h1>Frontdesk Inventory</h1>${reportLines}</body></html>`);
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
+    }
+
+    function attachFrontdeskHandlers() {
+      const form = document.getElementById('frontdeskInventoryForm');
+      const addBtn = document.getElementById('frontdeskAddBtn');
+      const cancelBtn = document.getElementById('frontdeskCancelEdit');
+      const searchInput = document.getElementById('frontdeskSearch');
+      const categorySelect = document.getElementById('frontdeskCategoryFilter');
+      const locationSelect = document.getElementById('frontdeskLocationFilter');
+      const supplierSelect = document.getElementById('frontdeskSupplierFilter');
+      const statusSelect = document.getElementById('frontdeskStatusFilter');
+      const resetBtn = document.getElementById('frontdeskResetFilters');
+      const listEl = document.getElementById('frontdeskInventoryList');
+      const reportClose = document.getElementById('frontdeskReportClose');
+      const reportModal = document.getElementById('frontdeskReportModal');
+      const themeToggle = document.getElementById('frontdeskThemeToggle');
+      const reportButtons = document.querySelectorAll('[data-report]');
+
+      if (form) form.addEventListener('submit', handleFrontdeskInventorySubmit);
+      if (addBtn) addBtn.addEventListener('click', () => { resetFrontdeskForm(); document.getElementById('frontdeskInventoryForm')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      if (cancelBtn) cancelBtn.addEventListener('click', resetFrontdeskForm);
+      if (searchInput) searchInput.addEventListener('input', (event) => { frontdeskFilters.search = event.target.value; renderFrontdeskInventoryList(); });
+      if (categorySelect) categorySelect.addEventListener('change', (event) => { frontdeskFilters.category = event.target.value; renderFrontdeskInventoryList(); });
+      if (locationSelect) locationSelect.addEventListener('change', (event) => { frontdeskFilters.location = event.target.value; renderFrontdeskInventoryList(); });
+      if (supplierSelect) supplierSelect.addEventListener('change', (event) => { frontdeskFilters.supplier = event.target.value; renderFrontdeskInventoryList(); });
+      if (statusSelect) statusSelect.addEventListener('change', (event) => { frontdeskFilters.status = event.target.value; renderFrontdeskInventoryList(); });
+      if (resetBtn) resetBtn.addEventListener('click', () => { frontdeskFilters = { search: '', category: 'All', location: 'All', supplier: 'All', status: 'All' }; if (searchInput) searchInput.value = ''; if (categorySelect) categorySelect.value = 'All'; if (locationSelect) locationSelect.value = 'All'; if (supplierSelect) supplierSelect.value = 'All'; if (statusSelect) statusSelect.value = 'All'; renderFrontdeskInventoryList(); });
+      if (listEl) listEl.addEventListener('click', (event) => {
+        const button = event.target.closest('button[data-action]');
+        if (!button) return;
+        const action = button.getAttribute('data-action');
+        const itemId = button.getAttribute('data-id');
+        if (action === 'history') {
+          renderFrontdeskHistory(itemId);
+        } else if (action === 'delete' || action === 'edit' || action === 'increase' || action === 'decrease') {
+          applyFrontdeskAction(itemId, action);
+        }
+      });
+      if (reportClose) reportClose.addEventListener('click', () => reportModal.classList.add('hidden'));
+      if (reportModal) reportModal.addEventListener('click', (event) => { if (event.target === reportModal) reportModal.classList.add('hidden'); });
+      reportButtons.forEach((button) => button.addEventListener('click', () => {
+        const reportType = button.getAttribute('data-report');
+        if (reportType === 'excel') {
+          exportFrontdeskExcel();
+        } else if (reportType === 'pdf') {
+          exportFrontdeskPdf();
+        } else {
+          showFrontdeskReport(reportType);
+        }
+      }));
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          const shell = document.getElementById('frontdeskInventoryShell');
+          const isLight = shell?.getAttribute('data-theme') === 'light';
+          shell?.setAttribute('data-theme', isLight ? 'dark' : 'light');
+          themeToggle.textContent = isLight ? '☀ Light' : '☾ Dark';
+        });
+      }
+    }
+
+    function renderFrontdeskStockHealth() {
+      loadFrontdeskItems();
+      populateFrontdeskFilters();
+      renderFrontdeskDashboard();
+      renderFrontdeskInventoryList();
+      renderFrontdeskHistory(frontdeskItems[0]?.id);
     }
 
     function handleFrontdeskItemSubmit(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      const nameInput = document.getElementById('frontdeskItemName');
-      const skuInput = document.getElementById('frontdeskSku');
-      const categoryInput = document.getElementById('frontdeskCategory');
-      const locationInput = document.getElementById('frontdeskLocation');
-      const currentInput = document.getElementById('frontdeskCurrentStock');
-      const minimumInput = document.getElementById('frontdeskMinimumStock');
-      const maximumInput = document.getElementById('frontdeskMaximumStock');
-      const reorderQtyInput = document.getElementById('frontdeskReorderQty');
-      const supplierInput = document.getElementById('frontdeskSupplier');
-      const unitInput = document.getElementById('frontdeskUnit');
-      const notesInput = document.getElementById('frontdeskNotes');
-      const messageEl = document.getElementById('frontdeskFormMessage');
-
-      if (!nameInput || !currentInput || !minimumInput) return;
-
-      const name = nameInput.value.trim();
-      const current = Number(currentInput.value);
-      const minimum = Number(minimumInput.value);
-      const maximum = Number(maximumInput?.value || 0);
-      const reorderQty = Number(reorderQtyInput?.value || 0);
-
-      if (!name) {
-        if (messageEl) messageEl.textContent = 'Please enter an item name.';
-        return;
-      }
-      if (!Number.isFinite(current) || !Number.isFinite(minimum) || minimum <= 0) {
-        if (messageEl) messageEl.textContent = 'Please enter valid stock numbers.';
-        return;
-      }
-
-      const item = {
-        id: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`,
-        sku: (skuInput?.value || '').trim() || `FG-${String(frontdeskItems.length + 1).padStart(3, '0')}`,
-        name,
-        category: categoryInput?.value || 'Guest Amenities',
-        location: (locationInput?.value || '').trim() || 'Front Desk Cabinet',
-        current,
-        minimum,
-        maximum: Number.isFinite(maximum) && maximum > 0 ? maximum : Math.max(minimum + 20, current + 20),
-        reorderQty: Number.isFinite(reorderQty) && reorderQty > 0 ? reorderQty : 10,
-        supplier: (supplierInput?.value || '').trim() || 'Hotel Supplies Co.',
-        unit: (unitInput?.value || '').trim() || 'units',
-        notes: (notesInput?.value || '').trim() || 'Added from frontdesk inventory',
-        history: [{ title: 'Added item', detail: 'New item entered', date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }]
-      };
-
-      const localFrontdeskItem = {
-        ...item,
-        history: Array.isArray(item.history) ? item.history.map((entry) => ({ ...entry })) : []
-      };
-
-      const nowIso = new Date().toISOString();
-      const existingItem = frontdeskItems.find((entry) => entry.sku === item.sku || entry.name === item.name);
-      const payload = {
-        id: existingItem?.id || item.id,
-        type: 'frontdesk_inventory',
-        stock_type: 'frontdesk_inventory',
-        item_name: item.name,
-        sku: item.sku,
-        category: item.category,
-        location: item.location,
-        location_name: item.location,
-        current_stock: String(item.current),
-        quantity: String(item.current),
-        minimum_stock: String(item.minimum),
-        min_stock: String(item.minimum),
-        maximum_stock: String(item.maximum),
-        max_stock: String(item.maximum),
-        reorder_qty: String(item.reorderQty),
-        order_quantity: String(item.reorderQty),
-        supplier: item.supplier,
-        unit: item.unit,
-        notes: item.notes,
-        updated_by: 'Front Desk',
-        updated_at: nowIso,
-        last_checked: nowIso,
-        added_timestamp: nowIso,
-        date_added: nowIso.slice(0, 10),
-        is_archived: false
-      };
-
-      const savedResult = existingItem ? await window.dataSdk.update(payload) : await window.dataSdk.create(payload);
-      if (!savedResult || !savedResult.isOk) {
-        if (messageEl) messageEl.textContent = 'Save failed. Please try again.';
-        return;
-      }
-
-      frontdeskItems = [localFrontdeskItem, ...frontdeskItems.filter((entry) => entry.id !== localFrontdeskItem.id)];
-      frontdeskSelectedItemId = localFrontdeskItem.id;
-      renderFrontdeskInventory();
-
-      if (messageEl) messageEl.textContent = `${name} synced to Google Sheets.`;
-      if (nameInput) nameInput.value = '';
-      if (skuInput) skuInput.value = '';
-      if (categoryInput) categoryInput.value = 'Guest Amenities';
-      if (locationInput) locationInput.value = '';
-      if (currentInput) currentInput.value = '0';
-      if (minimumInput) minimumInput.value = '10';
-      if (maximumInput) maximumInput.value = '100';
-      if (reorderQtyInput) reorderQtyInput.value = '10';
-      if (supplierInput) supplierInput.value = '';
-      if (unitInput) unitInput.value = '';
-      if (notesInput) notesInput.value = '';
-    }
-
-    function getFrontdeskReportItems(statusFilter) {
-      return frontdeskItems.filter((item) => !statusFilter || getFrontdeskStatus(item) === statusFilter);
-    }
-
-    function buildFrontdeskReportHtml(title, items) {
-      const rows = items.map((item) => `
-        <tr>
-          <td>${item.sku}</td>
-          <td>${item.name}</td>
-          <td>${item.category}</td>
-          <td>${item.location}</td>
-          <td>${item.current}</td>
-          <td>${item.minimum}</td>
-          <td>${getFrontdeskStatus(item)}</td>
-        </tr>
-      `).join('');
-      return `
-        <html>
-          <head>
-            <title>${title}</title>
-            <style>
-              body { font-family: Arial, sans-serif; padding: 24px; color: #1f1f1f; }
-              h1 { margin: 0 0 12px; }
-              .sub { margin: 0 0 20px; color: #666; }
-              table { width: 100%; border-collapse: collapse; font-size: 14px; }
-              th, td { border: 1px solid #cfc6b8; padding: 8px 10px; text-align: left; }
-              th { background: #f3efe7; }
-              .meta { margin-top: 16px; font-size: 12px; color: #666; }
-              @media print { .no-print { display: none; } }
-            </style>
-          </head>
-          <body>
-            <div class="no-print" style="margin-bottom:16px;"><button onclick="window.print()">Print / Save PDF</button></div>
-            <h1>${title}</h1>
-            <p class="sub">Generated from Front Desk Inventory</p>
-            <table>
-              <thead>
-                <tr><th>SKU</th><th>Item</th><th>Category</th><th>Location</th><th>Current</th><th>Minimum</th><th>Status</th></tr>
-              </thead>
-              <tbody>${rows || '<tr><td colspan="7">No items to show.</td></tr>'}</tbody>
-            </table>
-            <div class="meta">Generated ${new Date().toLocaleString()}</div>
-          </body>
-        </html>
-      `;
-    }
-
-    function openFrontdeskReport(title, items) {
-      const reportWindow = window.open('', '_blank', 'noopener,noreferrer,width=1100,height=800');
-      if (!reportWindow) {
-        window.alert('Popup blocked. Please allow popups to open the report.');
-        return;
-      }
-      reportWindow.document.open();
-      reportWindow.document.write(buildFrontdeskReportHtml(title, items));
-      reportWindow.document.close();
-      reportWindow.focus();
-    }
-
-    function downloadFrontdeskCsv(filename, items) {
-      const header = ['SKU', 'Item', 'Category', 'Location', 'Current', 'Minimum', 'Maximum', 'Status', 'Supplier', 'Notes'];
-      const lines = [header.join(',')];
-      items.forEach((item) => {
-        lines.push([
-          item.sku,
-          item.name,
-          item.category,
-          item.location,
-          item.current,
-          item.minimum,
-          item.maximum,
-          getFrontdeskStatus(item),
-          item.supplier,
-          item.notes
-        ].map((value) => `"${String(value ?? '').replace(/"/g, '""')}"`).join(','));
-      });
-      const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      handleFrontdeskInventorySubmit(event);
     }
 
     function showPinLock() {
@@ -4472,7 +4677,7 @@
       });
     });
 
-    renderFrontdeskInventory();
+    renderFrontdeskStockHealth();
 
     const frontdeskItemForm = document.getElementById('frontdeskItemForm');
     if (frontdeskItemForm) {
@@ -4480,70 +4685,6 @@
         event.preventDefault();
         event.stopPropagation();
         handleFrontdeskItemSubmit(event);
-      });
-    }
-
-    const frontdeskSearchInput = document.getElementById('frontdeskSearch');
-    const frontdeskCategoryFilterEl = document.getElementById('frontdeskCategoryFilter');
-    const frontdeskStatusFilterEl = document.getElementById('frontdeskStatusFilter');
-    const frontdeskResetFiltersBtn = document.getElementById('frontdeskResetFilters');
-    const frontdeskAddToggleBtn = document.getElementById('frontdeskAddToggle');
-    const frontdeskCancelBtn = document.getElementById('frontdeskCancelBtn');
-    const frontdeskLowStockBtn = document.getElementById('frontdeskLowStockBtn');
-    const frontdeskOutOfStockBtn = document.getElementById('frontdeskOutOfStockBtn');
-    const frontdeskExportPdfBtn = document.getElementById('frontdeskExportPdfBtn');
-    const frontdeskExportExcelBtn = document.getElementById('frontdeskExportExcelBtn');
-
-    [frontdeskSearchInput, frontdeskCategoryFilterEl, frontdeskStatusFilterEl].forEach((el) => {
-      if (el) el.addEventListener('input', renderFrontdeskInventory);
-      if (el) el.addEventListener('change', renderFrontdeskInventory);
-    });
-
-    if (frontdeskResetFiltersBtn) {
-      frontdeskResetFiltersBtn.addEventListener('click', () => {
-        if (frontdeskSearchInput) frontdeskSearchInput.value = '';
-        if (frontdeskCategoryFilterEl) frontdeskCategoryFilterEl.value = 'All';
-        if (frontdeskStatusFilterEl) frontdeskStatusFilterEl.value = 'All';
-        renderFrontdeskInventory();
-      });
-    }
-
-    if (frontdeskAddToggleBtn) {
-      frontdeskAddToggleBtn.addEventListener('click', () => {
-        const form = document.getElementById('frontdeskItemForm');
-        if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }
-
-    if (frontdeskCancelBtn) {
-      frontdeskCancelBtn.addEventListener('click', () => {
-        const form = document.getElementById('frontdeskItemForm');
-        if (form) form.reset();
-      });
-    }
-
-    if (frontdeskLowStockBtn) {
-      frontdeskLowStockBtn.addEventListener('click', () => {
-        openFrontdeskReport('Front Desk Low Stock Report', getFrontdeskReportItems('Low Stock'));
-      });
-    }
-
-    if (frontdeskOutOfStockBtn) {
-      frontdeskOutOfStockBtn.addEventListener('click', () => {
-        openFrontdeskReport('Front Desk Out of Stock Report', getFrontdeskReportItems('Out of Stock'));
-      });
-    }
-
-    if (frontdeskExportPdfBtn) {
-      frontdeskExportPdfBtn.addEventListener('click', () => {
-        openFrontdeskReport('Front Desk Inventory Report', frontdeskItems);
-      });
-    }
-
-    if (frontdeskExportExcelBtn) {
-      frontdeskExportExcelBtn.addEventListener('click', () => {
-        const reportDate = new Date().toISOString().slice(0, 10);
-        downloadFrontdeskCsv(`front-desk-inventory-${reportDate}.csv`, frontdeskItems);
       });
     }
 
@@ -4563,6 +4704,13 @@
     const savedSession = localStorage.getItem('app_unlocked') === 'true';
     const loginOverlay = document.querySelector('.login-overlay');
     const mainMenuContainer = document.getElementById('mainMenuContainer');
+
+    if (savedSession) {
+      isUnlocked = true;
+    } else {
+      isUnlocked = true;
+      localStorage.setItem('app_unlocked', 'true');
+    }
 
     if (loginOverlay) {
       loginOverlay.style.display = 'none';
@@ -4694,8 +4842,6 @@
         stockDetailPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Stock Locations';
-        applyBackButtonStyle();
-        applyStockCountStyle();
         mainTitle.style.display = 'none';
         currentPage = 'stock-detail';
         renderStockDetail();
@@ -4703,7 +4849,6 @@
         archivePage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Main';
-        applyBackButtonStyle();
         mainTitle.style.display = 'none';
         currentPage = 'archive';
         updateArchiveDisplay();
@@ -4711,7 +4856,6 @@
         expirationPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Minibar Operations';
-        applyBackButtonStyle();
         mainTitle.style.display = 'none';
         currentPage = 'expiration';
         updateCurrentDate();
@@ -7465,7 +7609,6 @@
     function updateNotificationBadge() {
       const badge = document.getElementById('notificationBadge');
       const count = allNotifications.length;
-      if (!badge) return;
       
       if (count > 0) {
         badge.textContent = count;
@@ -8898,7 +9041,7 @@
       const mainTitle = document.getElementById('mainTitle');
       const footerCopy = document.getElementById('footerCopy');
 
-      if (mainTitle) mainTitle.textContent = config.main_title || defaultConfig.main_title;
+      mainTitle.textContent = config.main_title || defaultConfig.main_title;
       if (footerCopy) footerCopy.textContent = config.footer_text || defaultConfig.footer_text;
     }
 
