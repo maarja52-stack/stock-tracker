@@ -3,9 +3,9 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Housekeeping Inventory &amp; Stock</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -32,73 +32,6 @@
 
     .gold-text {
       color: #d4af37;
-    }
-
-    .home-shell {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 2rem 1.25rem 2rem;
-      display: grid;
-      gap: 1.1rem;
-    }
-
-    .home-hero {
-      background: rgba(13, 27, 42, 0.82);
-      border: 1px solid rgba(212, 175, 55, 0.24);
-      border-radius: 24px;
-      padding: 2rem;
-      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.2);
-    }
-
-    .home-brand {
-      color: #d4af37;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      margin-bottom: 0.7rem;
-    }
-
-    .home-title {
-      margin: 0 0 0.55rem;
-      font-size: 2.1rem;
-      font-weight: 700;
-      color: #d4af37;
-      line-height: 1.2;
-    }
-
-    .home-subtitle {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 1.03rem;
-      max-width: 720px;
-    }
-
-    .home-department-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-
-    .home-department-card {
-      min-height: 148px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 0.7rem;
-      padding: 1.3rem 1rem;
-    }
-
-    .home-department-card .card-emoji {
-      font-size: 2.4rem;
-      margin-bottom: 0;
-    }
-
-    .home-department-card .card-title {
-      font-size: 1.05rem;
-      margin: 0;
     }
 
     .premium-card {
@@ -146,10 +79,12 @@
     .footer-text {
       text-align: center;
       color: rgba(255, 255, 255, 0.6);
-      padding: 0.25rem 1rem 1.5rem;
-      font-size: 0.8rem;
-      display: grid;
-      gap: 0.15rem;
+      padding: 2rem;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .footer-version {
@@ -208,157 +143,23 @@
       padding: 0 2rem;
     }
 
-    .stacked-card-group {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .stacked-card-group .premium-card {
-      width: 100%;
-    }
-
-    /* Front desk palette overrides */
-    body {
-      color: #1f1f1f;
-      font-family: "Manrope", sans-serif;
-      background:
-        radial-gradient(1600px 500px at 0% -10%, #f9dca3 0%, transparent 65%),
-        radial-gradient(1200px 600px at 100% -10%, #cbe4e7 0%, transparent 60%),
-        #f3efe7;
-    }
-
-    .main-wrapper {
-      background: transparent;
-      font-family: "Manrope", sans-serif;
-    }
-
-    .home-shell,
-    .grid-container {
-      max-width: 1240px;
-    }
-
-    .home-hero,
-    .premium-card,
-    .storage-card,
-    .storage-card-v2,
-    .stock-health-item,
-    .supplyhub-card,
-    .dropdown-panel,
-    .message,
-    .build-badge {
-      background: #fffaf2 !important;
-      border-color: #d8cab5 !important;
-      color: #1f1f1f !important;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1) !important;
-    }
-
-    .home-hero,
-    .premium-card,
-    .storage-card,
-    .storage-card-v2,
-    .stock-health-item,
-    .supplyhub-card {
-      border: 1px solid #d8cab5 !important;
-    }
-
-    .home-brand,
-    .home-title,
-    .main-title,
-    .card-title,
-    .notification-section-title,
-    .storage-id,
-    .stock-health-row,
-    .storage-preview.prominent,
-    .footer-version,
-    .gold-text {
-      color: #1f6f78 !important;
-      text-shadow: none !important;
-    }
-
-    .home-subtitle,
-    .hero-meta,
-    .stock-health-meta,
-    .footer-text {
-      color: #5f5a54 !important;
-    }
-
-    .footer-text {
-      background: transparent !important;
-      border: 0 !important;
-      box-shadow: none !important;
-    }
-
-    .premium-card:hover,
-    .storage-card:hover {
-      border-color: #1f6f78 !important;
-      box-shadow: 0 12px 40px rgba(31, 111, 120, 0.18) !important;
-    }
-
-    .supplyhub-card input,
-    .supplyhub-card select,
-    .supplyhub-card button {
-      border: 1px solid #d8cab5 !important;
-      background: #ffffff !important;
-      color: #1f1f1f !important;
-    }
-
-    .supplyhub-card button,
-    .report-btn,
-    .login-btn,
-    .primary-action {
-      background: #1f6f78 !important;
-      color: #ffffff !important;
-      border-color: #1f6f78 !important;
-    }
-
-    .notification-badge {
-      background: #b62f2f !important;
-      color: #ffffff !important;
-      box-shadow: 0 2px 8px rgba(182, 47, 47, 0.35) !important;
-    }
-
-    .stock-health-bar {
-      background: #e8dfd2 !important;
-    }
-
-    .stock-health-bar > span {
-      background: linear-gradient(90deg, #1f6f78 0%, #5da7ae 100%) !important;
-    }
-
-    .stock-health-full,
-    .stock-health-low,
-    .stock-health-below {
-      color: #1f6f78 !important;
-    }
-
-    .build-badge {
-      bottom: 16px;
-      right: 16px;
-      border: 1px solid #d8cab5 !important;
-      color: #1f6f78 !important;
-    }
-
     .back-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      width: fit-content;
-      margin: 1.25rem 1rem 0;
-      padding: 0.6rem 0.95rem;
-      border: 2px solid #d8cab5;
-      border-radius: 999px;
-      background: rgba(255, 250, 242, 0.92);
-      color: #1f1f1f;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 8px 18px rgba(56, 44, 30, 0.08);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      background: #0d1b2a;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      margin-bottom: 2rem;
+      display: inline-block;
     }
 
     .back-button:hover {
-      transform: translateY(-1px);
-      border-color: #1f6f78;
-      box-shadow: 0 12px 22px rgba(56, 44, 30, 0.12);
+      background: rgba(212, 175, 55, 0.2);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
     }
 
     .hidden {
@@ -374,18 +175,6 @@
       justify-content: center;
       z-index: 9999;
       padding: 2rem;
-    }
-
-    .login-overlay {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      background: rgba(3, 8, 20, 0.95);
-      z-index: 99999;
-      backdrop-filter: blur(4px);
     }
 
     .pin-panel {
@@ -449,239 +238,16 @@
       background: #218838;
     }
 
-    .supplyhub-shell {
-      max-width: 620px;
-      margin: 0 auto;
-      padding: 1rem 0 2rem;
-    }
-
-    .supplyhub-card {
-      background: rgba(13, 27, 42, 0.94);
-      border: 2px solid #d4af37;
-      border-radius: 18px;
-      padding: 1.25rem;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-    }
-
-    .dropdown-toggle {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 0;
-      margin-bottom: 0.75rem;
-      background: transparent;
-      color: #f4e4a8;
-      font-size: 1rem;
-      font-weight: 700;
-      border: none;
-      box-shadow: none;
-    }
-
-    .dropdown-icon {
-      transition: transform 0.2s ease;
-    }
-
-    .dropdown-toggle[aria-expanded="true"] .dropdown-icon {
-      transform: rotate(180deg);
-    }
-
-    .dropdown-panel[hidden] {
-      display: none;
-    }
-
-    .qr-controls {
-      display: grid;
-      gap: 0.8rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .field-row {
-      display: grid;
-      gap: 0.35rem;
-    }
-
-    .supplyhub-card input,
-    .supplyhub-card button,
-    .supplyhub-card select {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 0.85rem 0.95rem;
-      font: inherit;
-    }
-
-    .supplyhub-card input,
-    .supplyhub-card select {
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-    }
-
-    .supplyhub-card button {
-      cursor: pointer;
-      background: linear-gradient(135deg, #d4af37, #f0c96b);
-      color: #07121f;
-      font-weight: 700;
-      border: none;
-    }
-
-    .stock-health-list {
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    .stock-health-item {
-      padding: 0.85rem;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(212,175,55,0.16);
-    }
-
-    .stock-health-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.45rem;
-      font-weight: 600;
-      color: #f4e4a8;
-    }
-
-    .stock-health-status {
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .stock-health-bar {
-      position: relative;
-      height: 10px;
-      border-radius: 999px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.14);
-      margin-bottom: 0.4rem;
-    }
-
-    .stock-health-bar > span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      transition: width 0.2s ease;
-      background: linear-gradient(90deg, #d4af37 0%, #f4cf5c 100%);
-    }
-
-    .stock-health-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.78);
-    }
-
-    .stock-health-full {
-      color: #f4e4a8;
-    }
-
-    .stock-health-low {
-      color: #f4e4a8;
-    }
-
-    .stock-health-below {
-      color: #f4e4a8;
-    }
-
-    .message {
-      min-height: 1.2rem;
-      color: #5ee7a8;
-      font-size: 0.95rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .qr-preview-card {
-      display: grid;
-      gap: 0.85rem;
-      padding: 1rem;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.05);
-      margin-bottom: 0.85rem;
-    }
-
-    .qr-label-title {
-      font-weight: 700;
-      color: #f4e4a8;
-      margin-bottom: 0.3rem;
-    }
-
-    .qr-payload-summary {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.95rem;
-      word-break: break-all;
-    }
-
-    .qr-canvas-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.6rem;
-      border-radius: 12px;
-      background: #ffffff;
-    }
-
-    .secondary-btn {
-      width: auto;
-      padding: 0.75rem 1rem;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      border: 1px solid rgba(212,175,55,0.4);
-    }
-
-    .saved-qr-list {
-      display: grid;
-      gap: 0.6rem;
-    }
-
-    .saved-qr-item {
-      padding: 0.7rem 0.8rem;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      color: #fff;
-      font-size: 0.9rem;
-      word-break: break-all;
-    }
-
-    .saved-qr-meta {
-      color: rgba(255,255,255,0.65);
-      font-size: 0.8rem;
-      margin-top: 0.3rem;
-    }
-
-    .saved-qr-preview {
-      margin-top: 0.6rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0.4rem;
-      border-radius: 12px;
-      background: #ffffff;
-    }
-
-    .saved-qr-preview canvas {
-      width: 120px;
-      height: 120px;
-    }
-
     .expiration-page {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1.5rem 1rem 2rem;
-      color: #1f1f1f;
-      font-family: "Manrope", sans-serif;
+      padding: 2rem;
     }
 
     .date-header {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      border-radius: 18px;
+      background: rgba(13, 27, 42, 0.7);
+      border: 2px solid #d4af37;
+      border-radius: 16px;
       padding: 2rem;
       margin-bottom: 2rem;
       display: flex;
@@ -689,50 +255,40 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1);
     }
 
     .date-display {
       font-size: 1.5rem;
       font-weight: 600;
-      color: #1f6f78;
+      color: #d4af37;
     }
 
     .stats-container {
-      display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.75rem;
-        padding: 0 0.75rem;
+      display: flex;
+      gap: 2rem;
     }
 
     .stat-item {
       text-align: center;
-        padding: 1rem;
-        min-height: 120px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.5rem;
     }
 
     .stat-label {
-      font-size: 1rem;
-      color: #5f5a54;
-      opacity: 0.9;
+      color: #d4af37;
+      font-size: 0.9rem;
+      opacity: 0.8;
       margin-bottom: 0.5rem;
-      line-height: 1.2;
     }
 
     .stat-value {
-      color: #1f6f78;
+      color: #d4af37;
       font-size: 2rem;
       font-weight: 700;
     }
 
     .add-button {
-      background: #1f6f78;
+      background: #28a745;
       color: white;
-      border: 1px solid #1f6f78;
+      border: none;
       padding: 1rem 2rem;
       border-radius: 8px;
       font-size: 1.1rem;
@@ -744,9 +300,9 @@
     }
 
     .add-button:hover {
-      background: #225f8e;
+      background: #218838;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(31, 111, 120, 0.22);
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
     }
 
     .add-button:disabled {
@@ -756,12 +312,11 @@
     }
 
     .form-container {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      border-radius: 18px;
+      background: rgba(13, 27, 42, 0.7);
+      border: 2px solid #d4af37;
+      border-radius: 16px;
       padding: 2rem;
       margin-bottom: 2rem;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1);
     }
 
     .form-row {
@@ -777,23 +332,23 @@
     }
 
     .form-label {
-      color: #5f5a54;
+      color: #d4af37;
       font-weight: 600;
       margin-bottom: 0.5rem;
       font-size: 0.95rem;
     }
 
     .form-input, .form-select {
-      background: #ffffff;
-      border: 1px solid #d8cab5;
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #d4af37;
+      border-radius: 6px;
       padding: 0.75rem;
-      color: #1f1f1f;
+      color: white;
       font-size: 1rem;
     }
 
     .form-input::placeholder {
-      color: #8a8076;
+      color: rgba(255, 255, 255, 0.5);
     }
 
     .form-select {
@@ -801,14 +356,14 @@
     }
 
     .form-select option {
-      background: #ffffff;
-      color: #1f1f1f;
+      background: #0d1b2a;
+      color: white;
       padding: 0.5rem;
     }
 
     .form-select optgroup {
-      background: #f3efe7;
-      color: #1f6f78;
+      background: #1a2942;
+      color: #d4af37;
       font-weight: 700;
       font-style: normal;
     }
@@ -820,18 +375,18 @@
     }
 
     .btn-submit {
-      background: #1f6f78;
+      background: #28a745;
       color: white;
-      border: 1px solid #1f6f78;
+      border: none;
       padding: 0.75rem 2rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .btn-submit:hover {
-      background: #225f8e;
+      background: #218838;
     }
 
     .btn-submit:disabled {
@@ -840,18 +395,18 @@
     }
 
     .btn-cancel {
-      background: #fffaf2;
-      color: #1f6f78;
-      border: 1px solid #d8cab5;
+      background: rgba(212, 175, 55, 0.2);
+      color: #d4af37;
+      border: 2px solid #d4af37;
       padding: 0.75rem 2rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .btn-cancel:hover {
-      background: #d7eeef;
+      background: rgba(212, 175, 55, 0.3);
     }
 
     .empty-state {
@@ -860,20 +415,6 @@
       background: rgba(13, 27, 42, 0.7);
       border: 2px solid #d4af37;
       border-radius: 16px;
-    }
-
-    #stockCountPage .empty-state {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1);
-    }
-
-    #stockCountPage .empty-title {
-      color: #1f6f78;
-    }
-
-    #stockCountPage .empty-subtitle {
-      color: #5f5a54;
     }
 
     .empty-icon {
@@ -923,6 +464,12 @@
     @media (min-width: 640px) {
       .storage-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 768px) {
+      .storage-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
 
@@ -1050,11 +597,11 @@
     }
 
     .btn-archive {
-      background: #d7eeef;
-      border: 1px solid #1f6f78;
-      color: #1f6f78;
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid #d4af37;
+      color: #d4af37;
       padding: 0.6rem 1.2rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -1062,7 +609,7 @@
     }
 
     .btn-archive:hover {
-      background: #c7e5e7;
+      background: rgba(212, 175, 55, 0.4);
       transform: scale(1.05);
     }
 
@@ -1103,9 +650,9 @@
     }
 
     .date-banner {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      border-radius: 18px;
+      background: rgba(13, 27, 42, 0.9);
+      border: 2px solid #d4af37;
+      border-radius: 12px;
       padding: 1.25rem 1.5rem;
       display: flex;
       justify-content: space-between;
@@ -1115,12 +662,11 @@
       cursor: pointer;
       transition: all 0.3s ease;
       margin-bottom: 1rem;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.08);
     }
 
     .date-banner:hover {
-      border-color: #1f6f78;
-      box-shadow: 0 16px 32px rgba(31, 111, 120, 0.14);
+      background: rgba(13, 27, 42, 1);
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
     }
 
     .date-banner-left {
@@ -1130,7 +676,7 @@
     }
 
     .expand-arrow {
-      color: #1f6f78;
+      color: #d4af37;
       font-size: 1.2rem;
       display: inline-flex;
       align-items: center;
@@ -1149,12 +695,12 @@
     .date-title {
       font-size: 1.3rem;
       font-weight: 700;
-      color: #1f1f1f;
+      color: #d4af37;
     }
 
     .item-count-badge {
-      background: #d7eeef;
-      color: #1f6f78;
+      background: rgba(212, 175, 55, 0.3);
+      color: #d4af37;
       padding: 0.3rem 0.8rem;
       border-radius: 20px;
       font-size: 0.9rem;
@@ -1163,10 +709,10 @@
 
     .btn-delete-all {
       background: rgba(220, 53, 69, 0.2);
-      border: 1px solid #dc3545;
+      border: 2px solid #dc3545;
       color: #dc3545;
       padding: 0.6rem 1.2rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -1397,26 +943,22 @@
     }
 
     .modal-buttons {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      width: fit-content;
-      margin: 1.25rem 1rem 0;
-      padding: 0.6rem 0.95rem;
-      border: 2px solid #d8cab5;
-      border-radius: 999px;
-      background: rgba(255, 250, 242, 0.92);
-      color: #1f1f1f;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 8px 18px rgba(56, 44, 30, 0.08);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+
+    .btn-modal-cancel {
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      transform: translateY(-1px);
-      border-color: #1f6f78;
-      box-shadow: 0 12px 22px rgba(56, 44, 30, 0.12);
+    }
+
     .btn-modal-cancel:hover {
       background: rgba(212, 175, 55, 0.3);
     }
@@ -1544,11 +1086,11 @@
     }
 
     .btn-save-pdf, .btn-print-pdf {
-      background: #d7eeef;
-      border: 1px solid #1f6f78;
-      color: #1f6f78;
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid #d4af37;
+      color: #d4af37;
       padding: 0.6rem 1rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -1557,7 +1099,7 @@
     }
 
     .btn-save-pdf:hover, .btn-print-pdf:hover {
-      background: #c7e5e7;
+      background: rgba(212, 175, 55, 0.4);
       transform: scale(1.05);
     }
 
@@ -1574,32 +1116,30 @@
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
-      padding: 0 1rem;
-      color: #1f1f1f;
-      font-family: "Manrope", sans-serif;
+      padding: 0 1.25rem;
     }
 
     .progress-indicator {
       text-align: center;
-      color: #1f6f78;
+      color: #d4af37;
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 2rem;
     }
 
     .counter-panel {
-      background: #fffaf2;
-      border: 1px solid #d8cab5;
-      border-radius: 18px;
+      background: rgba(13, 27, 42, 0.9);
+      border: 2px solid #d4af37;
+      border-radius: 16px;
       padding: 2.5rem;
-      box-shadow: 0 16px 32px rgba(56, 44, 30, 0.1);
+      box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
       width: 100%;
       max-width: none;
     }
 
     .display-area {
-      background: #ffffff;
-      border: 1px solid #d8cab5;
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid #d4af37;
       border-radius: 12px;
       padding: 0.75rem;
       text-align: center;
@@ -1609,19 +1149,19 @@
     }
 
     .display-area:hover {
-      border-color: #1f6f78;
-      box-shadow: 0 10px 24px rgba(56, 44, 30, 0.08);
+      background: rgba(0, 0, 0, 0.4);
+      border-color: #f4cf5c;
     }
 
     .display-number {
       font-size: 2rem;
       font-weight: 700;
-      color: #1f6f78;
+      color: #d4af37;
     }
 
     .display-hint {
       font-size: 0.8rem;
-      color: #5f5a54;
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .number-pad {
@@ -1632,9 +1172,9 @@
     }
 
     .num-button {
-      background: #ffffff;
-      border: 1px solid #d8cab5;
-      color: #1f1f1f;
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid #d4af37;
+      color: #d4af37;
       font-size: 2rem;
       font-weight: 700;
       padding: 1.5rem;
@@ -1644,8 +1184,7 @@
     }
 
     .num-button:hover {
-      border-color: #1f6f78;
-      box-shadow: 0 10px 24px rgba(56, 44, 30, 0.1);
+      background: rgba(212, 175, 55, 0.4);
       transform: scale(1.05);
     }
 
@@ -1665,9 +1204,9 @@
 
     .quick-btn {
       flex: 1;
-      background: #d7eeef;
-      border: 1px solid #1f6f78;
-      color: #1f6f78;
+      background: rgba(40, 167, 69, 0.2);
+      border: 2px solid #28a745;
+      color: #28a745;
       font-size: 1.1rem;
       font-weight: 600;
       padding: 0.75rem;
@@ -1677,13 +1216,13 @@
     }
 
     .quick-btn:hover {
-      background: #c7e5e7;
+      background: rgba(40, 167, 69, 0.4);
       transform: scale(1.05);
     }
 
     .save-item-btn {
-      background: #1f6f78;
-      border: 1px solid #1f6f78;
+      background: #28a745;
+      border: 2px solid #28a745;
       color: white;
       font-size: 1.2rem;
       font-weight: 700;
@@ -1695,9 +1234,9 @@
     }
 
     .save-item-btn:hover {
-      background: #225f8e;
+      background: #218838;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(31, 111, 120, 0.22);
+      box-shadow: 0 8px 24px rgba(40, 167, 69, 0.4);
     }
 
     .save-item-btn:disabled {
@@ -2152,39 +1691,39 @@
         max-width: 1152px;
         margin: 0 auto;
       }
-      .room-section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-        row-gap: 0.5rem;
-        flex-wrap: wrap;
-        margin-bottom: 1rem;
-        width: 100%;
-        flex: 0 0 auto;
-      }
-
-      @media (min-width: 768px) {
-        #roomRegistryPage .room-section {
-          padding: 1.75rem;
-          margin-bottom: 1.75rem;
+        .room-section-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+          row-gap: 0.5rem;
+          flex-wrap: wrap;
+          margin-bottom: 1rem;
+          width: 100%;
+          flex: 0 0 auto;
         }
 
-        #roomRegistryPage .room-section-header {
-          margin-bottom: 1.25rem;
-        }
+        @media (min-width: 768px) {
+          #roomRegistryPage .room-section {
+            padding: 1.75rem;
+            margin-bottom: 1.75rem;
+          }
 
-        #roomRegistryPage .storage-grid {
-          gap: 1.25rem;
+          #roomRegistryPage .room-section-header {
+            margin-bottom: 1.25rem;
+          }
+
+          #roomRegistryPage .storage-grid {
+            gap: 1.25rem;
+          }
         }
-      }
-      .floor-report-btn {
-        width: auto;
-        padding: 0.55rem 1rem;
-        font-size: 0.95rem;
-        margin-left: auto;
-        margin-top: 0.25rem;
-      }
+        .floor-report-btn {
+          width: auto;
+          padding: 0.55rem 1rem;
+          font-size: 0.95rem;
+          margin-left: auto;
+          margin-top: 0.25rem;
+        }
 
       .room-section-title {
         font-size: 1.1rem;
@@ -2625,17 +2164,28 @@
         padding: 0 0.5rem;
       }
 
+      .grid-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        padding: 0 0.75rem;
+      }
 
       .premium-card {
-        padding: 1.5rem;
+        padding: 1rem;
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
       }
 
       .card-emoji {
-        font-size: 3rem;
+        font-size: 2.4rem;
       }
 
       .card-title {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        line-height: 1.2;
       }
 
       .expiration-page,
@@ -2707,7 +2257,7 @@
       .counter-panel {
         padding: 1rem 0.75rem;
         margin: 0;
-        border-radius: 18px;
+        border-radius: 12px;
       }
 
       #stockCountPage.expiration-page {
@@ -2717,29 +2267,13 @@
       #stockCountPage .progress-indicator,
       #stockCountPage .form-label,
       #stockCountPage .display-hint {
-        color: #5f5a54;
+        color: #f4e4a8;
       }
 
       #stockCountPage .form-select {
-        color: #1f1f1f;
-        background: #ffffff;
-        border-color: #d8cab5;
-      }
-
-      #stockCountPage .counter-panel,
-      #stockCountPage .date-header,
-      #stockCountPage .form-container {
-        background: #fffaf2;
-        border-color: #d8cab5;
-      }
-
-      .back-button {
-        width: fit-content;
-        margin: 1rem 0.75rem 0;
-        padding: 0.5rem 0.85rem;
-        border-color: #d8cab5;
-        background: rgba(255, 250, 242, 0.92);
-        color: #1f1f1f;
+        color: #f4e4a8;
+        background: rgba(10, 17, 40, 0.85);
+        border-color: rgba(212, 175, 55, 0.6);
       }
 
       .date-header {
@@ -2895,170 +2429,43 @@
  </head>
  <body class="h-full">
   <div class="main-wrapper">
-   <button class="back-button hidden" id="backButton" style="margin: 1.5rem 2rem 0;">← Back</button>
-   <div class="login-overlay hidden">
-    <div class="pin-panel" style="max-width: 420px;">
-      <h1 class="main-title" id="mainTitle" style="font-size: 2rem; margin-bottom: 1rem;">Housekeeping Inventory &amp; Stock</h1>
-      <p class="pin-subtitle">Sign in with your username, PIN, and location code.</p>
-      <form id="simpleLoginForm" style="display: grid; gap: 1rem;">
-        <input class="pin-input" id="simpleUsername" name="username" type="text" placeholder="Username" required />
-        <input class="pin-input" id="simplePin" name="pin" type="password" placeholder="PIN" inputmode="numeric" required />
-        <input class="pin-input" id="simpleLocation" name="location" type="text" placeholder="Location code" required />
-        <button class="pin-button" type="submit">Enter</button>
-      </form>
-      <div id="simpleLoginMessage" class="pin-error" style="margin-top: 1rem;"></div>
-    </div>
-   </div>
-   <div id="mainMenuContainer">
-    <div id="mainMenu" class="home-shell">
-     <div class="home-hero">
-      <div class="home-brand">◈ VOS</div>
-      <h1 class="home-title">Inventory &amp; Operations System</h1>
-      <p class="home-subtitle">One platform. Every department.</p>
+   <div style="padding: 2rem 2rem 3rem 2rem;"><button class="back-button hidden" id="backButton">← Back</button>
+    <h1 class="main-title" id="mainTitle">Housekeeping Inventory &amp; Stock</h1><!-- Main Menu -->
+    <div id="mainMenu" class="grid-container">
+    <div class="premium-card" data-page="minibar" onclick="goTo('minibar')"><span class="card-emoji">🍾</span>
+      <div class="card-title">
+       Minibar Operations
+      </div>
      </div>
-     <div class="home-department-grid">
-      <div class="premium-card home-department-card" data-page="minibar" onclick="goTo('minibar')"><span class="card-emoji">🍾</span><div class="card-title">Minibar</div></div>
-      <div class="premium-card home-department-card" data-page="housekeeping" onclick="goTo('housekeeping')"><span class="card-emoji">🧹</span><div class="card-title">Housekeeping</div></div>
-      <div class="premium-card home-department-card" data-page="frontdesk" onclick="window.location.href='dashboard.html'"><span class="card-emoji">🧾</span><div class="card-title">Front Office</div></div>
-      <div class="premium-card home-department-card" data-page="supplyhub" onclick="goTo('supplyhub')"><span class="card-emoji">🔧</span><div class="card-title">Technical</div></div>
+    <div class="premium-card" data-page="orders" onclick="goTo('orders')">
+      <div class="notification-badge" id="notificationBadge">
+       0
+      </div><span class="card-emoji">📦</span>
+      <div class="card-title">
+       Order Management
+      </div>
      </div>
-    </div>
-
-    <div id="supplyhubPage" class="expiration-page hidden">
-     <div class="supplyhub-shell">
-      <article class="supplyhub-card" id="qr">
-        <button type="button" class="dropdown-toggle" id="qrToggle" aria-expanded="false">
-          <span>QR Generation</span>
-          <span class="dropdown-icon">▾</span>
-        </button>
-        <div class="dropdown-panel" id="qrPanel" hidden>
-          <p class="pin-subtitle" style="margin-bottom: 1rem; text-align: left;">Generate a scan-ready link for minibartracker.space using the item, location, and category.</p>
-          <form id="qrForm" class="qr-controls">
-            <label class="field-row">
-              <span>Item name</span>
-              <input id="qrItem" name="qrItem" type="text" value="Toilet Paper" required />
-            </label>
-            <label class="field-row">
-              <span>Location</span>
-              <input id="qrLocation" name="qrLocation" type="text" value="F3-07" required />
-            </label>
-            <label class="field-row">
-              <span>Category</span>
-              <input id="qrCategory" name="qrCategory" type="text" value="Housekeeping" required />
-            </label>
-            <button type="submit">Generate QR</button>
-          </form>
-          <div id="qrResult" class="message"></div>
-          <div class="qr-preview-card">
-            <div class="qr-label">
-              <div class="qr-label-title">Generated scan URL</div>
-              <div id="qrPayload" class="qr-payload-summary">No QR generated yet.</div>
-            </div>
-            <div class="qr-canvas-wrap">
-              <canvas id="qrCanvas" width="220" height="220"></canvas>
-            </div>
-            <button type="button" id="printQrBtn" class="secondary-btn">Print QR</button>
-          </div>
-          <div class="qr-preview-card">
-            <button type="button" class="dropdown-toggle" id="savedQrToggle" aria-expanded="false" style="padding: 0; margin-bottom: 0;">
-              <span>Saved QR codes</span>
-              <span class="dropdown-icon">▾</span>
-            </button>
-            <div class="dropdown-panel" id="savedQrPanel" hidden>
-              <div id="savedQrList" class="saved-qr-list"></div>
-            </div>
-          </div>
-
-          <div class="qr-preview-card">
-            <div class="qr-label">
-              <div class="qr-label-title">Stock Locations QR</div>
-              <div class="qr-payload-summary">Generate one QR per stock location.</div>
-            </div>
-            <select id="locationQrSelect" class="field-row">
-              <option value="Floor 1 Storage">Floor 1 Storage</option>
-              <option value="Floor 2 Storage">Floor 2 Storage</option>
-              <option value="Floor 3 Storage">Floor 3 Storage</option>
-              <option value="Garage">Garage</option>
-              <option value="Luggage Room">Luggage Room</option>
-            </select>
-            <button type="button" id="generateLocationQrBtn" class="secondary-btn">Generate Location QR</button>
-            <div id="locationQrResult" class="message"></div>
-            <div class="qr-canvas-wrap">
-              <canvas id="locationQrCanvas" width="220" height="220"></canvas>
-            </div>
-            <div id="locationQrUrl" class="qr-payload-summary"></div>
-          </div>
-        </div>
-      </article>
+    <div class="premium-card" data-page="housekeeping" onclick="goTo('housekeeping')"><span class="card-emoji">🧹</span>
+      <div class="card-title">
+       Housekeeping Stock
+      </div>
+     </div>
+    <div class="premium-card" data-page="archive" onclick="goTo('archive')"><span class="card-emoji">📚</span>
+      <div class="card-title">
+       Archive
+      </div>
+     </div>
+    <div class="premium-card" data-page="room-registry" onclick="goTo('room-registry')"><span class="card-emoji">🏨</span>
+      <div class="card-title">
+       Room Registry
+      </div>
+     </div>
+    <div class="premium-card" data-page="stock-locations" onclick="goTo('stock-locations')"><span class="card-emoji">📍</span>
+      <div class="card-title">
+       Stock Locations
+      </div>
      </div>
     </div>
-
-    <div id="frontdeskPage" class="expiration-page hidden">
-     <div class="frontdesk-shell">
-      <section class="frontdesk-header">
-        <div>
-          <div class="home-brand">Front Desk Inventory</div>
-          <h2>Front Desk Inventory</h2>
-          <p>Live overview • fast restocks • full history</p>
-        </div>
-        <div class="frontdesk-actions-row">
-          <button type="button" class="secondary-btn" id="frontdeskAddToggle">➕ Add Item</button>
-        </div>
-      </section>
-      <section class="frontdesk-summary-grid" id="frontdeskSummaryCards"></section>
-      <section class="frontdesk-toolbar">
-        <input id="frontdeskSearch" type="text" placeholder="Search inventory" />
-        <select id="frontdeskCategoryFilter">
-          <option value="All">Category: All</option>
-          <option value="Guest Amenities">Guest Amenities</option>
-          <option value="Office Supplies">Office Supplies</option>
-          <option value="Operations">Operations</option>
-        </select>
-        <select id="frontdeskStatusFilter">
-          <option value="All">Status: All</option>
-          <option value="In Stock">In Stock</option>
-          <option value="Low Stock">Low Stock</option>
-          <option value="Out of Stock">Out of Stock</option>
-        </select>
-        <button type="button" class="secondary-btn" id="frontdeskResetFilters">Reset</button>
-      </section>
-      <section class="frontdesk-grid">
-        <div class="frontdesk-panel">
-          <div class="frontdesk-panel-title">Inventory Items</div>
-          <div id="frontdeskInventoryList"></div>
-        </div>
-        <div class="frontdesk-panel">
-          <div class="frontdesk-panel-title">Add New Item</div>
-          <form id="frontdeskItemForm" class="frontdesk-form-grid">
-            <label class="field-row"><span>SKU</span><input id="frontdeskSku" name="sku" type="text" placeholder="GA-003" /></label>
-            <label class="field-row"><span>Item name</span><input id="frontdeskItemName" name="frontdeskItemName" type="text" placeholder="e.g. Hand towels" required /></label>
-            <label class="field-row"><span>Category</span><select id="frontdeskCategory" name="category"><option>Guest Amenities</option><option>Office Supplies</option><option>Operations</option></select></label>
-            <label class="field-row"><span>Storage location</span><input id="frontdeskLocation" name="location" type="text" placeholder="Front Desk Cabinet" /></label>
-            <label class="field-row"><span>Current stock</span><input id="frontdeskCurrentStock" name="frontdeskCurrentStock" type="number" min="0" value="0" required /></label>
-            <label class="field-row"><span>Minimum stock</span><input id="frontdeskMinimumStock" name="frontdeskMinimumStock" type="number" min="1" value="10" required /></label>
-            <label class="field-row"><span>Maximum stock</span><input id="frontdeskMaximumStock" name="frontdeskMaximumStock" type="number" min="1" value="100" /></label>
-            <label class="field-row"><span>Reorder quantity</span><input id="frontdeskReorderQty" name="frontdeskReorderQty" type="number" min="1" value="10" /></label>
-            <label class="field-row"><span>Supplier</span><input id="frontdeskSupplier" name="supplier" type="text" placeholder="Hotel Supplies Co." /></label>
-            <label class="field-row"><span>Unit</span><input id="frontdeskUnit" name="unit" type="text" placeholder="boxes" /></label>
-            <label class="field-row"><span>Notes</span><textarea id="frontdeskNotes" name="notes" rows="3" placeholder="Short note"></textarea></label>
-            <div class="frontdesk-actions-row"><button type="submit">Save Item</button><button type="button" class="secondary-btn" id="frontdeskCancelBtn">Cancel</button></div>
-          </form>
-          <div id="frontdeskFormMessage" class="message" style="margin-top: 0.3rem;"></div>
-        </div>
-      </section>
-      <section class="frontdesk-panel">
-        <div class="frontdesk-panel-title">Item History</div>
-        <div class="frontdesk-history-list" id="frontdeskHistoryList"></div>
-      </section>
-      <section class="frontdesk-actions-row">
-        <button type="button" class="secondary-btn" id="frontdeskLowStockBtn">Low Stock Report</button>
-        <button type="button" class="secondary-btn" id="frontdeskOutOfStockBtn">Out of Stock Report</button>
-        <button type="button" class="secondary-btn" id="frontdeskExportPdfBtn">Export to PDF</button>
-        <button type="button" class="secondary-btn" id="frontdeskExportExcelBtn">Export to Excel</button>
-      </section>
-     </div>
-    </div>
-    
     <!-- Minibar Operations Submenu -->
     <div id="minibarMenu" class="grid-container hidden">
     <div class="premium-card" data-subpage="expiration" onclick="goTo('expiration')"><span class="card-emoji">⏰</span>
@@ -3097,7 +2504,7 @@
       <div id="todayStockCountBanner" style="margin-top: 2rem;"></div>
      </div>
     </div><!-- Order Management / Notification Center Page -->
-    <div id="ordersPage" class="expiration-page hidden">
+    <div id="ordersPage" class="expiration-page hidden"> 
      <h2 style="font-size: 2rem; font-weight: 700; color: #d4af37; text-align: center; margin-bottom: 2rem;">Notification Center</h2>
      <div class="order-summary" id="orderSummaryContainer">
       <div class="order-summary-header">
@@ -3268,8 +2675,8 @@
      <div id="publicIssuesTabContent" class="hidden">
       <div id="publicEquipmentIssuesContainer"></div>
      </div>
-    </div><!-- Archive Page -->
-    <!-- Room Registry Pages (moved near end of layout) -->
+    </div>
+    <!-- Archive Page -->
     <div id="archivePage" class="expiration-page hidden">
      <h2 style="font-size: 2rem; font-weight: 700; color: #d4af37; text-align: center; margin-bottom: 3rem;">Archive Center</h2><!-- Section 1: Archived Stock Counts -->
      <div class="archive-section">
@@ -3336,8 +2743,6 @@
   </footer>
   <div id="buildBadge" class="build-badge" data-build="2026-02-04" style="display:none;">Build v—</div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-  <script src="assets/auth.js"></script>
   <script>
     const defaultConfig = {
       main_title: "Housekeeping Inventory & Stock",
@@ -3349,9 +2754,6 @@
 
     const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsojKnOgsgaKguFQFG7tA9nPijTmCyCWFqU0lu7bJCYfkunqduV4_meJiZOricnjr6/exec';
     const APP_PIN = '1012';
-    const simpleLoginForm = document.getElementById('simpleLoginForm');
-    const simpleLoginMessage = document.getElementById('simpleLoginMessage');
-
     function getLocalDateString(date = new Date()) {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -3361,56 +2763,6 @@
 
     const mainMenu = document.getElementById('mainMenu');
     const pinOverlay = document.getElementById('pinOverlay');
-    isUnlocked = true;
-    localStorage.setItem('app_unlocked', 'true');
-
-    if (simpleLoginForm) {
-      simpleLoginForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const username = document.getElementById('simpleUsername')?.value?.trim() || '';
-        const pin = document.getElementById('simplePin')?.value?.trim() || '';
-        const location = document.getElementById('simpleLocation')?.value?.trim() || '';
-
-        if (!username || !pin || !location) {
-          if (simpleLoginMessage) {
-            simpleLoginMessage.textContent = 'Please enter your username, PIN, and location code.';
-          }
-          return;
-        }
-
-        if (pin.length < 3) {
-          if (simpleLoginMessage) {
-            simpleLoginMessage.textContent = 'Please enter a longer PIN.';
-          }
-          return;
-        }
-
-        try {
-          localStorage.setItem('supplyhubSession', JSON.stringify({ username, pin, location, loggedInAt: new Date().toISOString() }));
-          if (simpleLoginMessage) {
-            simpleLoginMessage.textContent = 'Signing in...';
-          }
-          const loginOverlay = document.querySelector('.login-overlay');
-          const mainMenuContainer = document.getElementById('mainMenuContainer');
-          if (loginOverlay) {
-            loginOverlay.style.display = 'none';
-          }
-          if (mainMenuContainer) {
-            mainMenuContainer.classList.remove('hidden');
-          }
-          if (mainMenu) {
-            mainMenu.classList.remove('hidden');
-          }
-          isUnlocked = true;
-          localStorage.setItem('app_unlocked', 'true');
-          navigateTo('main');
-        } catch (error) {
-          if (simpleLoginMessage) {
-            simpleLoginMessage.textContent = 'Unable to sign in right now. Please try again.';
-          }
-        }
-      });
-    }
     const pinInput = document.getElementById('pinInput');
     const pinSubmit = document.getElementById('pinSubmit');
     const pinError = document.getElementById('pinError');
@@ -3426,151 +2778,7 @@
     const roomMaintenancePage = document.getElementById('roomMaintenancePage');
     const stockLocationsPage = document.getElementById('stockLocationsPage');
     const stockDetailPage = document.getElementById('stockDetailPage');
-    const supplyhubPage = document.getElementById('supplyhubPage');
-    const frontdeskPage = document.getElementById('frontdeskPage');
     const backButton = document.getElementById('backButton');
-
-    function applyBackButtonStyle() {
-      if (!backButton) return;
-      backButton.style.display = 'inline-flex';
-      backButton.style.alignItems = 'center';
-      backButton.style.gap = '0.45rem';
-      backButton.style.width = 'fit-content';
-      backButton.style.padding = '0.6rem 0.95rem';
-      backButton.style.border = '2px solid #d8cab5';
-      backButton.style.borderRadius = '999px';
-      backButton.style.background = 'rgba(255, 250, 242, 0.92)';
-      backButton.style.color = '#1f1f1f';
-      backButton.style.fontWeight = '800';
-      backButton.style.textDecoration = 'none';
-      backButton.style.boxShadow = '0 8px 18px rgba(56, 44, 30, 0.08)';
-      backButton.style.transition = 'transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease';
-    }
-
-    function applyStockCountStyle() {
-      const isMobile = globalThis.innerWidth <= 768;
-      const stockCounterContainer = document.querySelector('#stockCountPage .stock-counter-container');
-      const counterPanel = document.querySelector('#stockCountPage .counter-panel');
-      const progressIndicator = document.getElementById('stockProgress');
-      const displayArea = document.getElementById('displayArea');
-      const displayNumber = document.getElementById('displayNumber');
-      const displayHint = document.querySelector('#stockCountPage .display-hint');
-      const saveButton = document.getElementById('saveStockBtn');
-      const stockCounterGrid = document.querySelector('#stockCountPage .stock-counter-grid');
-      const quickButtonsRow = document.querySelector('#stockCountPage .quick-buttons');
-      const numberPad = document.querySelector('#stockCountPage .number-pad');
-      const quickButtons = document.querySelectorAll('#stockCountPage .quick-btn');
-      const numButtons = document.querySelectorAll('#stockCountPage .num-button');
-      const stockFormSelects = document.querySelectorAll('#stockCountPage .form-select');
-
-      if (stockCounterContainer) {
-        stockCounterContainer.style.padding = isMobile ? '0 0.5rem' : '0 1rem';
-        stockCounterContainer.style.color = '#1f1f1f';
-        stockCounterContainer.style.fontFamily = 'Manrope, sans-serif';
-      }
-
-      if (counterPanel) {
-        counterPanel.style.background = '#fffaf2';
-        counterPanel.style.border = '1px solid #d8cab5';
-        counterPanel.style.borderRadius = '18px';
-        counterPanel.style.boxShadow = '0 16px 32px rgba(56, 44, 30, 0.1)';
-        counterPanel.style.padding = isMobile ? '1rem 0.75rem' : '2.5rem';
-      }
-
-      if (progressIndicator) {
-        progressIndicator.style.color = '#1f6f78';
-      }
-
-      if (displayArea) {
-        displayArea.style.background = '#ffffff';
-        displayArea.style.border = '1px solid #d8cab5';
-        displayArea.style.boxShadow = '0 10px 24px rgba(56, 44, 30, 0.08)';
-        displayArea.style.marginBottom = '1.35rem';
-      }
-
-      if (displayNumber) {
-        displayNumber.style.color = '#1f6f78';
-        displayNumber.style.fontSize = '2rem';
-        displayNumber.style.fontWeight = '700';
-        displayNumber.style.lineHeight = '1.1';
-        displayNumber.style.padding = '0.25rem 0';
-        displayNumber.style.textAlign = 'center';
-      }
-
-      if (displayHint) {
-        displayHint.style.color = '#5f5a54';
-      }
-
-      if (stockCounterGrid) {
-        stockCounterGrid.style.display = 'grid';
-        stockCounterGrid.style.gridTemplateColumns = isMobile ? '1fr' : '1fr 1fr';
-        stockCounterGrid.style.gap = isMobile ? '0.75rem' : '1rem';
-        stockCounterGrid.style.marginBottom = '1rem';
-        stockCounterGrid.style.width = '100%';
-      }
-
-      if (quickButtonsRow) {
-        quickButtonsRow.style.display = 'grid';
-        quickButtonsRow.style.gridTemplateColumns = 'repeat(4, minmax(0, 1fr))';
-        quickButtonsRow.style.gap = '0.5rem';
-        quickButtonsRow.style.width = '100%';
-        quickButtonsRow.style.margin = '0.6rem 0 1.1rem';
-      }
-
-      if (numberPad) {
-        numberPad.style.display = 'grid';
-        numberPad.style.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))';
-        numberPad.style.gap = '0.75rem';
-        numberPad.style.width = '100%';
-      }
-
-      if (saveButton) {
-        saveButton.style.display = 'block';
-        saveButton.style.width = '100%';
-        saveButton.style.background = '#1f6f78';
-        saveButton.style.border = '1px solid #1f6f78';
-        saveButton.style.color = '#ffffff';
-        saveButton.style.borderRadius = '12px';
-        saveButton.style.padding = '1.25rem';
-        saveButton.style.fontWeight = '700';
-        saveButton.style.marginTop = '0.15rem';
-      }
-
-      quickButtons.forEach((button) => {
-        button.style.display = 'inline-flex';
-        button.style.alignItems = 'center';
-        button.style.justifyContent = 'center';
-        button.style.background = '#d7eeef';
-        button.style.border = '1px solid #1f6f78';
-        button.style.color = '#1f6f78';
-        button.style.borderRadius = '8px';
-        button.style.padding = '0.75rem';
-        button.style.fontWeight = '600';
-      });
-
-      numButtons.forEach((button) => {
-        button.style.display = 'inline-flex';
-        button.style.alignItems = 'center';
-        button.style.justifyContent = 'center';
-        button.style.background = '#ffffff';
-        button.style.border = '1px solid #d8cab5';
-        button.style.color = '#1f1f1f';
-        button.style.borderRadius = '12px';
-        button.style.padding = '1.5rem';
-        button.style.fontWeight = '700';
-      });
-
-      stockFormSelects.forEach((select) => {
-        select.style.background = '#ffffff';
-        select.style.border = '1px solid #d8cab5';
-        select.style.color = '#1f1f1f';
-        select.style.borderRadius = '8px';
-      });
-    }
-
-    applyBackButtonStyle();
-    applyStockCountStyle();
-
     let currentPage = 'main';
     var isUnlocked = true;
     let roomRegistryContainer;
@@ -3588,7 +2796,6 @@
     let archivedItems = [];
     let archivedNotifications = [];
     let archivedStockCounts = [];
-    let currentStockLocation = null;
     let currentStockValue = 0;
     let currentEquipmentTab = 'inventory';
     let currentPublicEquipmentTab = 'inventory';
@@ -3649,9 +2856,7 @@
           return String(value).toLowerCase().replace(/\s+/g, '_').replace(/-+/g, '_');
         };
 
-        const normalizedData = (Array.isArray(data) ? data : [])
-          .filter(item => item && typeof item === 'object')
-          .map(item => {
+        const normalizedData = data.map(item => {
           const idPrefix = item && item.id ? String(item.id).split('-')[0] : '';
           const inferredFromId = /^\d{2,4}$/.test(idPrefix) ? idPrefix : '';
           const normalizedRoomNumber = item.room_number || item.room || item.roomNumber || item.room_no || inferredFromId || '';
@@ -3679,9 +2884,6 @@
         archivedItems = normalizedData.filter(item => !item.type && !item.stock_type && !item.equipment_type && item.is_archived);
         archivedNotifications = normalizedData.filter(item => item.type && item.is_archived);
         archivedStockCounts = normalizedData.filter(item => item.stock_type === 'minibar_count' && item.is_archived);
-        const syncedFrontdeskItems = getFrontdeskItemsFromData(normalizedData);
-        frontdeskItems = syncedFrontdeskItems.length ? syncedFrontdeskItems : cloneDefaultFrontdeskItems();
-        frontdeskSelectedItemId = frontdeskItems[0]?.id || null;
         
         updateExpirationDisplay();
         updateNotificationsDisplay();
@@ -3757,13 +2959,9 @@
       let cachedData = [];
       let refreshTimer = null;
       const JSONP_TIMEOUT_MS = 20000;
-      const JSONP_COLD_START_TIMEOUT_MS = 45000;
       const JSONP_RETRY_ATTEMPTS = 3;
       const JSONP_RETRY_DELAY_MS = 1200;
-      const BACKEND_WAKE_WINDOW_MS = 2 * 60 * 1000;
       let lastReconnectToastAt = 0;
-      let lastWakeAttemptAt = 0;
-      let wakePromise = null;
 
       function scheduleRefresh(delay = 3000) {
         if (refreshTimer) clearTimeout(refreshTimer);
@@ -3785,36 +2983,6 @@
 
       function selectPayload(payload) {
         if (!payload || typeof payload !== 'object') return payload;
-        const stockType = String(payload.stock_type || payload.type || '').toLowerCase();
-        if (stockType === 'frontdesk_inventory') {
-          return {
-            id: payload.id,
-            stock_type: payload.stock_type || payload.type,
-            type: payload.type || payload.stock_type,
-            item_name: payload.item_name,
-            sku: payload.sku,
-            category: payload.category,
-            location_name: payload.location_name,
-            location: payload.location || payload.location_name,
-            current_stock: payload.current_stock,
-            quantity: payload.quantity,
-            minimum_stock: payload.minimum_stock,
-            min_stock: payload.min_stock,
-            maximum_stock: payload.maximum_stock,
-            max_stock: payload.max_stock,
-            reorder_qty: payload.reorder_qty,
-            order_quantity: payload.order_quantity,
-            supplier: payload.supplier,
-            unit: payload.unit,
-            notes: payload.notes,
-            updated_by: payload.updated_by,
-            updated_at: payload.updated_at,
-            last_checked: payload.last_checked,
-            added_timestamp: payload.added_timestamp,
-            date_added: payload.date_added,
-            is_archived: payload.is_archived
-          };
-        }
         if (payload.type) {
           return {
             id: payload.id,
@@ -3903,7 +3071,7 @@
         };
       }
 
-      function jsonpRequest(action, payload, timeoutMs = JSONP_TIMEOUT_MS) {
+      function jsonpRequest(action, payload) {
         return new Promise((resolve) => {
           const callbackName = `__gsCallback_${Date.now()}_${Math.random().toString(16).slice(2)}`;
           const compacted = compactPayload(selectPayload(payload));
@@ -3913,7 +3081,7 @@
             delete window[callbackName];
             script.remove();
             resolve({ isOk: false, error: 'JSONP request timed out' });
-          }, timeoutMs);
+          }, JSONP_TIMEOUT_MS);
 
           window[callbackName] = (data) => {
             clearTimeout(timeoutId);
@@ -3946,40 +3114,10 @@
         showToast(`Reconnecting to Google Sheet… (${action}, retry ${attempt}/${attempts - 1})`, 'success');
       }
 
-      async function warmUpBackendIfNeeded(action) {
-        const now = Date.now();
-        if (now - lastWakeAttemptAt < BACKEND_WAKE_WINDOW_MS) return;
-        if (wakePromise) {
-          await wakePromise;
-          return;
-        }
-
-        lastWakeAttemptAt = now;
-        wakePromise = (async() => {
-          try {
-            showToast(`Waking backend… (${action})`, 'success');
-            await fetch(`${url}?action=read&warmup=1&ts=${Date.now()}`, {
-              cache: 'no-store',
-              mode: 'no-cors'
-            });
-          } catch (error) {
-          }
-          await wait(1200);
-        })();
-
-        try {
-          await wakePromise;
-        } finally {
-          wakePromise = null;
-        }
-      }
-
       async function jsonpRequestWithRetry(action, payload, attempts = JSONP_RETRY_ATTEMPTS) {
-        await warmUpBackendIfNeeded(action);
         let lastResult = { isOk: false, error: 'JSONP request not started' };
         for (let attempt = 1; attempt <= attempts; attempt++) {
-          const timeoutMs = attempt === 1 ? JSONP_COLD_START_TIMEOUT_MS : JSONP_TIMEOUT_MS;
-          const result = await jsonpRequest(action, payload, timeoutMs);
+          const result = await jsonpRequest(action, payload);
           if (result.isOk) return result;
           lastResult = result;
           if (attempt < attempts) {
@@ -4048,330 +3186,7 @@
       const result = await window.dataSdk.init(dataHandler);
       if (!result.isOk) {
         console.error("Failed to initialize Data SDK:", result.error);
-        showToast('Backend is still waking up. Please wait a few seconds and try again.', 'error');
       }
-    }
-
-    const DEFAULT_FRONTDESK_ITEMS = [
-      { id: 'water', sku: 'GA-001', name: 'Water', category: 'Guest Amenities', location: 'Front Desk Cabinet', current: 120, minimum: 50, maximum: 180, reorderQty: 20, supplier: 'Hotel Supplies Co.', unit: 'cases', notes: 'High demand during check-in', history: [{ title: 'Added item', detail: 'Initial stock', date: 'Jul 29, 2026' }] },
-      { id: 'coffee', sku: 'GA-002', name: 'Coffee Capsules', category: 'Guest Amenities', location: 'Lobby Pantry', current: 8, minimum: 20, maximum: 80, reorderQty: 12, supplier: 'Brew Supply', unit: 'boxes', notes: 'Reorder soon', history: [{ title: 'Restocked', detail: 'Added 6 units', date: 'Jul 30, 2026' }] },
-      { id: 'pens', sku: 'OS-001', name: 'Pens', category: 'Office Supplies', location: 'Front Desk Drawer', current: 0, minimum: 8, maximum: 40, reorderQty: 10, supplier: 'Office Essentials', unit: 'packs', notes: 'Out of stock', history: [{ title: 'Stock update', detail: 'Marked empty', date: 'Jul 31, 2026' }] },
-      { id: 'batteries', sku: 'OP-001', name: 'Batteries', category: 'Operations', location: 'Housekeeping Closet', current: 35, minimum: 15, maximum: 60, reorderQty: 8, supplier: 'Tech Supply', unit: 'packs', notes: 'Good standing', history: [{ title: 'Inventory review', detail: 'Verified count', date: 'Jul 31, 2026' }] }
-    ];
-    let frontdeskItems = cloneDefaultFrontdeskItems();
-    let frontdeskSelectedItemId = frontdeskItems[0]?.id || null;
-    let frontdeskSearchTerm = '';
-    let frontdeskCategoryFilter = 'All';
-    let frontdeskStatusFilter = 'All';
-
-    function cloneDefaultFrontdeskItems() {
-      return DEFAULT_FRONTDESK_ITEMS.map((item) => ({
-        ...item,
-        history: Array.isArray(item.history) ? item.history.map((entry) => ({ ...entry })) : []
-      }));
-    }
-
-    function getFrontdeskItemsFromData(data) {
-      return (Array.isArray(data) ? data : [])
-        .filter((item) => item && typeof item === 'object' && String(item.stock_type || item.type || '').toLowerCase() === 'frontdesk_inventory' && !item.is_archived)
-        .map((item) => {
-          const current = Number(item.current_stock ?? item.quantity ?? item.current ?? 0);
-          const minimum = Number(item.minimum_stock ?? item.min_stock ?? item.minimum ?? 0);
-          const maximum = Number(item.maximum_stock ?? item.max_stock ?? item.maximum ?? Math.max(minimum + 20, current + 20));
-          return {
-            id: String(item.id || item.sku || item.item_name || `frontdesk-${Date.now()}`),
-            sku: String(item.sku || item.article_number || item.id || '').trim() || `FD-${String(Date.now()).slice(-6)}`,
-            name: item.item_name || item.name || 'Unnamed Item',
-            category: item.category || 'Guest Amenities',
-            location: item.location_name || item.location || 'Front Desk',
-            current: Number.isFinite(current) ? current : 0,
-            minimum: Number.isFinite(minimum) ? minimum : 0,
-            maximum: Number.isFinite(maximum) ? maximum : Math.max((Number.isFinite(minimum) ? minimum : 0) + 20, (Number.isFinite(current) ? current : 0) + 20),
-            reorderQty: Number(item.reorder_qty ?? item.order_quantity ?? item.reorderQty ?? 10) || 10,
-            supplier: item.supplier || 'Hotel Supplies Co.',
-            unit: item.unit || 'units',
-            notes: item.notes || '',
-            history: Array.isArray(item.history) && item.history.length ? item.history : [{ title: 'Synced item', detail: 'Loaded from Google Sheets', date: item.updated_at || item.added_timestamp || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }]
-          };
-        });
-    }
-
-    function getFrontdeskStatus(item) {
-      if (item.current <= 0) return 'Out of Stock';
-      if (item.current < item.minimum) return 'Low Stock';
-      return 'In Stock';
-    }
-
-    function selectFrontdeskItem(itemId) {
-      frontdeskSelectedItemId = itemId;
-      renderFrontdeskInventory();
-    }
-
-    function renderFrontdeskInventory() {
-      const inventoryList = document.getElementById('frontdeskInventoryList');
-      const historyList = document.getElementById('frontdeskHistoryList');
-      const summaryCards = document.getElementById('frontdeskSummaryCards');
-      const messageEl = document.getElementById('frontdeskFormMessage');
-      if (!inventoryList || !historyList || !summaryCards) return;
-
-      const searchTerm = (document.getElementById('frontdeskSearch')?.value || frontdeskSearchTerm || '').trim().toLowerCase();
-      const categoryFilter = document.getElementById('frontdeskCategoryFilter')?.value || frontdeskCategoryFilter;
-      const statusFilter = document.getElementById('frontdeskStatusFilter')?.value || frontdeskStatusFilter;
-      frontdeskSearchTerm = searchTerm;
-      frontdeskCategoryFilter = categoryFilter;
-      frontdeskStatusFilter = statusFilter;
-
-      const filteredItems = frontdeskItems.filter((item) => {
-        const matchesSearch = !searchTerm || item.name.toLowerCase().includes(searchTerm) || item.sku.toLowerCase().includes(searchTerm);
-        const matchesCategory = categoryFilter === 'All' || item.category === categoryFilter;
-        const matchesStatus = statusFilter === 'All' || getFrontdeskStatus(item) === statusFilter;
-        return matchesSearch && matchesCategory && matchesStatus;
-      });
-
-      const selectedItem = filteredItems.find((item) => item.id === frontdeskSelectedItemId) || filteredItems[0] || null;
-      if (selectedItem) {
-        frontdeskSelectedItemId = selectedItem.id;
-      }
-
-      const totalItems = frontdeskItems.length;
-      const lowStockItems = frontdeskItems.filter((item) => getFrontdeskStatus(item) === 'Low Stock').length;
-      const outOfStockItems = frontdeskItems.filter((item) => getFrontdeskStatus(item) === 'Out of Stock').length;
-      const recentlyUpdatedItems = frontdeskItems.filter((item) => item.history?.length > 1).length;
-      summaryCards.innerHTML = `
-        <div class="frontdesk-summary-card"><strong>${totalItems}</strong><span>Total Items</span></div>
-        <div class="frontdesk-summary-card"><strong>${lowStockItems}</strong><span>Low Stock</span></div>
-        <div class="frontdesk-summary-card"><strong>${outOfStockItems}</strong><span>Out of Stock</span></div>
-        <div class="frontdesk-summary-card"><strong>${recentlyUpdatedItems}</strong><span>Recently Updated</span></div>`;
-
-      inventoryList.innerHTML = filteredItems.length ? filteredItems.map((item) => {
-        const status = getFrontdeskStatus(item);
-        const statusClass = status === 'Out of Stock' ? 'stock-health-below' : status === 'Low Stock' ? 'stock-health-low' : 'stock-health-full';
-        return `
-          <div class="frontdesk-item-card ${selectedItem?.id === item.id ? 'active' : ''}" onclick="selectFrontdeskItem('${item.id}')">
-            <div class="frontdesk-item-row">
-              <strong>${item.name}</strong>
-              <span class="frontdesk-pill">${status}</span>
-            </div>
-            <div class="frontdesk-item-meta">
-              <span>${item.sku}</span>
-              <span>• ${item.category}</span>
-              <span>• ${item.location}</span>
-            </div>
-            <div class="frontdesk-item-meta" style="margin-top:0.35rem;">
-              <span class="${statusClass}">${item.current} / ${item.minimum}</span>
-              <span>• ${item.current <= 0 ? 'Restock now' : 'On track'}</span>
-            </div>
-          </div>`;
-      }).join('') : '<div class="frontdesk-history-item">No items match the current filters.</div>';
-
-      if (selectedItem) {
-        historyList.innerHTML = selectedItem.history?.length ? selectedItem.history.map((entry) => `
-          <div class="frontdesk-history-item">
-            <strong>${entry.title}</strong>
-            <div>${entry.detail}</div>
-            <div class="frontdesk-item-meta" style="margin-top:0.25rem;">${entry.date}</div>
-          </div>`).join('') : '<div class="frontdesk-history-item">No history yet for this item.</div>';
-      } else {
-        historyList.innerHTML = '<div class="frontdesk-history-item">Select an item to view its history.</div>';
-      }
-
-      if (messageEl) {
-        messageEl.textContent = '';
-      }
-    }
-
-    function handleFrontdeskItemSubmit(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      const nameInput = document.getElementById('frontdeskItemName');
-      const skuInput = document.getElementById('frontdeskSku');
-      const categoryInput = document.getElementById('frontdeskCategory');
-      const locationInput = document.getElementById('frontdeskLocation');
-      const currentInput = document.getElementById('frontdeskCurrentStock');
-      const minimumInput = document.getElementById('frontdeskMinimumStock');
-      const maximumInput = document.getElementById('frontdeskMaximumStock');
-      const reorderQtyInput = document.getElementById('frontdeskReorderQty');
-      const supplierInput = document.getElementById('frontdeskSupplier');
-      const unitInput = document.getElementById('frontdeskUnit');
-      const notesInput = document.getElementById('frontdeskNotes');
-      const messageEl = document.getElementById('frontdeskFormMessage');
-
-      if (!nameInput || !currentInput || !minimumInput) return;
-
-      const name = nameInput.value.trim();
-      const current = Number(currentInput.value);
-      const minimum = Number(minimumInput.value);
-      const maximum = Number(maximumInput?.value || 0);
-      const reorderQty = Number(reorderQtyInput?.value || 0);
-
-      if (!name) {
-        if (messageEl) messageEl.textContent = 'Please enter an item name.';
-        return;
-      }
-      if (!Number.isFinite(current) || !Number.isFinite(minimum) || minimum <= 0) {
-        if (messageEl) messageEl.textContent = 'Please enter valid stock numbers.';
-        return;
-      }
-
-      const item = {
-        id: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`,
-        sku: (skuInput?.value || '').trim() || `FG-${String(frontdeskItems.length + 1).padStart(3, '0')}`,
-        name,
-        category: categoryInput?.value || 'Guest Amenities',
-        location: (locationInput?.value || '').trim() || 'Front Desk Cabinet',
-        current,
-        minimum,
-        maximum: Number.isFinite(maximum) && maximum > 0 ? maximum : Math.max(minimum + 20, current + 20),
-        reorderQty: Number.isFinite(reorderQty) && reorderQty > 0 ? reorderQty : 10,
-        supplier: (supplierInput?.value || '').trim() || 'Hotel Supplies Co.',
-        unit: (unitInput?.value || '').trim() || 'units',
-        notes: (notesInput?.value || '').trim() || 'Added from frontdesk inventory',
-        history: [{ title: 'Added item', detail: 'New item entered', date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }]
-      };
-
-      const localFrontdeskItem = {
-        ...item,
-        history: Array.isArray(item.history) ? item.history.map((entry) => ({ ...entry })) : []
-      };
-
-      const nowIso = new Date().toISOString();
-      const existingItem = frontdeskItems.find((entry) => entry.sku === item.sku || entry.name === item.name);
-      const payload = {
-        id: existingItem?.id || item.id,
-        type: 'frontdesk_inventory',
-        stock_type: 'frontdesk_inventory',
-        item_name: item.name,
-        sku: item.sku,
-        category: item.category,
-        location: item.location,
-        location_name: item.location,
-        current_stock: String(item.current),
-        quantity: String(item.current),
-        minimum_stock: String(item.minimum),
-        min_stock: String(item.minimum),
-        maximum_stock: String(item.maximum),
-        max_stock: String(item.maximum),
-        reorder_qty: String(item.reorderQty),
-        order_quantity: String(item.reorderQty),
-        supplier: item.supplier,
-        unit: item.unit,
-        notes: item.notes,
-        updated_by: 'Front Desk',
-        updated_at: nowIso,
-        last_checked: nowIso,
-        added_timestamp: nowIso,
-        date_added: nowIso.slice(0, 10),
-        is_archived: false
-      };
-
-      const savedResult = existingItem ? await window.dataSdk.update(payload) : await window.dataSdk.create(payload);
-      if (!savedResult || !savedResult.isOk) {
-        if (messageEl) messageEl.textContent = 'Save failed. Please try again.';
-        return;
-      }
-
-      frontdeskItems = [localFrontdeskItem, ...frontdeskItems.filter((entry) => entry.id !== localFrontdeskItem.id)];
-      frontdeskSelectedItemId = localFrontdeskItem.id;
-      renderFrontdeskInventory();
-
-      if (messageEl) messageEl.textContent = `${name} synced to Google Sheets.`;
-      if (nameInput) nameInput.value = '';
-      if (skuInput) skuInput.value = '';
-      if (categoryInput) categoryInput.value = 'Guest Amenities';
-      if (locationInput) locationInput.value = '';
-      if (currentInput) currentInput.value = '0';
-      if (minimumInput) minimumInput.value = '10';
-      if (maximumInput) maximumInput.value = '100';
-      if (reorderQtyInput) reorderQtyInput.value = '10';
-      if (supplierInput) supplierInput.value = '';
-      if (unitInput) unitInput.value = '';
-      if (notesInput) notesInput.value = '';
-    }
-
-    function getFrontdeskReportItems(statusFilter) {
-      return frontdeskItems.filter((item) => !statusFilter || getFrontdeskStatus(item) === statusFilter);
-    }
-
-    function buildFrontdeskReportHtml(title, items) {
-      const rows = items.map((item) => `
-        <tr>
-          <td>${item.sku}</td>
-          <td>${item.name}</td>
-          <td>${item.category}</td>
-          <td>${item.location}</td>
-          <td>${item.current}</td>
-          <td>${item.minimum}</td>
-          <td>${getFrontdeskStatus(item)}</td>
-        </tr>
-      `).join('');
-      return `
-        <html>
-          <head>
-            <title>${title}</title>
-            <style>
-              body { font-family: Arial, sans-serif; padding: 24px; color: #1f1f1f; }
-              h1 { margin: 0 0 12px; }
-              .sub { margin: 0 0 20px; color: #666; }
-              table { width: 100%; border-collapse: collapse; font-size: 14px; }
-              th, td { border: 1px solid #cfc6b8; padding: 8px 10px; text-align: left; }
-              th { background: #f3efe7; }
-              .meta { margin-top: 16px; font-size: 12px; color: #666; }
-              @media print { .no-print { display: none; } }
-            </style>
-          </head>
-          <body>
-            <div class="no-print" style="margin-bottom:16px;"><button onclick="window.print()">Print / Save PDF</button></div>
-            <h1>${title}</h1>
-            <p class="sub">Generated from Front Desk Inventory</p>
-            <table>
-              <thead>
-                <tr><th>SKU</th><th>Item</th><th>Category</th><th>Location</th><th>Current</th><th>Minimum</th><th>Status</th></tr>
-              </thead>
-              <tbody>${rows || '<tr><td colspan="7">No items to show.</td></tr>'}</tbody>
-            </table>
-            <div class="meta">Generated ${new Date().toLocaleString()}</div>
-          </body>
-        </html>
-      `;
-    }
-
-    function openFrontdeskReport(title, items) {
-      const reportWindow = window.open('', '_blank', 'noopener,noreferrer,width=1100,height=800');
-      if (!reportWindow) {
-        window.alert('Popup blocked. Please allow popups to open the report.');
-        return;
-      }
-      reportWindow.document.open();
-      reportWindow.document.write(buildFrontdeskReportHtml(title, items));
-      reportWindow.document.close();
-      reportWindow.focus();
-    }
-
-    function downloadFrontdeskCsv(filename, items) {
-      const header = ['SKU', 'Item', 'Category', 'Location', 'Current', 'Minimum', 'Maximum', 'Status', 'Supplier', 'Notes'];
-      const lines = [header.join(',')];
-      items.forEach((item) => {
-        lines.push([
-          item.sku,
-          item.name,
-          item.category,
-          item.location,
-          item.current,
-          item.minimum,
-          item.maximum,
-          getFrontdeskStatus(item),
-          item.supplier,
-          item.notes
-        ].map((value) => `"${String(value ?? '').replace(/"/g, '""')}"`).join(','));
-      });
-      const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
     }
 
     function showPinLock() {
@@ -4472,81 +3287,6 @@
       });
     });
 
-    renderFrontdeskInventory();
-
-    const frontdeskItemForm = document.getElementById('frontdeskItemForm');
-    if (frontdeskItemForm) {
-      frontdeskItemForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        handleFrontdeskItemSubmit(event);
-      });
-    }
-
-    const frontdeskSearchInput = document.getElementById('frontdeskSearch');
-    const frontdeskCategoryFilterEl = document.getElementById('frontdeskCategoryFilter');
-    const frontdeskStatusFilterEl = document.getElementById('frontdeskStatusFilter');
-    const frontdeskResetFiltersBtn = document.getElementById('frontdeskResetFilters');
-    const frontdeskAddToggleBtn = document.getElementById('frontdeskAddToggle');
-    const frontdeskCancelBtn = document.getElementById('frontdeskCancelBtn');
-    const frontdeskLowStockBtn = document.getElementById('frontdeskLowStockBtn');
-    const frontdeskOutOfStockBtn = document.getElementById('frontdeskOutOfStockBtn');
-    const frontdeskExportPdfBtn = document.getElementById('frontdeskExportPdfBtn');
-    const frontdeskExportExcelBtn = document.getElementById('frontdeskExportExcelBtn');
-
-    [frontdeskSearchInput, frontdeskCategoryFilterEl, frontdeskStatusFilterEl].forEach((el) => {
-      if (el) el.addEventListener('input', renderFrontdeskInventory);
-      if (el) el.addEventListener('change', renderFrontdeskInventory);
-    });
-
-    if (frontdeskResetFiltersBtn) {
-      frontdeskResetFiltersBtn.addEventListener('click', () => {
-        if (frontdeskSearchInput) frontdeskSearchInput.value = '';
-        if (frontdeskCategoryFilterEl) frontdeskCategoryFilterEl.value = 'All';
-        if (frontdeskStatusFilterEl) frontdeskStatusFilterEl.value = 'All';
-        renderFrontdeskInventory();
-      });
-    }
-
-    if (frontdeskAddToggleBtn) {
-      frontdeskAddToggleBtn.addEventListener('click', () => {
-        const form = document.getElementById('frontdeskItemForm');
-        if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }
-
-    if (frontdeskCancelBtn) {
-      frontdeskCancelBtn.addEventListener('click', () => {
-        const form = document.getElementById('frontdeskItemForm');
-        if (form) form.reset();
-      });
-    }
-
-    if (frontdeskLowStockBtn) {
-      frontdeskLowStockBtn.addEventListener('click', () => {
-        openFrontdeskReport('Front Desk Low Stock Report', getFrontdeskReportItems('Low Stock'));
-      });
-    }
-
-    if (frontdeskOutOfStockBtn) {
-      frontdeskOutOfStockBtn.addEventListener('click', () => {
-        openFrontdeskReport('Front Desk Out of Stock Report', getFrontdeskReportItems('Out of Stock'));
-      });
-    }
-
-    if (frontdeskExportPdfBtn) {
-      frontdeskExportPdfBtn.addEventListener('click', () => {
-        openFrontdeskReport('Front Desk Inventory Report', frontdeskItems);
-      });
-    }
-
-    if (frontdeskExportExcelBtn) {
-      frontdeskExportExcelBtn.addEventListener('click', () => {
-        const reportDate = new Date().toISOString().slice(0, 10);
-        downloadFrontdeskCsv(`front-desk-inventory-${reportDate}.csv`, frontdeskItems);
-      });
-    }
-
     if (pinSubmit) {
       pinSubmit.addEventListener('click', tryUnlock);
     }
@@ -4560,17 +3300,9 @@
       });
     }
 
-    const savedSession = localStorage.getItem('app_unlocked') === 'true';
-    const loginOverlay = document.querySelector('.login-overlay');
-    const mainMenuContainer = document.getElementById('mainMenuContainer');
-
-    if (loginOverlay) {
-      loginOverlay.style.display = 'none';
-      loginOverlay.classList.add('hidden');
+    if (!isUnlocked) {
+      showPinLock();
     }
-    if (mainMenuContainer) mainMenuContainer.classList.remove('hidden');
-    if (mainMenu) mainMenu.classList.remove('hidden');
-    navigateTo('main');
 
     if (backButton) {
       backButton.addEventListener('click', function() {
@@ -4585,10 +3317,6 @@
       } else if (currentPage === 'room-maintenance') {
         navigateTo('room-registry');
       } else if (currentPage === 'stock-locations') {
-        navigateTo('main');
-      } else if (currentPage === 'supplyhub') {
-        navigateTo('main');
-      } else if (currentPage === 'frontdesk') {
         navigateTo('main');
       } else if (currentPage === 'stock-detail') {
         navigateTo('stock-locations');
@@ -4615,8 +3343,6 @@
       roomMaintenancePage.classList.add('hidden');
       stockLocationsPage.classList.add('hidden');
       stockDetailPage.classList.add('hidden');
-      if (supplyhubPage) supplyhubPage.classList.add('hidden');
-      if (frontdeskPage) frontdeskPage.classList.add('hidden');
 
       // Show appropriate menu/page
       if (page === 'main') {
@@ -4643,18 +3369,6 @@
         backButton.textContent = '← Back';
         mainTitle.style.display = 'none';
         currentPage = 'housekeeping';
-      } else if (page === 'supplyhub') {
-        if (supplyhubPage) supplyhubPage.classList.remove('hidden');
-        backButton.classList.remove('hidden');
-        backButton.textContent = '← Back to Dashboard';
-        mainTitle.style.display = 'none';
-        currentPage = 'supplyhub';
-      } else if (page === 'frontdesk') {
-        if (frontdeskPage) frontdeskPage.classList.remove('hidden');
-        backButton.classList.remove('hidden');
-        backButton.textContent = '← Back to Dashboard';
-        mainTitle.style.display = 'none';
-        currentPage = 'frontdesk';
       } else if (page === 'housekeeping-equipment') {
         housekeepingEquipmentPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
@@ -4694,8 +3408,6 @@
         stockDetailPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Stock Locations';
-        applyBackButtonStyle();
-        applyStockCountStyle();
         mainTitle.style.display = 'none';
         currentPage = 'stock-detail';
         renderStockDetail();
@@ -4703,7 +3415,6 @@
         archivePage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Main';
-        applyBackButtonStyle();
         mainTitle.style.display = 'none';
         currentPage = 'archive';
         updateArchiveDisplay();
@@ -4711,7 +3422,6 @@
         expirationPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Minibar Operations';
-        applyBackButtonStyle();
         mainTitle.style.display = 'none';
         currentPage = 'expiration';
         updateCurrentDate();
@@ -5739,104 +4449,65 @@
     });
 
     // Save stock item
-    async function sdkCallWithTimeout(taskFactory, timeoutMs = 20000) {
-      try {
-        const result = await Promise.race([
-          taskFactory(),
-          new Promise(resolve => setTimeout(() => resolve({ isOk: false, error: 'Request timed out' }), timeoutMs))
-        ]);
-        return result;
-      } catch (error) {
-        return { isOk: false, error: error?.message || 'Request failed' };
-      }
-    }
+    saveStockBtn.addEventListener('click', async function() {
+      const floor = floorSelect.value;
+      const itemName = stockItemSelect.value;
+      const quantity = currentStockValue;
 
-    async function autoArchiveOldStockCounts(today) {
+      if (!floor || !itemName) {
+        showToast('Please select floor and item', 'error');
+        return;
+      }
+
+      saveStockBtn.disabled = true;
+      saveStockBtn.innerHTML = '<span class="loading-spinner"></span>Saving...';
+
+      const today = getLocalDateString();
+
+      // Check if we need to auto-archive old stock counts
       const todayStockCounts = allStockCounts.filter(item => item.date_added === today);
-      if (allStockCounts.length === 0 || todayStockCounts.length > 0) return;
-
-      const itemsToArchive = [...allStockCounts];
-      let failed = 0;
-
-      for (const item of itemsToArchive) {
-        const archiveResult = await sdkCallWithTimeout(
-          () => window.dataSdk.update({ ...item, is_archived: true }),
-          12000
-        );
-        if (!archiveResult || archiveResult.isOk === false) failed++;
+      if (allStockCounts.length > 0 && todayStockCounts.length === 0) {
+        // Auto-archive all existing stock counts
+        for (const item of allStockCounts) {
+          const archiveResult = await window.dataSdk.update({
+            ...item,
+            is_archived: true
+          });
+          if (!archiveResult.isOk) {
+            console.error("Failed to archive stock count:", archiveResult.error);
+          }
+        }
       }
 
-      if (failed > 0) {
-        showToast(`Archived old counts with ${failed} sync issue(s).`, 'error');
+      const newStockCount = {
+        id: Date.now().toString(),
+        stock_type: 'minibar_count',
+        item_name: itemName,
+        floor: floor,
+        quantity: quantity,
+        added_timestamp: new Date().toISOString(),
+        date_added: today,
+        is_archived: false
+      };
+
+      const result = await window.dataSdk.create(newStockCount);
+
+      saveStockBtn.disabled = false;
+      saveStockBtn.textContent = '    Save This Item';
+
+      if (result.isOk) {
+        // Reset for next entry - but keep item selected
+        currentStockValue = 0;
+        displayNumber.textContent = '0';
+        // stockItemSelect.value stays the same - removed reset
+        showToast(`${itemName} saved for ${floor}`, 'success');
+
+        // Check for low stock and create notification
+        await checkLowStockAndNotify(itemName, today);
+      } else {
+        showToast('Failed to save item. Please try again.', 'error');
       }
-    }
-
-    if (saveStockBtn && floorSelect && stockItemSelect && displayNumber) {
-      saveStockBtn.addEventListener('click', async function() {
-        const floor = floorSelect.value;
-        const itemName = stockItemSelect.value;
-        const quantity = currentStockValue;
-
-        if (!floor || !itemName) {
-          showToast('Please select floor and item', 'error');
-          return;
-        }
-
-        saveStockBtn.disabled = true;
-        saveStockBtn.innerHTML = '<span class="loading-spinner"></span>Saving...';
-
-        const today = getLocalDateString();
-
-        try {
-          autoArchiveOldStockCounts(today).catch(error => {
-            console.error('Auto-archive failed:', error);
-          });
-
-          const newStockCount = {
-            id: Date.now().toString(),
-            stock_type: 'minibar_count',
-            item_name: itemName,
-            floor: floor,
-            quantity: quantity,
-            added_timestamp: new Date().toISOString(),
-            date_added: today,
-            is_archived: false
-          };
-
-          const result = await sdkCallWithTimeout(
-            () => window.dataSdk.create(newStockCount),
-            25000
-          );
-          const failed = result && result.isOk === false;
-
-          if (failed) {
-            showToast('Failed to save item. Please try again.', 'error');
-            return;
-          }
-
-          if (!allStockCounts.find(item => String(item.id) === String(newStockCount.id))) {
-            allStockCounts.push(newStockCount);
-          }
-
-          // Reset for next entry - but keep item selected
-          currentStockValue = 0;
-          displayNumber.textContent = '0';
-          showToast(`${itemName} saved for ${floor}`, 'success');
-          updateStockProgress();
-
-          // Check for low stock and create notification
-          checkLowStockAndNotify(itemName, today).catch(notifyError => {
-            console.error('Low stock notification check failed:', notifyError);
-          });
-        } catch (error) {
-          console.error('Failed to save minibar stock item:', error);
-          showToast('Failed to save item. Please try again.', 'error');
-        } finally {
-          saveStockBtn.disabled = false;
-          saveStockBtn.textContent = '    Save This Item';
-        }
-      });
-    }
+    });
 
     async function checkLowStockAndNotify(itemName, date) {
       // Get all counts for this item on this date
@@ -7465,7 +6136,6 @@
     function updateNotificationBadge() {
       const badge = document.getElementById('notificationBadge');
       const count = allNotifications.length;
-      if (!badge) return;
       
       if (count > 0) {
         badge.textContent = count;
@@ -7752,8 +6422,7 @@
       const {
         emptyMessage = 'Nothing to delete.',
         successMessage = 'Items deleted.',
-        progressLabel = 'items',
-        timeoutMs = 15000
+        progressLabel = 'items'
       } = options;
 
       if (!Array.isArray(items) || items.length === 0) {
@@ -7769,7 +6438,6 @@
       const total = items.length;
       let remaining = total;
       let failed = 0;
-      let currentWaitSeconds = 0;
 
       const renderProgress = () => {
         if (confirmBtn) {
@@ -7777,41 +6445,15 @@
           confirmBtn.textContent = `Deleting... ${remaining} left`;
         }
         if (cancelBtn) cancelBtn.disabled = true;
-        if (modalText) {
-          const done = total - remaining;
-          modalText.textContent = `Deleting ${progressLabel}... ${done}/${total} done, ${remaining} left (waiting ${currentWaitSeconds}s on current item).`;
-        }
-      };
-
-      const deleteWithTimeout = async(item) => {
-        try {
-          const result = await Promise.race([
-            window.dataSdk.delete(item),
-            new Promise(resolve => setTimeout(() => resolve({ isOk: false, timedOut: true }), timeoutMs))
-          ]);
-          return result && result.isOk !== false;
-        } catch (error) {
-          return false;
-        }
+        if (modalText) modalText.textContent = `Deleting ${progressLabel}... ${remaining} left.`;
       };
 
       renderProgress();
 
       for (const item of items) {
-        currentWaitSeconds = 0;
-        renderProgress();
-
-        const waitTicker = setInterval(() => {
-          currentWaitSeconds += 1;
-          renderProgress();
-        }, 1000);
-
-        const ok = await deleteWithTimeout(item);
-        clearInterval(waitTicker);
-
-        if (!ok) failed++;
+        const result = await window.dataSdk.delete(item);
+        if (result && result.isOk === false) failed++;
         remaining -= 1;
-        currentWaitSeconds = 0;
         renderProgress();
       }
 
@@ -7828,8 +6470,7 @@
       const {
         emptyMessage = 'Nothing to archive.',
         successMessage = 'Items archived.',
-        progressLabel = 'items',
-        timeoutMs = 15000
+        progressLabel = 'items'
       } = options;
 
       if (!Array.isArray(items) || items.length === 0) {
@@ -7845,7 +6486,6 @@
       const total = items.length;
       let remaining = total;
       let failed = 0;
-      let currentWaitSeconds = 0;
 
       const renderProgress = () => {
         if (confirmBtn) {
@@ -7853,41 +6493,15 @@
           confirmBtn.textContent = `Archiving... ${remaining} left`;
         }
         if (cancelBtn) cancelBtn.disabled = true;
-        if (modalText) {
-          const done = total - remaining;
-          modalText.textContent = `Archiving ${progressLabel}... ${done}/${total} done, ${remaining} left (waiting ${currentWaitSeconds}s on current item).`;
-        }
-      };
-
-      const archiveWithTimeout = async(item) => {
-        try {
-          const result = await Promise.race([
-            window.dataSdk.update({ ...item, is_archived: true }),
-            new Promise(resolve => setTimeout(() => resolve({ isOk: false, timedOut: true }), timeoutMs))
-          ]);
-          return result && result.isOk !== false;
-        } catch (error) {
-          return false;
-        }
+        if (modalText) modalText.textContent = `Archiving ${progressLabel}... ${remaining} left.`;
       };
 
       renderProgress();
 
       for (const item of items) {
-        currentWaitSeconds = 0;
-        renderProgress();
-
-        const waitTicker = setInterval(() => {
-          currentWaitSeconds += 1;
-          renderProgress();
-        }, 1000);
-
-        const ok = await archiveWithTimeout(item);
-        clearInterval(waitTicker);
-
-        if (!ok) failed++;
+        const result = await window.dataSdk.update({ ...item, is_archived: true });
+        if (result && result.isOk === false) failed++;
         remaining -= 1;
-        currentWaitSeconds = 0;
         renderProgress();
       }
 
@@ -8397,13 +7011,13 @@
       } else {
         itemsToDelete = archivedItems.filter(i => i.date_added === date);
       }
+      
+      for (const item of itemsToDelete) {
+        await window.dataSdk.delete(item);
+      }
 
-      await runBulkDeleteWithCountdown(itemsToDelete, {
-        emptyMessage: 'No archive items found to delete.',
-        successMessage: `${itemsToDelete.length} items deleted from archive`,
-        progressLabel: 'archive items',
-        timeoutMs: 15000
-      });
+      closeModal();
+      showToast(`${itemsToDelete.length} items deleted from archive`, 'success');
     };
 
     // PDF Generation Functions for Stock Counts
@@ -8475,24 +7089,6 @@
         pdfContent += '─'.repeat(60) + '\n';
       });
 
-      const entryLines = counts
-        .slice()
-        .sort((a, b) => {
-          const nameCompare = String(a.item_name || '').localeCompare(String(b.item_name || ''));
-          if (nameCompare !== 0) return nameCompare;
-          return String(a.floor || '').localeCompare(String(b.floor || ''));
-        })
-        .map(entry => {
-          const addedTime = entry.added_timestamp
-            ? new Date(entry.added_timestamp).toLocaleString('en-US')
-            : 'N/A';
-          return `- ${entry.item_name} | ${entry.floor || 'N/A'} | ${entry.quantity} units | ${addedTime}`;
-        });
-
-      pdfContent += '\nEntry Details\n';
-      pdfContent += '-'.repeat(60) + '\n';
-      pdfContent += entryLines.join('\n') + '\n';
-
       const blob = new Blob([pdfContent], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -8514,17 +7110,28 @@
         <head>
           <title>Stock Count - ${formattedDate}</title>
           <style>
-            @page { margin: 10mm; }
-            body { font-family: Arial, sans-serif; padding: 0; font-size: 12px; }
-            h1 { color: #0d1b2a; border-bottom: 2px solid #d4af37; padding-bottom: 6px; margin: 0 0 10px; font-size: 16px; }
-            .item { margin-bottom: 10px; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; }
-            .item-name { font-size: 13px; font-weight: bold; color: #d4af37; margin-bottom: 4px; }
-            .detail { margin: 3px 0; }
-            .label { font-weight: bold; }
+            @page { size: A4; margin: 6mm; }
+            body { font-family: Arial, sans-serif; padding: 0; font-size: 9px; line-height: 1.2; }
+            h1 { color: #0d1b2a; margin: 0 0 6px; font-size: 12px; }
+            table { width: 100%; border-collapse: collapse; }
+            th, td { border: 1px solid #ddd; padding: 2px 4px; text-align: left; }
+            th { background: #f4f4f4; font-weight: 700; }
           </style>
         </head>
         <body>
-          <h1>Minibar Stock Count Report - ${formattedDate}</h1>
+          <h1>Minibar Stock Count - ${formattedDate}</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>F1</th>
+                <th>F2</th>
+                <th>F3</th>
+                <th>Office</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
       `;
 
       // Group by item
@@ -8539,56 +7146,21 @@
       Object.keys(groupedByItem).sort().forEach(itemName => {
         const totals = groupedByItem[itemName];
         const total = totals.F1 + totals.F2 + totals.F3 + totals.Office;
-        
         htmlContent += `
-          <div class="item">
-            <div class="item-name">${itemName}</div>
-            <div class="detail"><span class="label">F1:</span> ${totals.F1} | <span class="label">F2:</span> ${totals.F2} | <span class="label">F3:</span> ${totals.F3} | <span class="label">Office:</span> ${totals.Office}</div>
-            <div class="detail"><span class="label">Total:</span> ${total} units</div>
-          </div>
+          <tr>
+            <td>${itemName}</td>
+            <td>${totals.F1}</td>
+            <td>${totals.F2}</td>
+            <td>${totals.F3}</td>
+            <td>${totals.Office}</td>
+            <td>${total}</td>
+          </tr>
         `;
       });
 
-      const entryRows = counts
-        .slice()
-        .sort((a, b) => {
-          const nameCompare = String(a.item_name || '').localeCompare(String(b.item_name || ''));
-          if (nameCompare !== 0) return nameCompare;
-          return String(a.floor || '').localeCompare(String(b.floor || ''));
-        })
-        .map(entry => {
-          const addedTime = entry.added_timestamp
-            ? new Date(entry.added_timestamp).toLocaleString('en-US')
-            : 'N/A';
-          return `
-            <tr>
-              <td>${entry.item_name}</td>
-              <td>${entry.floor || 'N/A'}</td>
-              <td>${entry.quantity}</td>
-              <td>${addedTime}</td>
-            </tr>
-          `;
-        })
-        .join('');
-
       htmlContent += `
-          <h2 style="margin: 12px 0 6px; font-size: 13px;">Entry Details</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Floor</th>
-                <th>Qty</th>
-                <th>Added</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${entryRows}
             </tbody>
           </table>
-      `;
-
-      htmlContent += `
         </body>
         </html>
       `;
@@ -8898,7 +7470,7 @@
       const mainTitle = document.getElementById('mainTitle');
       const footerCopy = document.getElementById('footerCopy');
 
-      if (mainTitle) mainTitle.textContent = config.main_title || defaultConfig.main_title;
+      mainTitle.textContent = config.main_title || defaultConfig.main_title;
       if (footerCopy) footerCopy.textContent = config.footer_text || defaultConfig.footer_text;
     }
 
@@ -8906,19 +7478,6 @@
       const versionEl = document.getElementById('footerVersion');
       const buildBadge = document.getElementById('buildBadge');
       if (!versionEl) return;
-
-      const getLocalRevision = () => {
-        const modified = new Date(document.lastModified);
-        if (Number.isNaN(modified.getTime())) return 'local';
-        const y = String(modified.getFullYear()).slice(-2);
-        const m = String(modified.getMonth() + 1).padStart(2, '0');
-        const d = String(modified.getDate()).padStart(2, '0');
-        const hh = String(modified.getHours()).padStart(2, '0');
-        const mm = String(modified.getMinutes()).padStart(2, '0');
-        return `${y}${m}${d}${hh}${mm}`;
-      };
-
-      const localRevision = getLocalRevision();
       try {
         const response = await fetch(
           'https://api.github.com/repos/maarja52-stack/housekeeping-stock-/commits?per_page=1',
@@ -8930,13 +7489,12 @@
         const body = await response.json();
         const sha = body && body[0] && body[0].sha ? body[0].sha.slice(0, 7) : '';
         if (!Number.isFinite(count)) count = 1;
-        const versionText = `v${count}${sha ? ` (${sha})` : ''}.${localRevision}`;
+        const versionText = `v${count}${sha ? ` (${sha})` : ''}`;
         versionEl.textContent = versionText;
         if (buildBadge) buildBadge.textContent = `Build ${versionText}`;
       } catch (err) {
-        const fallbackVersion = `v—.${localRevision}`;
-        versionEl.textContent = fallbackVersion;
-        if (buildBadge) buildBadge.textContent = `Build ${fallbackVersion}`;
+        versionEl.textContent = 'v—';
+        if (buildBadge) buildBadge.textContent = 'Build v—';
       }
     }
 
