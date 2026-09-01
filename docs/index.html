@@ -3162,6 +3162,20 @@
     const stockLocationsPage = document.getElementById('stockLocationsPage');
     const stockDetailPage = document.getElementById('stockDetailPage');
     const backButton = document.getElementById('backButton');
+
+    function normalizeMainMenuRouting() {
+      const cards = Array.from(document.querySelectorAll('#mainMenu .premium-card[data-page]'));
+      cards.forEach(card => {
+        const title = (card.querySelector('.card-title')?.textContent || '').trim().toLowerCase();
+        if (title === 'frontdesk') {
+          card.setAttribute('data-page', 'frontdesk');
+          card.setAttribute('onclick', "goTo('frontdesk')");
+        }
+      });
+    }
+
+    normalizeMainMenuRouting();
+
     let currentPage = 'main';
     let roomRegistryReturnPage = 'main';
     var isUnlocked = true;
