@@ -1342,6 +1342,50 @@
       gap: 0.4rem;
     }
 
+    .qr-preview-wrap {
+      margin-top: 0.8rem;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.8rem;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .qr-preview-top {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .qr-preview-canvas {
+      width: 170px;
+      height: 170px;
+      border-radius: 8px;
+      background: #fff;
+      padding: 0.35rem;
+      box-sizing: border-box;
+    }
+
+    .qr-preview-title {
+      color: #f4e4a8;
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .qr-preview-copy {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.82rem;
+    }
+
+    .qr-preview-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
     @media (max-width: 760px) {
       .qr-hub-grid {
         grid-template-columns: 1fr;
@@ -1349,6 +1393,11 @@
 
       .qr-builder-grid {
         grid-template-columns: 1fr;
+      }
+
+      .qr-preview-canvas {
+        width: 150px;
+        height: 150px;
       }
     }
 
@@ -3153,6 +3202,20 @@
           <button type="button" class="order-summary-btn" id="qrCopyLinkBtn">Copy URL</button>
           <button type="button" class="order-summary-btn" id="qrOpenLinkBtn">Open URL</button>
          </div>
+         <div class="qr-preview-wrap">
+          <div class="qr-preview-top">
+           <canvas id="qrPreviewCanvas" class="qr-preview-canvas" width="256" height="256" aria-label="QR preview"></canvas>
+            <img id="qrPreviewImage" class="qr-preview-canvas hidden" alt="QR preview fallback">
+           <div>
+            <div id="qrPreviewTitle" class="qr-preview-title">Select a target to render</div>
+            <div id="qrPreviewHint" class="qr-preview-copy">QR code preview appears here and updates instantly.</div>
+           </div>
+          </div>
+          <div class="qr-preview-actions">
+           <button type="button" class="order-summary-btn" id="qrDownloadPngBtn">Download PNG</button>
+           <button type="button" class="order-summary-btn" id="qrPrintAllBtn">Print All Labels (Current Type)</button>
+          </div>
+         </div>
          <div id="qrHubMessage" class="pin-subtitle" style="margin: 0 0 0.6rem 0;"></div>
          <div id="qrLinkList" class="qr-link-list"></div>
         </section>
@@ -3437,6 +3500,9 @@
     let qrHubEventsBound = false;
     let qrHubSelectedType = 'location';
     let qrHubSelectedTarget = '';
+    let qrPreviewToken = 0;
+    let qrPreviewRenderedLink = '';
+    let qrPreviewRenderedLabel = '';
     let pendingQrRoute = null;
     let qrRouteResolved = false;
     pendingQrRoute = parsePendingQrRouteFromUrl();
@@ -5647,6 +5713,211 @@
         .map(location => ({ value: location, label: location }));
     }
 
+    function escapeHtml(text) {
+      return String(text ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function getQrTargetLabel(type, value) {
+      const targets = getQrHubTargets(type);
+      const match = targets.find(target => target.value === value);
+      return match ? match.label : value;
+    }
+
+    function toQrFileSlug(input) {
+      return String(input || 'qr-label')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '') || 'qr-label';
+    }
+
+    function buildFallbackQrImageUrl(link, size = 256) {
+      const safeSize = Math.max(120, Math.min(1000, Number(size) || 256));
+      return `https://api.qrserver.com/v1/create-qr-code/?size=${safeSize}x${safeSize}&margin=6&data=${encodeURIComponent(link)}`;
+    }
+
+    function renderQrPreview(link, label) {
+      const canvas = document.getElementById('qrPreviewCanvas');
+      const fallbackImage = document.getElementById('qrPreviewImage');
+      const titleEl = document.getElementById('qrPreviewTitle');
+      const hintEl = document.getElementById('qrPreviewHint');
+      const downloadBtn = document.getElementById('qrDownloadPngBtn');
+      if (!canvas || !fallbackImage || !titleEl || !hintEl || !downloadBtn) return;
+
+      qrPreviewRenderedLink = link || '';
+      qrPreviewRenderedLabel = label || 'qr-label';
+
+      const context = canvas.getContext('2d');
+      if (context) {
+        context.fillStyle = '#ffffff';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
+      titleEl.textContent = label || 'Select a target to render';
+      downloadBtn.disabled = true;
+
+      if (!link) {
+        canvas.classList.remove('hidden');
+        fallbackImage.classList.add('hidden');
+        hintEl.textContent = 'Choose a target to generate a QR code.';
+        return;
+      }
+
+      if (!window.QRCode || typeof window.QRCode.toCanvas !== 'function') {
+        canvas.classList.add('hidden');
+        fallbackImage.classList.remove('hidden');
+        fallbackImage.src = buildFallbackQrImageUrl(link, 256);
+        hintEl.textContent = 'Using fallback QR rendering. You can still print labels.';
+        downloadBtn.disabled = false;
+        return;
+      }
+
+      canvas.classList.remove('hidden');
+      fallbackImage.classList.add('hidden');
+
+      const token = ++qrPreviewToken;
+      window.QRCode.toCanvas(canvas, link, {
+        width: 256,
+        margin: 1,
+        color: {
+          dark: '#0b1a33',
+          light: '#ffffff'
+        }
+      }, (error) => {
+        if (token !== qrPreviewToken) return;
+        if (error) {
+          hintEl.textContent = 'Failed to render QR code.';
+          return;
+        }
+        hintEl.textContent = 'Ready to scan, download, or print.';
+        downloadBtn.disabled = false;
+      });
+    }
+
+    function downloadQrPreviewPng() {
+      const canvas = document.getElementById('qrPreviewCanvas');
+      const fallbackImage = document.getElementById('qrPreviewImage');
+      const titleEl = document.getElementById('qrPreviewTitle');
+      if (!canvas || !fallbackImage) return;
+
+      const fileLabel = toQrFileSlug(titleEl?.textContent || qrPreviewRenderedLabel || 'qr-label');
+
+      if (!canvas.classList.contains('hidden')) {
+        const dataUrl = canvas.toDataURL('image/png');
+        if (!dataUrl || dataUrl.length < 100) {
+          showToast('Generate a QR first', 'error');
+          return;
+        }
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = `${fileLabel}.png`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        return;
+      }
+
+      if (!qrPreviewRenderedLink) {
+        showToast('Generate a QR first', 'error');
+        return;
+      }
+
+      const link = document.createElement('a');
+      link.href = buildFallbackQrImageUrl(qrPreviewRenderedLink, 512);
+      link.download = `${fileLabel}.png`;
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+
+    async function printQrLabelsForCurrentType() {
+      const targets = getQrHubTargets(qrHubSelectedType);
+      if (!targets.length) {
+        showToast('No targets available', 'error');
+        return;
+      }
+
+      const items = [];
+      const canUseLocalQr = !!window.QRCode && typeof window.QRCode.toDataURL === 'function';
+      for (const target of targets) {
+        const qrLink = buildQrDeepLink(qrHubSelectedType, target.value);
+        if (canUseLocalQr) {
+          const dataUrl = await new Promise((resolve, reject) => {
+            window.QRCode.toDataURL(qrLink, {
+              width: 220,
+              margin: 1,
+              color: {
+                dark: '#000000',
+                light: '#ffffff'
+              }
+            }, (error, url) => {
+              if (error) {
+                reject(error);
+                return;
+              }
+              resolve(url);
+            });
+          });
+          items.push({ label: target.label, link: qrLink, dataUrl });
+        } else {
+          items.push({ label: target.label, link: qrLink, dataUrl: buildFallbackQrImageUrl(qrLink, 220) });
+        }
+      }
+
+      const printWindow = window.open('', '_blank', 'noopener,noreferrer,width=1200,height=900');
+      if (!printWindow) {
+        showToast('Popup blocked. Allow popups to print labels.', 'error');
+        return;
+      }
+
+      const cardsHtml = items.map(item => `
+        <div class="label-card">
+          <img src="${item.dataUrl}" alt="QR for ${escapeHtml(item.label)}">
+          <div class="label-title">${escapeHtml(item.label)}</div>
+          <div class="label-url">${escapeHtml(item.link)}</div>
+        </div>
+      `).join('');
+
+      const typeLabel = qrHubSelectedType === 'item' ? 'Item QR Labels' : 'Location QR Labels';
+      const html = `
+        <html>
+          <head>
+            <title>${typeLabel}</title>
+            <style>
+              body { font-family: Arial, sans-serif; padding: 18px; color: #111; }
+              h1 { margin: 0 0 6px; font-size: 22px; }
+              .meta { margin: 0 0 14px; color: #555; }
+              .labels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+              .label-card { border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; }
+              .label-card img { width: 170px; height: 170px; margin: 0 auto 8px; display: block; }
+              .label-title { font-weight: 700; margin-bottom: 4px; }
+              .label-url { font-size: 10px; color: #666; word-break: break-all; }
+              @media print {
+                body { padding: 8mm; }
+                .labels-grid { grid-template-columns: repeat(3, 1fr); }
+              }
+            </style>
+          </head>
+          <body>
+            <h1>${typeLabel}</h1>
+            <p class="meta">Generated ${new Date().toLocaleString()}</p>
+            <div class="labels-grid">${cardsHtml}</div>
+          </body>
+        </html>
+      `;
+
+      printWindow.document.open();
+      printWindow.document.write(html);
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
+    }
+
     function parsePendingQrRouteFromUrl() {
       const params = new URLSearchParams(window.location.search || '');
       const qrType = String(params.get('qr') || '').toLowerCase();
@@ -5739,10 +6010,12 @@
       const generatedLinkInput = document.getElementById('qrGeneratedLink');
       const copyBtn = document.getElementById('qrCopyLinkBtn');
       const openBtn = document.getElementById('qrOpenLinkBtn');
+      const downloadPngBtn = document.getElementById('qrDownloadPngBtn');
+      const printAllBtn = document.getElementById('qrPrintAllBtn');
       const messageEl = document.getElementById('qrHubMessage');
       const listEl = document.getElementById('qrLinkList');
 
-      if (!typeSelect || !targetSelect || !generatedLinkInput || !copyBtn || !openBtn || !messageEl || !listEl) {
+      if (!typeSelect || !targetSelect || !generatedLinkInput || !copyBtn || !openBtn || !downloadPngBtn || !printAllBtn || !messageEl || !listEl) {
         return;
       }
 
@@ -5762,6 +6035,7 @@
       generatedLinkInput.value = generatedLink;
       copyBtn.disabled = !generatedLink;
       openBtn.disabled = !generatedLink;
+      renderQrPreview(generatedLink, getQrTargetLabel(qrHubSelectedType, qrHubSelectedTarget));
 
       listEl.innerHTML = targets.length
         ? targets.map(target => {
@@ -5807,6 +6081,14 @@
         openBtn.addEventListener('click', () => {
           if (!generatedLinkInput.value) return;
           window.open(generatedLinkInput.value, '_blank', 'noopener,noreferrer');
+        });
+
+        downloadPngBtn.addEventListener('click', () => {
+          downloadQrPreviewPng();
+        });
+
+        printAllBtn.addEventListener('click', async () => {
+          await printQrLabelsForCurrentType();
         });
       }
 
