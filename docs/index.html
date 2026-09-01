@@ -5635,10 +5635,36 @@
       return frontdeskItems.filter(item => !statusFilter || getFrontdeskStatus(item) === statusFilter);
     }
 
+    function normalizeQrBaseUrl(input) {
+      const raw = String(input || '').trim();
+      if (!raw) return '';
+
+      const candidate = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+      try {
+        const parsed = new URL(candidate);
+        parsed.search = '';
+        parsed.hash = '';
+        return parsed.toString();
+      } catch (error) {
+        return '';
+      }
+    }
+
     function getQrHubBaseUrl() {
+      const override = normalizeQrBaseUrl(window.localStorage?.getItem('qrHubBaseUrl') || window.QR_HUB_BASE_URL || '');
+      if (override) {
+        return override;
+      }
+
       const baseUrl = new URL(window.location.href);
       baseUrl.search = '';
       baseUrl.hash = '';
+
+      // Scanned QR codes cannot open local file:// paths on phones, so use the live site by default.
+      if (baseUrl.protocol === 'file:') {
+        return 'https://minibartracker.space/';
+      }
+
       return baseUrl.toString();
     }
 
@@ -5799,6 +5825,32 @@
       return null;
     }
 
+    async function preloadQrImage(url) {
+      if (!url) return false;
+
+      return await new Promise(resolve => {
+        const img = new Image();
+        let settled = false;
+
+        const done = ok => {
+          if (settled) return;
+          settled = true;
+          resolve(ok);
+        };
+
+        const timeoutId = setTimeout(() => done(false), 5000);
+        img.onload = () => {
+          clearTimeout(timeoutId);
+          done(true);
+        };
+        img.onerror = () => {
+          clearTimeout(timeoutId);
+          done(false);
+        };
+        img.src = url;
+      });
+    }
+
     function renderQrPreview(link, label) {
       const canvas = document.getElementById('qrPreviewCanvas');
       const fallbackImage = document.getElementById('qrPreviewImage');
@@ -5926,6 +5978,8 @@
         });
       }
 
+      await Promise.all(items.map(item => preloadQrImage(item.dataUrl)));
+
       const printWindow = window.open('', '_blank', 'noopener,noreferrer,width=1200,height=900');
       if (!printWindow) {
         showToast('Popup blocked. Allow popups to print labels.', 'error');
@@ -5971,8 +6025,19 @@
       printWindow.document.open();
       printWindow.document.write(html);
       printWindow.document.close();
-      printWindow.focus();
-      printWindow.print();
+
+      const triggerPrint = () => {
+        printWindow.focus();
+        printWindow.print();
+      };
+
+      if (printWindow.document.readyState === 'complete') {
+        setTimeout(triggerPrint, 150);
+      } else {
+        printWindow.addEventListener('load', () => {
+          setTimeout(triggerPrint, 150);
+        }, { once: true });
+      }
     }
 
     function parsePendingQrRouteFromUrl() {
