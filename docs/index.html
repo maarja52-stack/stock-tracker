@@ -976,6 +976,219 @@
       margin-bottom: 0.8rem;
     }
 
+    .frontdesk-shell {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .frontdesk-header,
+    .frontdesk-panel,
+    .frontdesk-toolbar,
+    .frontdesk-actions-row,
+    .frontdesk-summary-card,
+    .frontdesk-item {
+      background: rgba(13, 27, 42, 0.7);
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+    }
+
+    .frontdesk-header,
+    .frontdesk-panel,
+    .frontdesk-toolbar,
+    .frontdesk-actions-row,
+    .frontdesk-item,
+    .frontdesk-summary-card {
+      padding: 1rem;
+    }
+
+    .frontdesk-eyebrow {
+      color: #f4e4a8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.8rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .frontdesk-header h2 {
+      margin: 0 0 0.35rem;
+      color: #d4af37;
+      font-size: 2rem;
+    }
+
+    .frontdesk-header p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .frontdesk-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .frontdesk-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 0.7rem;
+    }
+
+    .frontdesk-summary-card strong {
+      display: block;
+      color: #f4e4a8;
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .frontdesk-summary-card span {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+
+    .frontdesk-toolbar {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .frontdesk-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 0.8rem;
+    }
+
+    .frontdesk-panel-title {
+      color: #d4af37;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+
+    .frontdesk-item {
+      margin-bottom: 0.55rem;
+      cursor: pointer;
+    }
+
+    .frontdesk-item.selected {
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.4) inset;
+    }
+
+    .frontdesk-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .frontdesk-item-name {
+      color: #f4e4a8;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .frontdesk-item-meta {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+    }
+
+    .frontdesk-status {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+
+    .frontdesk-status.in-stock {
+      color: #8ce99a;
+      border-color: rgba(140, 233, 154, 0.6);
+      background: rgba(40, 167, 69, 0.22);
+    }
+
+    .frontdesk-status.low-stock {
+      color: #ffd47a;
+      border-color: rgba(255, 212, 122, 0.6);
+      background: rgba(255, 193, 7, 0.2);
+    }
+
+    .frontdesk-status.out-of-stock {
+      color: #f5c2c7;
+      border-color: rgba(220, 53, 69, 0.6);
+      background: rgba(220, 53, 69, 0.2);
+    }
+
+    .frontdesk-item-actions {
+      display: flex;
+      gap: 0.45rem;
+      margin-top: 0.6rem;
+    }
+
+    .frontdesk-empty {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.92rem;
+      padding: 0.4rem 0;
+    }
+
+    .frontdesk-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .field-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.85rem;
+    }
+
+    .field-row-wide {
+      grid-column: 1 / -1;
+    }
+
+    .frontdesk-form-grid input,
+    .frontdesk-form-grid select,
+    .frontdesk-form-grid textarea {
+      width: 100%;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 0.5rem 0.65rem;
+      font: inherit;
+      box-sizing: border-box;
+    }
+
+    .frontdesk-history-list {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .frontdesk-history-entry {
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 8px;
+      padding: 0.5rem 0.6rem;
+      background: rgba(255, 255, 255, 0.03);
+      display: grid;
+      gap: 0.15rem;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.84rem;
+    }
+
+    .frontdesk-history-entry strong {
+      color: #f4e4a8;
+      font-size: 0.88rem;
+    }
+
+    .frontdesk-history-entry small {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
     .order-qty-badge {
       display: inline-block;
       margin-left: 0.35rem;
@@ -2649,24 +2862,66 @@
     </div><!-- Housekeeping Equipment Page -->
     <!-- Frontdesk Page -->
     <div id="frontdeskPage" class="expiration-page hidden">
-     <h2 style="font-size: 2rem; font-weight: 700; color: #d4af37; text-align: center; margin-bottom: 0.75rem;">🧾 Frontdesk</h2>
-     <p style="text-align: center; color: #f4e4a8; margin-bottom: 2rem;">Daily coordination shortcuts for reception workflows</p>
-     <div class="grid-container" style="padding: 0;">
-      <div class="premium-card" onclick="goTo('orders')"><span class="card-emoji">📦</span>
-       <div class="card-title">
-      Notification Center
+     <div class="frontdesk-shell">
+      <section class="frontdesk-header">
+       <div>
+        <div class="frontdesk-eyebrow">Front Desk Inventory</div>
+        <h2>🧾 Frontdesk</h2>
+        <p>Live overview, restock decisions, and export-ready reports.</p>
        </div>
-      </div>
-      <div class="premium-card" onclick="goTo('stock-locations')"><span class="card-emoji">📍</span>
-       <div class="card-title">
-      Stock Locations
+       <div class="frontdesk-actions-row">
+        <button type="button" class="order-summary-btn" id="frontdeskAddToggle">➕ Add Item</button>
+        <button type="button" class="order-summary-btn" onclick="goTo('stock-locations')">📍 Room Registry</button>
        </div>
-      </div>
-      <div class="premium-card" onclick="goTo('archive')"><span class="card-emoji">📚</span>
-       <div class="card-title">
-      Archive Center
+      </section>
+      <section class="frontdesk-summary-grid" id="frontdeskSummaryCards"></section>
+      <section class="frontdesk-toolbar">
+       <input id="frontdeskSearch" type="text" class="form-input" placeholder="Search by item or SKU">
+       <select id="frontdeskCategoryFilter" class="form-select">
+        <option value="All">Category: All</option>
+        <option value="Guest Amenities">Guest Amenities</option>
+        <option value="Office Supplies">Office Supplies</option>
+        <option value="Operations">Operations</option>
+       </select>
+       <select id="frontdeskStatusFilter" class="form-select">
+        <option value="All">Status: All</option>
+        <option value="In Stock">In Stock</option>
+        <option value="Low Stock">Low Stock</option>
+        <option value="Out of Stock">Out of Stock</option>
+       </select>
+       <button type="button" class="order-summary-btn" id="frontdeskResetFilters">Reset</button>
+      </section>
+      <section class="frontdesk-grid">
+       <div class="frontdesk-panel">
+        <div class="frontdesk-panel-title">Inventory Items</div>
+        <div id="frontdeskInventoryList"></div>
        </div>
-      </div>
+       <div class="frontdesk-panel">
+        <div class="frontdesk-panel-title">Add / Update Item</div>
+        <form id="frontdeskItemForm" class="frontdesk-form-grid hidden">
+         <label class="field-row"><span>SKU</span><input id="frontdeskSku" name="sku" type="text" placeholder="FD-001"></label>
+         <label class="field-row"><span>Item name</span><input id="frontdeskItemName" name="itemName" type="text" placeholder="e.g. Water" required></label>
+         <label class="field-row"><span>Category</span><select id="frontdeskCategory" name="category"><option>Guest Amenities</option><option>Office Supplies</option><option>Operations</option></select></label>
+         <label class="field-row"><span>Storage location</span><input id="frontdeskLocation" name="location" type="text" placeholder="Front Desk Cabinet"></label>
+         <label class="field-row"><span>Current stock</span><input id="frontdeskCurrentStock" name="currentStock" type="number" min="0" value="0" required></label>
+         <label class="field-row"><span>Minimum stock</span><input id="frontdeskMinimumStock" name="minimumStock" type="number" min="1" value="10" required></label>
+         <label class="field-row"><span>Maximum stock</span><input id="frontdeskMaximumStock" name="maximumStock" type="number" min="1" value="100"></label>
+         <label class="field-row"><span>Reorder quantity</span><input id="frontdeskReorderQty" name="reorderQty" type="number" min="1" value="10"></label>
+         <label class="field-row"><span>Supplier</span><input id="frontdeskSupplier" name="supplier" type="text" placeholder="Hotel Supplies Co."></label>
+         <label class="field-row"><span>Unit</span><input id="frontdeskUnit" name="unit" type="text" placeholder="units"></label>
+         <label class="field-row field-row-wide"><span>Notes</span><textarea id="frontdeskNotes" name="notes" rows="3" placeholder="Optional notes"></textarea></label>
+         <div class="form-buttons field-row-wide"><button type="submit" class="btn-submit">Save Item</button></div>
+         <div id="frontdeskFormMessage" class="pin-subtitle" style="margin:0;"></div>
+        </form>
+        <div id="frontdeskHistoryList" class="frontdesk-history-list"></div>
+       </div>
+      </section>
+      <section class="frontdesk-actions-row">
+       <button type="button" class="order-summary-btn" id="frontdeskLowStockBtn">Low Stock Report</button>
+       <button type="button" class="order-summary-btn" id="frontdeskOutOfStockBtn">Out of Stock Report</button>
+       <button type="button" class="order-summary-btn" id="frontdeskExportPdfBtn">Export to PDF</button>
+       <button type="button" class="order-summary-btn" id="frontdeskExportExcelBtn">Export to Excel</button>
+      </section>
      </div>
     </div>
     <!-- Room Registry Pages -->
@@ -2925,6 +3180,12 @@
     let archivedItems = [];
     let archivedNotifications = [];
     let archivedStockCounts = [];
+    let frontdeskItems = [];
+    let frontdeskSelectedItemId = null;
+    let frontdeskSearchTerm = '';
+    let frontdeskCategoryFilter = 'All';
+    let frontdeskStatusFilter = 'All';
+    const FRONTDESK_STOCK_TYPE = 'frontdesk_inventory';
     let currentStockLocation = null;
     let currentStockValue = 0;
     let currentEquipmentTab = 'inventory';
@@ -2953,6 +3214,13 @@
       'Jack Daniels': '🍺',
       'Johnnie Walker': '🍺'
     };
+
+    const DEFAULT_FRONTDESK_ITEMS = [
+      { id: 'water', sku: 'GA-001', name: 'Water', category: 'Guest Amenities', location: 'Front Desk Cabinet', current: 120, minimum: 40, maximum: 200, reorderQty: 40, supplier: 'Hotel Supplies Co.', unit: 'bottle', notes: 'High demand during check-ins.', history: [{ title: 'Added item', detail: 'Initial stock', date: 'Jul 29, 2026' }] },
+      { id: 'coffee-capsules', sku: 'GA-002', name: 'Coffee Capsules', category: 'Guest Amenities', location: 'Lobby Pantry', current: 18, minimum: 20, maximum: 80, reorderQty: 20, supplier: 'Brew Supply', unit: 'pack', notes: 'Reorder soon.', history: [{ title: 'Stock updated', detail: 'Restocked', date: 'Jul 30, 2026' }] },
+      { id: 'pens', sku: 'OS-001', name: 'Pens', category: 'Office Supplies', location: 'Front Desk Drawer', current: 0, minimum: 8, maximum: 40, reorderQty: 10, supplier: 'Office Essentials', unit: 'pack', notes: 'Out of stock.', history: [{ title: 'Stock update', detail: 'Marked empty', date: 'Jul 31, 2026' }] },
+      { id: 'batteries', sku: 'OP-001', name: 'Batteries', category: 'Operations', location: 'Housekeeping Closet', current: 35, minimum: 15, maximum: 60, reorderQty: 8, supplier: 'Tech Supply', unit: 'pack', notes: 'Good standing.', history: [{ title: 'Inventory review', detail: 'Verified count', date: 'Jul 31, 2026' }] }
+    ];
 
     // Initialize Data SDK
     const dataHandler = {
@@ -3013,6 +3281,11 @@
         allPublicEquipment = normalizedData.filter(item => item.equipment_type === 'public_area' && !item.is_archived);
         roomItems = normalizedData.filter(item => item.room_type === 'room_item' && !item.is_archived);
         stockLocationItems = normalizedData.filter(item => item.stock_type === 'stock_location' && !item.is_archived);
+        const syncedFrontdeskItems = getFrontdeskItemsFromData(normalizedData);
+        frontdeskItems = syncedFrontdeskItems.length ? syncedFrontdeskItems : cloneDefaultFrontdeskItems();
+        if (!frontdeskItems.find(item => item.id === frontdeskSelectedItemId)) {
+          frontdeskSelectedItemId = frontdeskItems[0]?.id || null;
+        }
         archivedItems = normalizedData.filter(item => !item.type && !item.stock_type && !item.equipment_type && item.is_archived);
         archivedNotifications = normalizedData.filter(item => item.type && item.is_archived);
         archivedStockCounts = normalizedData.filter(item => item.stock_type === 'minibar_count' && item.is_archived);
@@ -3024,6 +3297,7 @@
         updateStockProgress();
         updateEquipmentDisplay();
         updatePublicEquipmentDisplay();
+        renderFrontdeskInventory();
         
       }
     };
@@ -3558,6 +3832,7 @@
         backButton.textContent = '← Back to Dashboard';
         mainTitle.style.display = 'none';
         currentPage = 'frontdesk';
+        renderFrontdeskInventory();
       } else if (page === 'room-registry') {
         if (previousPage === 'stock-locations') {
           roomRegistryReturnPage = 'stock-locations';
@@ -4922,6 +5197,418 @@
       arrow.classList.toggle('expanded');
       list.classList.toggle('expanded');
     };
+
+    // ============== FRONTDESK FUNCTIONALITY ==============
+
+    let frontdeskEventsBound = false;
+
+    function cloneDefaultFrontdeskItems() {
+      return DEFAULT_FRONTDESK_ITEMS.map(item => ({
+        ...item,
+        history: Array.isArray(item.history) ? item.history.map(entry => ({ ...entry })) : []
+      }));
+    }
+
+    function getFrontdeskItemsFromData(data) {
+      return (Array.isArray(data) ? data : [])
+        .filter(item => item && typeof item === 'object' && String(item.stock_type || item.type || '').toLowerCase() === FRONTDESK_STOCK_TYPE && !item.is_archived)
+        .map(item => {
+          const current = Number(item.current_stock ?? item.quantity ?? item.current ?? 0);
+          const minimum = Number(item.minimum_stock ?? item.min_stock ?? item.minimum ?? 0);
+          const maximum = Number(item.maximum_stock ?? item.max_stock ?? item.maximum ?? Math.max(minimum + 20, current + 20));
+          return {
+            id: String(item.id || item.sku || item.item_name || `frontdesk-${Date.now()}`),
+            sku: String(item.sku || item.article_number || item.id || '').trim() || `FD-${String(Date.now()).slice(-6)}`,
+            name: item.item_name || item.name || 'Unnamed Item',
+            category: item.category || 'Guest Amenities',
+            location: item.location_name || item.location || 'Front Desk',
+            current: Number.isFinite(current) ? current : 0,
+            minimum: Number.isFinite(minimum) ? minimum : 0,
+            maximum: Number.isFinite(maximum) ? maximum : Math.max((Number.isFinite(minimum) ? minimum : 0) + 20, (Number.isFinite(current) ? current : 0) + 20),
+            reorderQty: Number(item.reorder_qty ?? item.order_quantity ?? item.reorderQty ?? 10) || 10,
+            supplier: item.supplier || 'Hotel Supplies Co.',
+            unit: item.unit || 'units',
+            notes: item.notes || '',
+            history: Array.isArray(item.history) && item.history.length
+              ? item.history.map(entry => ({ ...entry }))
+              : [{ title: 'Synced item', detail: 'Loaded from Google Sheets', date: item.updated_at || item.added_timestamp || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }]
+          };
+        });
+    }
+
+    function getFrontdeskStatus(item) {
+      if (item.current <= 0) return 'Out of Stock';
+      if (item.current < item.minimum) return 'Low Stock';
+      return 'In Stock';
+    }
+
+    function getFrontdeskReportItems(statusFilter) {
+      return frontdeskItems.filter(item => !statusFilter || getFrontdeskStatus(item) === statusFilter);
+    }
+
+    function toFrontdeskPayload(item) {
+      const nowIso = new Date().toISOString();
+      return {
+        id: item.id,
+        type: FRONTDESK_STOCK_TYPE,
+        stock_type: FRONTDESK_STOCK_TYPE,
+        item_name: item.name,
+        sku: item.sku,
+        category: item.category,
+        location: item.location,
+        location_name: item.location,
+        current_stock: String(item.current),
+        quantity: String(item.current),
+        minimum_stock: String(item.minimum),
+        min_stock: String(item.minimum),
+        maximum_stock: String(item.maximum),
+        max_stock: String(item.maximum),
+        reorder_qty: String(item.reorderQty),
+        order_quantity: String(item.reorderQty),
+        supplier: item.supplier,
+        unit: item.unit,
+        notes: item.notes,
+        history: Array.isArray(item.history) ? item.history.map(entry => ({ ...entry })) : [],
+        updated_by: 'Front Desk',
+        updated_at: nowIso,
+        last_checked: nowIso,
+        added_timestamp: nowIso,
+        date_added: getLocalDateString(),
+        is_archived: false
+      };
+    }
+
+    async function upsertFrontdeskItem(item) {
+      const payload = toFrontdeskPayload(item);
+      let result = await window.dataSdk.update(payload);
+      if (!result?.isOk) {
+        result = await window.dataSdk.create(payload);
+      }
+      return result;
+    }
+
+    function buildFrontdeskReportHtml(title, items) {
+      const rows = items.map(item => `
+        <tr>
+          <td>${item.sku}</td>
+          <td>${item.name}</td>
+          <td>${item.category}</td>
+          <td>${item.location}</td>
+          <td>${item.current}</td>
+          <td>${item.minimum}</td>
+          <td>${getFrontdeskStatus(item)}</td>
+        </tr>
+      `).join('');
+      return `
+        <html>
+          <head>
+            <title>${title}</title>
+            <style>
+              body { font-family: Arial, sans-serif; padding: 24px; color: #1f1f1f; }
+              h1 { margin: 0 0 12px; }
+              .sub { margin: 0 0 20px; color: #666; }
+              table { width: 100%; border-collapse: collapse; font-size: 14px; }
+              th, td { border: 1px solid #cfc6b8; padding: 8px 10px; text-align: left; }
+              th { background: #f3efe7; }
+              .meta { margin-top: 16px; font-size: 12px; color: #666; }
+              @media print { .no-print { display: none; } }
+            </style>
+          </head>
+          <body>
+            <div class="no-print" style="margin-bottom:16px;"><button onclick="window.print()">Print / Save PDF</button></div>
+            <h1>${title}</h1>
+            <p class="sub">Generated from Front Desk Inventory</p>
+            <table>
+              <thead>
+                <tr><th>SKU</th><th>Item</th><th>Category</th><th>Location</th><th>Current</th><th>Minimum</th><th>Status</th></tr>
+              </thead>
+              <tbody>${rows || '<tr><td colspan="7">No items to show.</td></tr>'}</tbody>
+            </table>
+            <div class="meta">Generated ${new Date().toLocaleString()}</div>
+          </body>
+        </html>
+      `;
+    }
+
+    function openFrontdeskReport(title, items) {
+      const reportWindow = window.open('', '_blank', 'noopener,noreferrer,width=1100,height=800');
+      if (!reportWindow) {
+        window.alert('Popup blocked. Please allow popups to open the report.');
+        return;
+      }
+      reportWindow.document.open();
+      reportWindow.document.write(buildFrontdeskReportHtml(title, items));
+      reportWindow.document.close();
+      reportWindow.focus();
+    }
+
+    function downloadFrontdeskCsv(filename, items) {
+      const header = ['SKU', 'Item', 'Category', 'Location', 'Current', 'Minimum', 'Maximum', 'Status', 'Supplier', 'Notes'];
+      const lines = [header.join(',')];
+      items.forEach(item => {
+        lines.push([
+          item.sku,
+          item.name,
+          item.category,
+          item.location,
+          item.current,
+          item.minimum,
+          item.maximum,
+          getFrontdeskStatus(item),
+          item.supplier,
+          item.notes
+        ].map(value => `"${String(value ?? '').replace(/"/g, '""')}"`).join(','));
+      });
+      const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+
+    async function adjustFrontdeskStock(itemId, delta) {
+      const item = frontdeskItems.find(entry => entry.id === itemId);
+      if (!item) return;
+      item.current = Math.max(0, Number(item.current || 0) + delta);
+      item.history = Array.isArray(item.history) ? item.history : [];
+      item.history.unshift({
+        title: delta >= 0 ? 'Stock in' : 'Stock out',
+        detail: `${delta >= 0 ? '+' : ''}${delta} ${item.unit || 'units'}`,
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      });
+      frontdeskSelectedItemId = item.id;
+      renderFrontdeskInventory();
+      const result = await upsertFrontdeskItem(item);
+      if (!result?.isOk) {
+        showToast('Failed to sync stock update', 'error');
+      }
+    }
+
+    function renderFrontdeskInventory() {
+      if (!frontdeskPage) return;
+
+      const inventoryList = document.getElementById('frontdeskInventoryList');
+      const historyList = document.getElementById('frontdeskHistoryList');
+      const summaryCards = document.getElementById('frontdeskSummaryCards');
+      const form = document.getElementById('frontdeskItemForm');
+      const addToggle = document.getElementById('frontdeskAddToggle');
+      const searchInput = document.getElementById('frontdeskSearch');
+      const categoryFilterInput = document.getElementById('frontdeskCategoryFilter');
+      const statusFilterInput = document.getElementById('frontdeskStatusFilter');
+      const resetBtn = document.getElementById('frontdeskResetFilters');
+      const lowStockBtn = document.getElementById('frontdeskLowStockBtn');
+      const outOfStockBtn = document.getElementById('frontdeskOutOfStockBtn');
+      const exportPdfBtn = document.getElementById('frontdeskExportPdfBtn');
+      const exportExcelBtn = document.getElementById('frontdeskExportExcelBtn');
+
+      if (!inventoryList || !historyList || !summaryCards || !form || !addToggle || !searchInput || !categoryFilterInput || !statusFilterInput || !resetBtn || !lowStockBtn || !outOfStockBtn || !exportPdfBtn || !exportExcelBtn) {
+        return;
+      }
+
+      const sourceItems = frontdeskItems.length ? frontdeskItems : cloneDefaultFrontdeskItems();
+      if (!frontdeskItems.length) {
+        frontdeskItems = sourceItems;
+      }
+
+      const searchTerm = (frontdeskSearchTerm || searchInput.value || '').trim().toLowerCase();
+      const categoryFilter = frontdeskCategoryFilter || categoryFilterInput.value || 'All';
+      const statusFilter = frontdeskStatusFilter || statusFilterInput.value || 'All';
+      frontdeskSearchTerm = searchTerm;
+      frontdeskCategoryFilter = categoryFilter;
+      frontdeskStatusFilter = statusFilter;
+
+      searchInput.value = frontdeskSearchTerm;
+      categoryFilterInput.value = frontdeskCategoryFilter;
+      statusFilterInput.value = frontdeskStatusFilter;
+
+      const filteredItems = frontdeskItems.filter(item => {
+        const matchesSearch = !searchTerm || item.name.toLowerCase().includes(searchTerm) || item.sku.toLowerCase().includes(searchTerm);
+        const matchesCategory = categoryFilter === 'All' || item.category === categoryFilter;
+        const matchesStatus = statusFilter === 'All' || getFrontdeskStatus(item) === statusFilter;
+        return matchesSearch && matchesCategory && matchesStatus;
+      });
+
+      const totalItems = frontdeskItems.length;
+      const lowStockItems = frontdeskItems.filter(item => getFrontdeskStatus(item) === 'Low Stock').length;
+      const outOfStockItems = frontdeskItems.filter(item => getFrontdeskStatus(item) === 'Out of Stock').length;
+      const recentlyUpdatedItems = frontdeskItems.filter(item => Array.isArray(item.history) && item.history.length > 1).length;
+
+      summaryCards.innerHTML = `
+        <div class="frontdesk-summary-card"><strong>${totalItems}</strong><span>Total Items</span></div>
+        <div class="frontdesk-summary-card"><strong>${lowStockItems}</strong><span>Low Stock</span></div>
+        <div class="frontdesk-summary-card"><strong>${outOfStockItems}</strong><span>Out of Stock</span></div>
+        <div class="frontdesk-summary-card"><strong>${recentlyUpdatedItems}</strong><span>Recently Updated</span></div>`;
+
+      if (!frontdeskItems.find(item => item.id === frontdeskSelectedItemId)) {
+        frontdeskSelectedItemId = filteredItems[0]?.id || frontdeskItems[0]?.id || null;
+      }
+
+      inventoryList.innerHTML = filteredItems.length
+        ? filteredItems.map(item => {
+          const status = getFrontdeskStatus(item);
+          const isSelected = item.id === frontdeskSelectedItemId;
+          return `
+            <div class="frontdesk-item ${isSelected ? 'selected' : ''}" data-frontdesk-item-id="${item.id}">
+              <div class="frontdesk-item-top">
+                <div>
+                  <div class="frontdesk-item-name">${item.name}</div>
+                  <div class="frontdesk-item-meta">${item.sku} • ${item.category}</div>
+                </div>
+                <div class="frontdesk-status ${status.toLowerCase().replace(/\s+/g, '-')}">${status}</div>
+              </div>
+              <div class="frontdesk-item-meta">Location: ${item.location} | Stock: ${item.current}/${item.minimum} min</div>
+              <div class="frontdesk-item-actions">
+                <button type="button" class="order-summary-btn" data-fd-action="minus" data-fd-id="${item.id}">-1</button>
+                <button type="button" class="order-summary-btn" data-fd-action="plus" data-fd-id="${item.id}">+1</button>
+              </div>
+            </div>
+          `;
+        }).join('')
+        : '<div class="frontdesk-empty">No items match your filters.</div>';
+
+      const selectedItem = frontdeskItems.find(item => item.id === frontdeskSelectedItemId);
+      historyList.innerHTML = selectedItem
+        ? `
+          <div class="frontdesk-panel-title">Recent Activity • ${selectedItem.name}</div>
+          ${(selectedItem.history || []).slice(0, 8).map(entry => `<div class="frontdesk-history-entry"><strong>${entry.title}</strong><span>${entry.detail}</span><small>${entry.date}</small></div>`).join('') || '<div class="frontdesk-empty">No history yet.</div>'}
+        `
+        : '<div class="frontdesk-empty">Select an item to view history.</div>';
+
+      if (!frontdeskEventsBound) {
+        frontdeskEventsBound = true;
+
+        addToggle.addEventListener('click', () => {
+          form.classList.toggle('hidden');
+        });
+
+        searchInput.addEventListener('input', () => {
+          frontdeskSearchTerm = searchInput.value.trim().toLowerCase();
+          renderFrontdeskInventory();
+        });
+        categoryFilterInput.addEventListener('change', () => {
+          frontdeskCategoryFilter = categoryFilterInput.value || 'All';
+          renderFrontdeskInventory();
+        });
+        statusFilterInput.addEventListener('change', () => {
+          frontdeskStatusFilter = statusFilterInput.value || 'All';
+          renderFrontdeskInventory();
+        });
+
+        resetBtn.addEventListener('click', () => {
+          frontdeskSearchTerm = '';
+          frontdeskCategoryFilter = 'All';
+          frontdeskStatusFilter = 'All';
+          searchInput.value = '';
+          categoryFilterInput.value = 'All';
+          statusFilterInput.value = 'All';
+          renderFrontdeskInventory();
+        });
+
+        lowStockBtn.addEventListener('click', () => {
+          openFrontdeskReport('Front Desk Low Stock Report', getFrontdeskReportItems('Low Stock'));
+        });
+
+        outOfStockBtn.addEventListener('click', () => {
+          openFrontdeskReport('Front Desk Out of Stock Report', getFrontdeskReportItems('Out of Stock'));
+        });
+
+        exportPdfBtn.addEventListener('click', () => {
+          openFrontdeskReport('Front Desk Inventory Report', frontdeskItems);
+        });
+
+        exportExcelBtn.addEventListener('click', () => {
+          const reportDate = new Date().toISOString().slice(0, 10);
+          downloadFrontdeskCsv(`front-desk-inventory-${reportDate}.csv`, frontdeskItems);
+        });
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const skuInput = document.getElementById('frontdeskSku');
+          const nameInput = document.getElementById('frontdeskItemName');
+          const categoryInput = document.getElementById('frontdeskCategory');
+          const locationInput = document.getElementById('frontdeskLocation');
+          const currentInput = document.getElementById('frontdeskCurrentStock');
+          const minimumInput = document.getElementById('frontdeskMinimumStock');
+          const maximumInput = document.getElementById('frontdeskMaximumStock');
+          const reorderQtyInput = document.getElementById('frontdeskReorderQty');
+          const supplierInput = document.getElementById('frontdeskSupplier');
+          const unitInput = document.getElementById('frontdeskUnit');
+          const notesInput = document.getElementById('frontdeskNotes');
+          const messageEl = document.getElementById('frontdeskFormMessage');
+
+          const name = (nameInput?.value || '').trim();
+          const current = Number(currentInput?.value);
+          const minimum = Number(minimumInput?.value);
+          const maximum = Number(maximumInput?.value);
+          const reorderQty = Number(reorderQtyInput?.value);
+
+          if (!name || !Number.isFinite(current) || !Number.isFinite(minimum) || minimum <= 0) {
+            if (messageEl) messageEl.textContent = 'Please enter valid stock numbers.';
+            return;
+          }
+
+          const item = {
+            id: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`,
+            sku: (skuInput?.value || '').trim() || `FD-${String(frontdeskItems.length + 1).padStart(3, '0')}`,
+            name,
+            category: categoryInput?.value || 'Guest Amenities',
+            location: (locationInput?.value || '').trim() || 'Front Desk Cabinet',
+            current,
+            minimum,
+            maximum: Number.isFinite(maximum) && maximum > 0 ? maximum : Math.max(minimum + 20, current + 20),
+            reorderQty: Number.isFinite(reorderQty) && reorderQty > 0 ? reorderQty : 10,
+            supplier: (supplierInput?.value || '').trim() || 'Hotel Supplies Co.',
+            unit: (unitInput?.value || '').trim() || 'units',
+            notes: (notesInput?.value || '').trim() || 'Added from frontdesk inventory',
+            history: [{ title: 'Added item', detail: 'New item entered', date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }]
+          };
+
+          const existingIndex = frontdeskItems.findIndex(entry => entry.sku === item.sku || entry.name.toLowerCase() === item.name.toLowerCase());
+          if (existingIndex >= 0) {
+            item.id = frontdeskItems[existingIndex].id;
+            frontdeskItems[existingIndex] = item;
+          } else {
+            frontdeskItems.unshift(item);
+          }
+
+          frontdeskSelectedItemId = item.id;
+          renderFrontdeskInventory();
+
+          const result = await upsertFrontdeskItem(item);
+          if (!result?.isOk) {
+            if (messageEl) messageEl.textContent = 'Saved locally. Remote sync failed.';
+            showToast('Frontdesk item sync failed', 'error');
+            return;
+          }
+
+          if (messageEl) messageEl.textContent = `${name} synced successfully.`;
+          form.reset();
+          if (currentInput) currentInput.value = '0';
+          if (minimumInput) minimumInput.value = '10';
+          if (maximumInput) maximumInput.value = '100';
+          if (reorderQtyInput) reorderQtyInput.value = '10';
+        });
+      }
+
+      inventoryList.querySelectorAll('[data-frontdesk-item-id]').forEach(card => {
+        card.addEventListener('click', () => {
+          frontdeskSelectedItemId = card.getAttribute('data-frontdesk-item-id');
+          renderFrontdeskInventory();
+        });
+      });
+
+      inventoryList.querySelectorAll('[data-fd-action]').forEach(button => {
+        button.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const itemId = button.getAttribute('data-fd-id');
+          const action = button.getAttribute('data-fd-action');
+          adjustFrontdeskStock(itemId, action === 'plus' ? 1 : -1);
+        });
+      });
+    }
 
     // ============== ROOM REGISTRY FUNCTIONALITY ==============
 
