@@ -124,6 +124,22 @@
       box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
     }
 
+    .minibar-counter-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #dc3545;
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+      box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
+      display: none;
+      text-transform: uppercase;
+    }
+
     .notification-section-title {
       margin: 1rem 0 0.5rem;
       font-size: 0.85rem;
@@ -868,6 +884,95 @@
     .order-summary.collapsed .order-summary-list,
     .order-summary.collapsed .order-summary-empty {
       display: none;
+    }
+
+    .minibar-overview {
+      background: rgba(13, 27, 42, 0.7);
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .minibar-overview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.85rem;
+    }
+
+    .minibar-overview-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #d4af37;
+    }
+
+    .minibar-overview-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .minibar-overview-stat {
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 10px;
+      padding: 0.65rem 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .minibar-overview-stat-label {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .minibar-overview-stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f4e4a8;
+      margin-top: 0.2rem;
+    }
+
+    .minibar-overview-orders {
+      display: grid;
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+    }
+
+    .minibar-overview-order-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+      padding-bottom: 0.35rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.95rem;
+    }
+
+    .minibar-overview-order-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .minibar-overview-order-qty {
+      color: #f5c2c7;
+      font-weight: 700;
+    }
+
+    .minibar-overview-actions {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .minibar-overview-empty {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
     }
 
     .order-qty-badge {
@@ -2341,8 +2446,7 @@
       }
 
       .date-banner {
-        f
-        lex-direction: column !important;
+        flex-direction: column !important;
         align-items: flex-start !important;
         gap: 0.75rem;
         padding: 1rem;
@@ -2360,8 +2464,8 @@
       .date-banner-left > * {
         display: block;
         width: 100%;
-      
-        margin-bottom: 0.35rem;`
+
+        margin-bottom: 0.35rem;
       }
 
       .date-banner-left > .expand-arrow {
@@ -2469,7 +2573,7 @@
        Expiration Control
       </div>
      </div>
-    <div class="premium-card" data-subpage="stockcount" onclick="goTo('stockcount')"><span class="card-emoji">📦</span>
+    <div class="premium-card" data-subpage="stockcount" onclick="goTo('stockcount')"><span class="minibar-counter-badge" id="minibarCounterBadge">To Order</span><span class="card-emoji">📦</span>
       <div class="card-title">
        Minibar Counter
       </div>
@@ -2498,10 +2602,12 @@
       </div>
       </div><!-- Today's Stock Count Banner -->
       <div id="todayStockCountBanner" style="margin-top: 2rem;"></div>
+      <div id="minibarOverviewPanel" class="minibar-overview"></div>
      </div>
     </div><!-- Order Management / Notification Center Page -->
     <div id="ordersPage" class="expiration-page hidden">
      <h2 style="font-size: 2rem; font-weight: 700; color: #d4af37; text-align: center; margin-bottom: 2rem;">Notification Center</h2>
+         <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;"><button class="btn-submit" id="addNotificationBtn" style="width: auto;">➕ Add Notification</button></div>
      <div class="order-summary" id="orderSummaryContainer">
       <div class="order-summary-header">
        <div class="order-summary-title">Order Summary</div>
@@ -4661,6 +4767,49 @@
         `Progress: ${uniqueItems.size}/80 items entered ✓`;
       
       updateTodayStockBanner();
+      updateMinibarOverview();
+    }
+
+    function updateMinibarOverview() {
+      const panel = document.getElementById('minibarOverviewPanel');
+      if (!panel) return;
+
+      const today = getLocalDateString();
+      const todayCounts = allStockCounts.filter(sc => sc.date_added === today);
+      const totalUnits = todayCounts.reduce((sum, sc) => sum + (Number(sc.quantity) || 0), 0);
+      const lowStockNotifications = allNotifications.filter(notif => notif.type === 'low_stock');
+      const orderItems = getOrderSummaryItems().slice(0, 8);
+
+      panel.innerHTML = `
+        <div class="minibar-overview-header">
+          <div class="minibar-overview-title">Minibar Overview</div>
+          <div class="item-count-badge">${lowStockNotifications.length} active low-stock alert${lowStockNotifications.length === 1 ? '' : 's'}</div>
+        </div>
+        <div class="minibar-overview-stats">
+          <div class="minibar-overview-stat">
+            <div class="minibar-overview-stat-label">Today Entries</div>
+            <div class="minibar-overview-stat-value">${todayCounts.length}</div>
+          </div>
+          <div class="minibar-overview-stat">
+            <div class="minibar-overview-stat-label">Units Counted Today</div>
+            <div class="minibar-overview-stat-value">${totalUnits}</div>
+          </div>
+          <div class="minibar-overview-stat">
+            <div class="minibar-overview-stat-label">Items To Order</div>
+            <div class="minibar-overview-stat-value">${orderItems.length}</div>
+          </div>
+        </div>
+        ${orderItems.length === 0
+          ? '<div class="minibar-overview-empty">No low-stock items currently need ordering.</div>'
+          : `<div class="minibar-overview-orders">${orderItems
+              .map(item => `<div class="minibar-overview-order-item"><span>${item.item}</span><span class="minibar-overview-order-qty">${item.qty} units</span></div>`)
+              .join('')}</div>`
+        }
+        <div class="minibar-overview-actions">
+          <button class="order-summary-btn" onclick="goTo('orders')">Open Notification Center</button>
+          <button class="order-summary-btn" onclick="goTo('archive')">Open Archive</button>
+        </div>
+      `;
     }
 
     function updateTodayStockBanner() {
@@ -6216,6 +6365,23 @@
       } else {
         badge.style.display = 'none';
       }
+
+      updateMinibarCounterBadge();
+    }
+
+    function updateMinibarCounterBadge() {
+      const badge = document.getElementById('minibarCounterBadge');
+      if (!badge) return;
+
+      const orderItems = getOrderSummaryItems().filter(item => Number(item.qty) > 0);
+      if (orderItems.length > 0) {
+        badge.style.display = 'inline-flex';
+        badge.textContent = orderItems.length > 9 ? '9+ TO ORDER' : `${orderItems.length} TO ORDER`;
+        badge.title = `${orderItems.length} minibar item${orderItems.length === 1 ? '' : 's'} need ordering`;
+      } else {
+        badge.style.display = 'none';
+        badge.title = '';
+      }
     }
 
     function updateNotificationsDisplay() {
@@ -6229,6 +6395,9 @@
             <div class="empty-subtitle">Add a test notification to get started</div>
           </div>
         `;
+        renderOrderSummary();
+        updateMinibarOverview();
+        updateMinibarCounterBadge();
         return;
       }
 
@@ -6292,6 +6461,8 @@
       });
 
       renderOrderSummary();
+      updateMinibarOverview();
+      updateMinibarCounterBadge();
     }
 
     function createNotificationCard(notif) {
