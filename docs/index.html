@@ -4095,6 +4095,7 @@
     function navigateTo(page) {
       const mainTitle = document.getElementById('mainTitle');
       const previousPage = currentPage;
+      const requestedPage = String(page || '').trim();
       
       // Hide all menus and pages
       mainMenu.classList.add('hidden');
@@ -4114,59 +4115,59 @@
       stockDetailPage.classList.add('hidden');
 
       // Show appropriate menu/page
-      if (page === 'main') {
+      if (requestedPage === 'main') {
         mainMenu.classList.remove('hidden');
         backButton.classList.add('hidden');
         mainTitle.style.display = 'block';
         currentPage = 'main';
-      } else if (page === 'minibar') {
+      } else if (requestedPage === 'minibar') {
         minibarMenu.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back';
         mainTitle.style.display = 'none';
         currentPage = 'minibar';
-      } else if (page === 'orders') {
+      } else if (requestedPage === 'orders') {
         ordersPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Dashboard';
         mainTitle.style.display = 'none';
         currentPage = 'orders';
         updateNotificationsDisplay();
-      } else if (page === 'housekeeping') {
+      } else if (requestedPage === 'housekeeping') {
         housekeepingMenu.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back';
         mainTitle.style.display = 'none';
         currentPage = 'housekeeping';
-      } else if (page === 'housekeeping-equipment') {
+      } else if (requestedPage === 'housekeeping-equipment') {
         housekeepingEquipmentPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Housekeeping Stock';
         mainTitle.style.display = 'none';
         currentPage = 'housekeeping-equipment';
         updateEquipmentDisplay();
-      } else if (page === 'public-area-equipment') {
+      } else if (requestedPage === 'public-area-equipment') {
         publicAreaEquipmentPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Housekeeping Stock';
         mainTitle.style.display = 'none';
         currentPage = 'public-area-equipment';
         updatePublicEquipmentDisplay();
-      } else if (page === 'frontdesk') {
+      } else if (requestedPage === 'frontdesk') {
         frontdeskPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Dashboard';
         mainTitle.style.display = 'none';
         currentPage = 'frontdesk';
         renderFrontdeskInventory();
-      } else if (page === 'qr-hub') {
+      } else if (requestedPage === 'qr-hub') {
         qrHubPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Dashboard';
         mainTitle.style.display = 'none';
         currentPage = 'qr-hub';
         renderQrHubBuilder();
-      } else if (page === 'room-registry') {
+      } else if (requestedPage === 'room-registry') {
         if (previousPage === 'stock-locations') {
           roomRegistryReturnPage = 'stock-locations';
         } else if (previousPage !== 'room-maintenance') {
@@ -4178,35 +4179,35 @@
         mainTitle.style.display = 'none';
         currentPage = 'room-registry';
         renderRoomRegistry();
-      } else if (page === 'room-maintenance') {
+      } else if (requestedPage === 'room-maintenance') {
         roomMaintenancePage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Room Registry';
         mainTitle.style.display = 'none';
         currentPage = 'room-maintenance';
         renderMaintenanceQueue();
-      } else if (page === 'stock-locations') {
+      } else if (requestedPage === 'stock-locations') {
         stockLocationsPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Dashboard';
         mainTitle.style.display = 'none';
         currentPage = 'stock-locations';
         renderStockLocations();
-      } else if (page === 'stock-detail') {
+      } else if (requestedPage === 'stock-detail') {
         stockDetailPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Stock Locations';
         mainTitle.style.display = 'none';
         currentPage = 'stock-detail';
         renderStockDetail();
-      } else if (page === 'archive') {
+      } else if (requestedPage === 'archive') {
         archivePage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Main';
         mainTitle.style.display = 'none';
         currentPage = 'archive';
         updateArchiveDisplay();
-      } else if (page === 'expiration') {
+      } else if (requestedPage === 'expiration') {
         expirationPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Minibar Operations';
@@ -4214,13 +4215,19 @@
         currentPage = 'expiration';
         updateCurrentDate();
         updateExpirationDisplay();
-      } else if (page === 'stockcount') {
+      } else if (requestedPage === 'stockcount') {
         stockCountPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Minibar Operations';
         mainTitle.style.display = 'none';
         currentPage = 'stockcount';
         updateStockProgress();
+      } else {
+        mainMenu.classList.remove('hidden');
+        backButton.classList.add('hidden');
+        mainTitle.style.display = 'block';
+        currentPage = 'main';
+        showToast('Recovered to dashboard', 'warning');
       }
     }
 
