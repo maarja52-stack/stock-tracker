@@ -1276,8 +1276,78 @@
       flex-wrap: wrap;
     }
 
+    .qr-builder-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0.75rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .qr-builder-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.85rem;
+    }
+
+    .qr-builder-field select,
+    .qr-builder-field input {
+      width: 100%;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 0.5rem 0.65rem;
+      font: inherit;
+      box-sizing: border-box;
+    }
+
+    .qr-builder-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .qr-link-list {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .qr-link-row {
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 8px;
+      padding: 0.55rem;
+      background: rgba(255, 255, 255, 0.03);
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .qr-link-title {
+      color: #f4e4a8;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .qr-link-url {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.8);
+      word-break: break-all;
+    }
+
+    .qr-link-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
     @media (max-width: 760px) {
       .qr-hub-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .qr-builder-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -3060,8 +3130,31 @@
          </article>
         </section>
         <section class="qr-hub-section">
-         <h3 class="qr-hub-title">Next Build</h3>
-         <p class="qr-hub-copy">Generator UI will create printable QR sheets for both types with stable deep links.</p>
+         <h3 class="qr-hub-title">Deep-Link Builder</h3>
+         <p class="qr-hub-copy" style="margin-bottom: 0.75rem;">Generate stable QR target URLs for either storage locations or individual items.</p>
+         <div class="qr-builder-grid">
+          <label class="qr-builder-field">
+           <span>QR Type</span>
+           <select id="qrTypeSelect">
+            <option value="location">Stock Location</option>
+            <option value="item">Individual Item</option>
+           </select>
+          </label>
+          <label class="qr-builder-field">
+           <span>Target</span>
+           <select id="qrTargetSelect"></select>
+          </label>
+         </div>
+         <label class="qr-builder-field" style="margin-bottom: 0.6rem;">
+          <span>Generated URL</span>
+          <input id="qrGeneratedLink" type="text" readonly>
+         </label>
+         <div class="qr-builder-actions">
+          <button type="button" class="order-summary-btn" id="qrCopyLinkBtn">Copy URL</button>
+          <button type="button" class="order-summary-btn" id="qrOpenLinkBtn">Open URL</button>
+         </div>
+         <div id="qrHubMessage" class="pin-subtitle" style="margin: 0 0 0.6rem 0;"></div>
+         <div id="qrLinkList" class="qr-link-list"></div>
         </section>
        </div>
       </div>
@@ -3341,6 +3434,9 @@
     let frontdeskSearchTerm = '';
     let frontdeskCategoryFilter = 'All';
     let frontdeskStatusFilter = 'All';
+    let qrHubEventsBound = false;
+    let qrHubSelectedType = 'location';
+    let qrHubSelectedTarget = '';
     const FRONTDESK_STOCK_TYPE = 'frontdesk_inventory';
     let currentStockLocation = null;
     let currentStockValue = 0;
@@ -3455,6 +3551,7 @@
         updateEquipmentDisplay();
         updatePublicEquipmentDisplay();
         renderFrontdeskInventory();
+        renderQrHubBuilder();
         
       }
     };
@@ -3997,6 +4094,7 @@
         backButton.textContent = '← Back to Dashboard';
         mainTitle.style.display = 'none';
         currentPage = 'qr-hub';
+        renderQrHubBuilder();
       } else if (page === 'room-registry') {
         if (previousPage === 'stock-locations') {
           roomRegistryReturnPage = 'stock-locations';
@@ -5464,6 +5562,156 @@
 
     function getFrontdeskReportItems(statusFilter) {
       return frontdeskItems.filter(item => !statusFilter || getFrontdeskStatus(item) === statusFilter);
+    }
+
+    function getQrHubBaseUrl() {
+      const baseUrl = new URL(window.location.href);
+      baseUrl.search = '';
+      baseUrl.hash = '';
+      return baseUrl.toString();
+    }
+
+    function buildQrDeepLink(type, targetValue) {
+      const link = new URL(getQrHubBaseUrl());
+      link.searchParams.set('qr', type);
+      if (type === 'item') {
+        link.searchParams.set('sku', targetValue);
+      } else {
+        link.searchParams.set('location', targetValue);
+      }
+      return link.toString();
+    }
+
+    function getQrHubTargets(type) {
+      if (type === 'item') {
+        const itemSource = frontdeskItems.length ? frontdeskItems : cloneDefaultFrontdeskItems();
+        return itemSource
+          .slice()
+          .sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')))
+          .map(item => ({
+            value: item.sku,
+            label: `${item.sku} - ${item.name}`
+          }));
+      }
+
+      return stockLocationSections
+        .flatMap(section => section.locations)
+        .map(location => ({ value: location, label: location }));
+    }
+
+    async function copyQrText(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      tempInput.remove();
+    }
+
+    function renderQrHubBuilder() {
+      if (!qrHubPage) return;
+
+      const typeSelect = document.getElementById('qrTypeSelect');
+      const targetSelect = document.getElementById('qrTargetSelect');
+      const generatedLinkInput = document.getElementById('qrGeneratedLink');
+      const copyBtn = document.getElementById('qrCopyLinkBtn');
+      const openBtn = document.getElementById('qrOpenLinkBtn');
+      const messageEl = document.getElementById('qrHubMessage');
+      const listEl = document.getElementById('qrLinkList');
+
+      if (!typeSelect || !targetSelect || !generatedLinkInput || !copyBtn || !openBtn || !messageEl || !listEl) {
+        return;
+      }
+
+      typeSelect.value = qrHubSelectedType;
+      const targets = getQrHubTargets(qrHubSelectedType);
+
+      targetSelect.innerHTML = targets.length
+        ? targets.map(target => `<option value="${target.value}">${target.label}</option>`).join('')
+        : '<option value="">No targets found</option>';
+
+      if (!targets.find(target => target.value === qrHubSelectedTarget)) {
+        qrHubSelectedTarget = targets[0]?.value || '';
+      }
+      targetSelect.value = qrHubSelectedTarget;
+
+      const generatedLink = qrHubSelectedTarget ? buildQrDeepLink(qrHubSelectedType, qrHubSelectedTarget) : '';
+      generatedLinkInput.value = generatedLink;
+      copyBtn.disabled = !generatedLink;
+      openBtn.disabled = !generatedLink;
+
+      listEl.innerHTML = targets.length
+        ? targets.map(target => {
+          const link = buildQrDeepLink(qrHubSelectedType, target.value);
+          return `
+            <div class="qr-link-row">
+              <div class="qr-link-title">${target.label}</div>
+              <div class="qr-link-url">${link}</div>
+              <div class="qr-link-actions">
+                <button type="button" class="order-summary-btn" data-qr-copy="${link}">Copy</button>
+                <button type="button" class="order-summary-btn" data-qr-open="${link}">Open</button>
+              </div>
+            </div>
+          `;
+        }).join('')
+        : '<div class="frontdesk-empty">No targets available yet.</div>';
+
+      if (!qrHubEventsBound) {
+        qrHubEventsBound = true;
+
+        typeSelect.addEventListener('change', () => {
+          qrHubSelectedType = typeSelect.value === 'item' ? 'item' : 'location';
+          qrHubSelectedTarget = '';
+          messageEl.textContent = '';
+          renderQrHubBuilder();
+        });
+
+        targetSelect.addEventListener('change', () => {
+          qrHubSelectedTarget = targetSelect.value || '';
+          renderQrHubBuilder();
+        });
+
+        copyBtn.addEventListener('click', async () => {
+          if (!generatedLinkInput.value) return;
+          try {
+            await copyQrText(generatedLinkInput.value);
+            messageEl.textContent = 'URL copied.';
+          } catch (error) {
+            messageEl.textContent = 'Copy failed. Please copy manually.';
+          }
+        });
+
+        openBtn.addEventListener('click', () => {
+          if (!generatedLinkInput.value) return;
+          window.open(generatedLinkInput.value, '_blank', 'noopener,noreferrer');
+        });
+      }
+
+      listEl.querySelectorAll('[data-qr-copy]').forEach(button => {
+        button.addEventListener('click', async () => {
+          const link = button.getAttribute('data-qr-copy') || '';
+          if (!link) return;
+          try {
+            await copyQrText(link);
+            messageEl.textContent = 'Row URL copied.';
+          } catch (error) {
+            messageEl.textContent = 'Copy failed. Please copy manually.';
+          }
+        });
+      });
+
+      listEl.querySelectorAll('[data-qr-open]').forEach(button => {
+        button.addEventListener('click', () => {
+          const link = button.getAttribute('data-qr-open') || '';
+          if (!link) return;
+          window.open(link, '_blank', 'noopener,noreferrer');
+        });
+      });
     }
 
     function toFrontdeskPayload(item) {
