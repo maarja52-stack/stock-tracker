@@ -2555,9 +2555,9 @@
        Archive
       </div>
      </div>
-    <div class="premium-card" data-page="room-registry" onclick="goTo('room-registry')"><span class="card-emoji">🏨</span>
+     <div class="premium-card" data-page="room-registry" onclick="goTo('room-registry')"><span class="card-emoji">🧾</span>
       <div class="card-title">
-       Room Registry
+       Frontdesk
       </div>
      </div>
     <div class="premium-card" data-page="stock-locations" onclick="goTo('stock-locations')"><span class="card-emoji">📍</span>
@@ -2664,6 +2664,7 @@
     <div id="stockLocationsPage" class="expiration-page hidden" style="max-width: 1152px; margin: 0 auto;">
      <h2 class="playfair" style="font-size: 2.5rem; color: #d4af37; text-align: center; margin-bottom: 2rem; text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);">Stock Locations</h2>
      <p style="font-size: 1.125rem; color: #f4e4a8; text-align: center; margin-bottom: 2rem;">Manage 38 storage locations across the hotel</p>
+      <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;"><button class="btn-submit" id="openRoomRegistryFromStockBtn" style="width: auto;">🏨 Open Room Registry</button></div>
      <div id="stockLocationsContainer"></div>
     </div>
     <div id="stockDetailPage" class="expiration-page hidden">
@@ -2883,6 +2884,7 @@
     const stockDetailPage = document.getElementById('stockDetailPage');
     const backButton = document.getElementById('backButton');
     let currentPage = 'main';
+    let roomRegistryReturnPage = 'main';
     var isUnlocked = true;
     let roomRegistryContainer;
     let roomDetailContainer;
@@ -3454,7 +3456,7 @@
       } else if (currentPage === 'housekeeping-equipment' || currentPage === 'public-area-equipment') {
         navigateTo('housekeeping');
       } else if (currentPage === 'room-registry') {
-        navigateTo('main');
+        navigateTo(roomRegistryReturnPage);
       } else if (currentPage === 'room-maintenance') {
         navigateTo('room-registry');
       } else if (currentPage === 'stock-locations') {
@@ -3469,6 +3471,7 @@
 
     function navigateTo(page) {
       const mainTitle = document.getElementById('mainTitle');
+      const previousPage = currentPage;
       
       // Hide all menus and pages
       mainMenu.classList.add('hidden');
@@ -3525,9 +3528,14 @@
         currentPage = 'public-area-equipment';
         updatePublicEquipmentDisplay();
       } else if (page === 'room-registry') {
+        if (previousPage === 'stock-locations') {
+          roomRegistryReturnPage = 'stock-locations';
+        } else if (previousPage !== 'room-maintenance') {
+          roomRegistryReturnPage = 'main';
+        }
         roomRegistryPage.classList.remove('hidden');
         backButton.classList.remove('hidden');
-        backButton.textContent = '← Back to Dashboard';
+        backButton.textContent = roomRegistryReturnPage === 'stock-locations' ? '← Back to Stock Locations' : '← Back to Dashboard';
         mainTitle.style.display = 'none';
         currentPage = 'room-registry';
         renderRoomRegistry();
@@ -5497,6 +5505,10 @@
       maintenanceQueueBtn.addEventListener('click', () => navigateTo('room-maintenance'));
     }
 
+    if (openRoomRegistryFromStockBtn) {
+      openRoomRegistryFromStockBtn.addEventListener('click', () => navigateTo('room-registry'));
+    }
+
     // ============== STOCK LOCATIONS FUNCTIONALITY ==============
 
     const stockLocationsContainer = document.getElementById('stockLocationsContainer');
@@ -5506,6 +5518,7 @@
     const stockCheckedBtn = document.getElementById('stockCheckedBtn');
     const addStockItemBtn = document.getElementById('addStockItemBtn');
     const backToStockLocationsBtn = document.getElementById('backToStockLocationsBtn');
+    const openRoomRegistryFromStockBtn = document.getElementById('openRoomRegistryFromStockBtn');
 
     const stockLocationSections = [
       {
