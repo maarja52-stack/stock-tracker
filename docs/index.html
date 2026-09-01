@@ -9,6 +9,7 @@
   <title>Housekeeping Inventory &amp; Stock</title>
     <!-- Deploy trigger: 2026-09-01-c -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="vendor/qrcode.min.js"></script>
   <style>
     body {
       box-sizing: border-box;
@@ -5740,6 +5741,64 @@
       return `https://api.qrserver.com/v1/create-qr-code/?size=${safeSize}x${safeSize}&margin=6&data=${encodeURIComponent(link)}`;
     }
 
+    async function generateQrDataUrl(link, size = 256) {
+      if (!link) return null;
+
+      if (window.QRCode && typeof window.QRCode.toDataURL === 'function') {
+        return await new Promise((resolve, reject) => {
+          window.QRCode.toDataURL(link, {
+            width: size,
+            margin: 1,
+            color: {
+              dark: '#000000',
+              light: '#ffffff'
+            }
+          }, (error, url) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve(url);
+          });
+        });
+      }
+
+      if (typeof window.QRCode === 'function') {
+        const host = document.createElement('div');
+        host.style.position = 'fixed';
+        host.style.left = '-9999px';
+        host.style.top = '-9999px';
+        document.body.appendChild(host);
+
+        try {
+          new window.QRCode(host, {
+            text: link,
+            width: size,
+            height: size,
+            correctLevel: window.QRCode.CorrectLevel ? window.QRCode.CorrectLevel.M : undefined
+          });
+
+          await new Promise(resolve => setTimeout(resolve, 0));
+
+          const canvas = host.querySelector('canvas');
+          if (canvas) {
+            return canvas.toDataURL('image/png');
+          }
+
+          const image = host.querySelector('img');
+          if (image && image.src) {
+            return image.src;
+          }
+
+          return null;
+        } finally {
+          host.remove();
+        }
+      }
+
+      return null;
+    }
+
     function renderQrPreview(link, label) {
       const canvas = document.getElementById('qrPreviewCanvas');
       const fallbackImage = document.getElementById('qrPreviewImage');
@@ -5767,35 +5826,32 @@
         return;
       }
 
-      if (!window.QRCode || typeof window.QRCode.toCanvas !== 'function') {
+      const token = ++qrPreviewToken;
+      (async () => {
+        let dataUrl = null;
+        try {
+          dataUrl = await generateQrDataUrl(link, 256);
+        } catch (error) {
+          dataUrl = null;
+        }
+
+        if (token !== qrPreviewToken) return;
+
+        if (dataUrl) {
+          canvas.classList.add('hidden');
+          fallbackImage.classList.remove('hidden');
+          fallbackImage.src = dataUrl;
+          hintEl.textContent = 'Ready to scan, download, or print.';
+          downloadBtn.disabled = false;
+          return;
+        }
+
         canvas.classList.add('hidden');
         fallbackImage.classList.remove('hidden');
         fallbackImage.src = buildFallbackQrImageUrl(link, 256);
         hintEl.textContent = 'Using fallback QR rendering. You can still print labels.';
         downloadBtn.disabled = false;
-        return;
-      }
-
-      canvas.classList.remove('hidden');
-      fallbackImage.classList.add('hidden');
-
-      const token = ++qrPreviewToken;
-      window.QRCode.toCanvas(canvas, link, {
-        width: 256,
-        margin: 1,
-        color: {
-          dark: '#0b1a33',
-          light: '#ffffff'
-        }
-      }, (error) => {
-        if (token !== qrPreviewToken) return;
-        if (error) {
-          hintEl.textContent = 'Failed to render QR code.';
-          return;
-        }
-        hintEl.textContent = 'Ready to scan, download, or print.';
-        downloadBtn.disabled = false;
-      });
+      })();
     }
 
     function downloadQrPreviewPng() {
@@ -5815,6 +5871,17 @@
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = `${fileLabel}.png`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        return;
+      }
+
+      if (fallbackImage.src && fallbackImage.src.length > 20) {
+        const link = document.createElement('a');
+        link.href = fallbackImage.src;
+        link.download = `${fileLabel}.png`;
+        link.target = '_blank';
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -5843,30 +5910,20 @@
       }
 
       const items = [];
-      const canUseLocalQr = !!window.QRCode && typeof window.QRCode.toDataURL === 'function';
       for (const target of targets) {
         const qrLink = buildQrDeepLink(qrHubSelectedType, target.value);
-        if (canUseLocalQr) {
-          const dataUrl = await new Promise((resolve, reject) => {
-            window.QRCode.toDataURL(qrLink, {
-              width: 220,
-              margin: 1,
-              color: {
-                dark: '#000000',
-                light: '#ffffff'
-              }
-            }, (error, url) => {
-              if (error) {
-                reject(error);
-                return;
-              }
-              resolve(url);
-            });
-          });
-          items.push({ label: target.label, link: qrLink, dataUrl });
-        } else {
-          items.push({ label: target.label, link: qrLink, dataUrl: buildFallbackQrImageUrl(qrLink, 220) });
+        let dataUrl = null;
+        try {
+          dataUrl = await generateQrDataUrl(qrLink, 220);
+        } catch (error) {
+          dataUrl = null;
         }
+
+        items.push({
+          label: target.label,
+          link: qrLink,
+          dataUrl: dataUrl || buildFallbackQrImageUrl(qrLink, 220)
+        });
       }
 
       const printWindow = window.open('', '_blank', 'noopener,noreferrer,width=1200,height=900');
