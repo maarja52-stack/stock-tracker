@@ -2555,7 +2555,7 @@
        Archive
       </div>
      </div>
-     <div class="premium-card" data-page="room-registry" onclick="goTo('room-registry')"><span class="card-emoji">🧾</span>
+    <div class="premium-card" data-page="frontdesk" onclick="goTo('frontdesk')"><span class="card-emoji">🧾</span>
       <div class="card-title">
        Frontdesk
       </div>
@@ -2647,6 +2647,28 @@
       </div>
      </div>
     </div><!-- Housekeeping Equipment Page -->
+    <!-- Frontdesk Page -->
+    <div id="frontdeskPage" class="expiration-page hidden">
+     <h2 style="font-size: 2rem; font-weight: 700; color: #d4af37; text-align: center; margin-bottom: 0.75rem;">🧾 Frontdesk</h2>
+     <p style="text-align: center; color: #f4e4a8; margin-bottom: 2rem;">Daily coordination shortcuts for reception workflows</p>
+     <div class="grid-container" style="padding: 0;">
+      <div class="premium-card" onclick="goTo('orders')"><span class="card-emoji">📦</span>
+       <div class="card-title">
+      Notification Center
+       </div>
+      </div>
+      <div class="premium-card" onclick="goTo('stock-locations')"><span class="card-emoji">📍</span>
+       <div class="card-title">
+      Stock Locations
+       </div>
+      </div>
+      <div class="premium-card" onclick="goTo('archive')"><span class="card-emoji">📚</span>
+       <div class="card-title">
+      Archive Center
+       </div>
+      </div>
+     </div>
+    </div>
     <!-- Room Registry Pages -->
     <div id="roomRegistryPage" class="expiration-page hidden">
      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
@@ -2879,6 +2901,7 @@
     const stockCountPage = document.getElementById('stockCountPage');
     const housekeepingEquipmentPage = document.getElementById('housekeepingEquipmentPage');
     const publicAreaEquipmentPage = document.getElementById('publicAreaEquipmentPage');
+    const frontdeskPage = document.getElementById('frontdeskPage');
     const roomRegistryPage = document.getElementById('roomRegistryPage');
     const roomMaintenancePage = document.getElementById('roomMaintenancePage');
     const stockLocationsPage = document.getElementById('stockLocationsPage');
@@ -3484,6 +3507,7 @@
       stockCountPage.classList.add('hidden');
       housekeepingEquipmentPage.classList.add('hidden');
       publicAreaEquipmentPage.classList.add('hidden');
+      frontdeskPage.classList.add('hidden');
       roomRegistryPage.classList.add('hidden');
       roomMaintenancePage.classList.add('hidden');
       stockLocationsPage.classList.add('hidden');
@@ -3528,6 +3552,12 @@
         mainTitle.style.display = 'none';
         currentPage = 'public-area-equipment';
         updatePublicEquipmentDisplay();
+      } else if (page === 'frontdesk') {
+        frontdeskPage.classList.remove('hidden');
+        backButton.classList.remove('hidden');
+        backButton.textContent = '← Back to Dashboard';
+        mainTitle.style.display = 'none';
+        currentPage = 'frontdesk';
       } else if (page === 'room-registry') {
         if (previousPage === 'stock-locations') {
           roomRegistryReturnPage = 'stock-locations';
