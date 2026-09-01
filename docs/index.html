@@ -5505,10 +5505,6 @@
       maintenanceQueueBtn.addEventListener('click', () => navigateTo('room-maintenance'));
     }
 
-    if (openRoomRegistryFromStockBtn) {
-      openRoomRegistryFromStockBtn.addEventListener('click', () => navigateTo('room-registry'));
-    }
-
     // ============== STOCK LOCATIONS FUNCTIONALITY ==============
 
     const stockLocationsContainer = document.getElementById('stockLocationsContainer');
@@ -5519,6 +5515,10 @@
     const addStockItemBtn = document.getElementById('addStockItemBtn');
     const backToStockLocationsBtn = document.getElementById('backToStockLocationsBtn');
     const openRoomRegistryFromStockBtn = document.getElementById('openRoomRegistryFromStockBtn');
+
+    if (openRoomRegistryFromStockBtn) {
+      openRoomRegistryFromStockBtn.addEventListener('click', () => navigateTo('room-registry'));
+    }
 
     const stockLocationSections = [
       {
