@@ -1221,6 +1221,67 @@
       gap: 0.45rem;
     }
 
+    .qr-hub-shell {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .qr-hub-hero,
+    .qr-hub-section {
+      background: rgba(13, 27, 42, 0.7);
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .qr-hub-hero h2 {
+      margin: 0 0 0.4rem;
+      color: #d4af37;
+      font-size: 2rem;
+    }
+
+    .qr-hub-hero p,
+    .qr-hub-copy {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .qr-hub-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+
+    .qr-hub-chip {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      color: #f4e4a8;
+      font-size: 0.75rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .qr-hub-title {
+      color: #f4e4a8;
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.35rem;
+    }
+
+    .qr-hub-actions {
+      margin-top: 0.7rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 760px) {
+      .qr-hub-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .order-qty-badge {
       display: inline-block;
       margin-left: 0.35rem;
@@ -2810,6 +2871,11 @@
        Stock Locations
       </div>
      </div>
+    <div class="premium-card" data-page="qr-hub" onclick="goTo('qr-hub')"><span class="card-emoji">🔳</span>
+      <div class="card-title">
+       QR Hub
+      </div>
+     </div>
     </div>
     
     <!-- Minibar Operations Submenu -->
@@ -2969,6 +3035,36 @@
       </section>
      </div>
     </div>
+      <div id="qrHubPage" class="expiration-page hidden">
+       <div class="qr-hub-shell">
+        <section class="qr-hub-hero">
+         <h2>🔳 QR Hub</h2>
+         <p>Prepare scan-ready links for locations and individual items.</p>
+        </section>
+        <section class="qr-hub-grid">
+         <article class="qr-hub-section">
+        <div class="qr-hub-chip">Type A</div>
+        <h3 class="qr-hub-title">Stock Location QR</h3>
+        <p class="qr-hub-copy">Each code opens one location and shows what should be stored there.</p>
+        <div class="qr-hub-actions">
+         <button type="button" class="order-summary-btn" onclick="goTo('stock-locations')">Open Stock Locations</button>
+        </div>
+         </article>
+         <article class="qr-hub-section">
+        <div class="qr-hub-chip">Type B</div>
+        <h3 class="qr-hub-title">Item QR</h3>
+        <p class="qr-hub-copy">Each code opens an individual item profile for fast stock updates.</p>
+        <div class="qr-hub-actions">
+         <button type="button" class="order-summary-btn" onclick="goTo('frontdesk')">Open Frontdesk Items</button>
+        </div>
+         </article>
+        </section>
+        <section class="qr-hub-section">
+         <h3 class="qr-hub-title">Next Build</h3>
+         <p class="qr-hub-copy">Generator UI will create printable QR sheets for both types with stable deep links.</p>
+        </section>
+       </div>
+      </div>
     <!-- Room Registry Pages -->
     <div id="roomRegistryPage" class="expiration-page hidden">
      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
@@ -3202,6 +3298,7 @@
     const housekeepingEquipmentPage = document.getElementById('housekeepingEquipmentPage');
     const publicAreaEquipmentPage = document.getElementById('publicAreaEquipmentPage');
     const frontdeskPage = document.getElementById('frontdeskPage');
+    const qrHubPage = document.getElementById('qrHubPage');
     const roomRegistryPage = document.getElementById('roomRegistryPage');
     const roomMaintenancePage = document.getElementById('roomMaintenancePage');
     const stockLocationsPage = document.getElementById('stockLocationsPage');
@@ -3842,6 +3939,7 @@
       housekeepingEquipmentPage.classList.add('hidden');
       publicAreaEquipmentPage.classList.add('hidden');
       frontdeskPage.classList.add('hidden');
+      qrHubPage.classList.add('hidden');
       roomRegistryPage.classList.add('hidden');
       roomMaintenancePage.classList.add('hidden');
       stockLocationsPage.classList.add('hidden');
@@ -3893,6 +3991,12 @@
         mainTitle.style.display = 'none';
         currentPage = 'frontdesk';
         renderFrontdeskInventory();
+      } else if (page === 'qr-hub') {
+        qrHubPage.classList.remove('hidden');
+        backButton.classList.remove('hidden');
+        backButton.textContent = '← Back to Dashboard';
+        mainTitle.style.display = 'none';
+        currentPage = 'qr-hub';
       } else if (page === 'room-registry') {
         if (previousPage === 'stock-locations') {
           roomRegistryReturnPage = 'stock-locations';
