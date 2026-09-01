@@ -2931,7 +2931,7 @@
        <div class="frontdesk-panel">
         <div class="frontdesk-panel-title">Add / Update Item</div>
         <form id="frontdeskItemForm" class="frontdesk-form-grid hidden">
-         <label class="field-row"><span>SKU</span><input id="frontdeskSku" name="sku" type="text" placeholder="FD-001"></label>
+         <label class="field-row"><span>SKU (auto)</span><input id="frontdeskSku" name="sku" type="text" value="FD-0001" readonly></label>
          <label class="field-row"><span>Item name</span><input id="frontdeskItemName" name="itemName" type="text" placeholder="e.g. Water" required></label>
          <label class="field-row"><span>Category</span><select id="frontdeskCategory" name="category"><option>Guest Amenities</option><option>Office Supplies</option><option>Operations</option></select></label>
          <label class="field-row"><span>Storage location</span><input id="frontdeskLocation" name="location" type="text" placeholder="Front Desk Cabinet"></label>
@@ -3342,6 +3342,7 @@
         stockLocationItems = normalizedData.filter(item => item.stock_type === 'stock_location' && !item.is_archived);
         const syncedFrontdeskItems = getFrontdeskItemsFromData(normalizedData);
         frontdeskItems = syncedFrontdeskItems.length ? syncedFrontdeskItems : cloneDefaultFrontdeskItems();
+        ensureFrontdeskSkuUniqueness();
         if (!frontdeskItems.find(item => item.id === frontdeskSelectedItemId)) {
           frontdeskSelectedItemId = frontdeskItems[0]?.id || null;
         }
@@ -5268,6 +5269,62 @@
       }));
     }
 
+    function normalizeFrontdeskSku(value) {
+      return String(value || '').trim().toUpperCase();
+    }
+
+    function getNextFrontdeskSku(excludeItemId = null) {
+      const usedSkus = new Set();
+      let maxSerial = 0;
+
+      frontdeskItems.forEach(item => {
+        if (!item) return;
+        if (excludeItemId && String(item.id) === String(excludeItemId)) return;
+        const normalizedSku = normalizeFrontdeskSku(item.sku);
+        if (!normalizedSku) return;
+        usedSkus.add(normalizedSku);
+        const serialMatch = normalizedSku.match(/^FD-(\d+)$/i);
+        if (serialMatch) {
+          maxSerial = Math.max(maxSerial, parseInt(serialMatch[1], 10) || 0);
+        }
+      });
+
+      let nextSerial = maxSerial;
+      let candidate = '';
+      do {
+        nextSerial += 1;
+        candidate = `FD-${String(nextSerial).padStart(4, '0')}`;
+      } while (usedSkus.has(candidate));
+
+      return candidate;
+    }
+
+    function ensureFrontdeskSkuUniqueness() {
+      const usedSkus = new Set();
+      let maxSerial = 0;
+
+      frontdeskItems.forEach(item => {
+        const normalizedSku = normalizeFrontdeskSku(item?.sku);
+        const serialMatch = normalizedSku.match(/^FD-(\d+)$/i);
+        if (serialMatch) {
+          maxSerial = Math.max(maxSerial, parseInt(serialMatch[1], 10) || 0);
+        }
+      });
+
+      frontdeskItems.forEach(item => {
+        if (!item) return;
+        let normalizedSku = normalizeFrontdeskSku(item.sku);
+        if (!normalizedSku || usedSkus.has(normalizedSku)) {
+          do {
+            maxSerial += 1;
+            normalizedSku = `FD-${String(maxSerial).padStart(4, '0')}`;
+          } while (usedSkus.has(normalizedSku));
+          item.sku = normalizedSku;
+        }
+        usedSkus.add(normalizedSku);
+      });
+    }
+
     function getFrontdeskItemsFromData(data) {
       return (Array.isArray(data) ? data : [])
         .filter(item => item && typeof item === 'object' && String(item.stock_type || item.type || '').toLowerCase() === FRONTDESK_STOCK_TYPE && !item.is_archived)
@@ -5576,6 +5633,14 @@
 
         addToggle.addEventListener('click', () => {
           form.classList.toggle('hidden');
+          const skuInput = document.getElementById('frontdeskSku');
+          const messageEl = document.getElementById('frontdeskFormMessage');
+          if (!form.classList.contains('hidden') && skuInput) {
+            skuInput.value = getNextFrontdeskSku();
+          }
+          if (messageEl) {
+            messageEl.textContent = '';
+          }
         });
 
         searchInput.addEventListener('input', () => {
@@ -5685,9 +5750,14 @@
             return;
           }
 
+          const existingIndex = frontdeskItems.findIndex(entry => entry.name.toLowerCase() === name.toLowerCase());
+          const resolvedSku = existingIndex >= 0
+            ? normalizeFrontdeskSku(frontdeskItems[existingIndex].sku) || getNextFrontdeskSku(frontdeskItems[existingIndex].id)
+            : getNextFrontdeskSku();
+
           const item = {
             id: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`,
-            sku: (skuInput?.value || '').trim() || `FD-${String(frontdeskItems.length + 1).padStart(3, '0')}`,
+            sku: resolvedSku,
             name,
             category: categoryInput?.value || 'Guest Amenities',
             location: (locationInput?.value || '').trim() || 'Front Desk Cabinet',
@@ -5701,13 +5771,14 @@
             history: [{ title: 'Added item', detail: 'New item entered', date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }]
           };
 
-          const existingIndex = frontdeskItems.findIndex(entry => entry.sku === item.sku || entry.name.toLowerCase() === item.name.toLowerCase());
           if (existingIndex >= 0) {
             item.id = frontdeskItems[existingIndex].id;
             frontdeskItems[existingIndex] = item;
           } else {
             frontdeskItems.unshift(item);
           }
+
+          ensureFrontdeskSkuUniqueness();
 
           frontdeskSelectedItemId = item.id;
           renderFrontdeskInventory();
@@ -5721,6 +5792,7 @@
 
           if (messageEl) messageEl.textContent = `${name} synced successfully.`;
           form.reset();
+          if (skuInput) skuInput.value = getNextFrontdeskSku();
           if (currentInput) currentInput.value = '0';
           if (minimumInput) minimumInput.value = '10';
           if (maximumInput) maximumInput.value = '100';
