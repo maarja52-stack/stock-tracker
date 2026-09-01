@@ -1189,6 +1189,38 @@
       color: rgba(255, 255, 255, 0.6);
     }
 
+    .frontdesk-quick-adjust {
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 10px;
+      padding: 0.65rem;
+      margin-top: 0.8rem;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .frontdesk-quick-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .frontdesk-quick-row input {
+      width: 100%;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 0.5rem 0.65rem;
+      font: inherit;
+      box-sizing: border-box;
+    }
+
+    .frontdesk-quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
     .order-qty-badge {
       display: inline-block;
       margin-left: 0.35rem;
@@ -2914,6 +2946,19 @@
          <div id="frontdeskFormMessage" class="pin-subtitle" style="margin:0;"></div>
         </form>
         <div id="frontdeskHistoryList" class="frontdesk-history-list"></div>
+        <div class="frontdesk-quick-adjust" id="frontdeskQuickAdjust">
+         <div class="frontdesk-panel-title" style="margin-top: 0.8rem;">Quick Stock Update</div>
+         <div class="frontdesk-quick-row">
+          <label class="field-row"><span>Adjust by</span><input id="frontdeskAdjustAmount" type="number" min="1" value="5"></label>
+          <label class="field-row"><span>Set exact stock</span><input id="frontdeskSetAmount" type="number" min="0" value="0"></label>
+         </div>
+         <div class="frontdesk-quick-actions">
+          <button type="button" class="order-summary-btn" id="frontdeskAddAmountBtn">Add Amount</button>
+          <button type="button" class="order-summary-btn" id="frontdeskRemoveAmountBtn">Remove Amount</button>
+          <button type="button" class="order-summary-btn" id="frontdeskSetAmountBtn">Set Stock</button>
+         </div>
+         <div id="frontdeskQuickMessage" class="pin-subtitle" style="margin:0.45rem 0 0 0;"></div>
+        </div>
        </div>
       </section>
       <section class="frontdesk-actions-row">
@@ -5400,6 +5445,33 @@
       }
     }
 
+    async function setFrontdeskStock(itemId, nextAmount) {
+      const item = frontdeskItems.find(entry => entry.id === itemId);
+      if (!item) return;
+      const parsedAmount = Number(nextAmount);
+      if (!Number.isFinite(parsedAmount) || parsedAmount < 0) {
+        showToast('Enter a valid stock value', 'error');
+        return;
+      }
+
+      const safeAmount = Math.floor(parsedAmount);
+      const previousAmount = Number(item.current || 0);
+      item.current = safeAmount;
+      item.history = Array.isArray(item.history) ? item.history : [];
+      item.history.unshift({
+        title: 'Stock adjusted',
+        detail: `${previousAmount} -> ${safeAmount} ${item.unit || 'units'}`,
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      });
+
+      frontdeskSelectedItemId = item.id;
+      renderFrontdeskInventory();
+      const result = await upsertFrontdeskItem(item);
+      if (!result?.isOk) {
+        showToast('Failed to sync stock update', 'error');
+      }
+    }
+
     function renderFrontdeskInventory() {
       if (!frontdeskPage) return;
 
@@ -5416,8 +5488,14 @@
       const outOfStockBtn = document.getElementById('frontdeskOutOfStockBtn');
       const exportPdfBtn = document.getElementById('frontdeskExportPdfBtn');
       const exportExcelBtn = document.getElementById('frontdeskExportExcelBtn');
+      const quickAdjustAmountInput = document.getElementById('frontdeskAdjustAmount');
+      const quickSetAmountInput = document.getElementById('frontdeskSetAmount');
+      const quickAddBtn = document.getElementById('frontdeskAddAmountBtn');
+      const quickRemoveBtn = document.getElementById('frontdeskRemoveAmountBtn');
+      const quickSetBtn = document.getElementById('frontdeskSetAmountBtn');
+      const quickMessageEl = document.getElementById('frontdeskQuickMessage');
 
-      if (!inventoryList || !historyList || !summaryCards || !form || !addToggle || !searchInput || !categoryFilterInput || !statusFilterInput || !resetBtn || !lowStockBtn || !outOfStockBtn || !exportPdfBtn || !exportExcelBtn) {
+      if (!inventoryList || !historyList || !summaryCards || !form || !addToggle || !searchInput || !categoryFilterInput || !statusFilterInput || !resetBtn || !lowStockBtn || !outOfStockBtn || !exportPdfBtn || !exportExcelBtn || !quickAdjustAmountInput || !quickSetAmountInput || !quickAddBtn || !quickRemoveBtn || !quickSetBtn || !quickMessageEl) {
         return;
       }
 
@@ -5474,8 +5552,8 @@
               </div>
               <div class="frontdesk-item-meta">Location: ${item.location} | Stock: ${item.current}/${item.minimum} min</div>
               <div class="frontdesk-item-actions">
-                <button type="button" class="order-summary-btn" data-fd-action="minus" data-fd-id="${item.id}">-1</button>
-                <button type="button" class="order-summary-btn" data-fd-action="plus" data-fd-id="${item.id}">+1</button>
+                <button type="button" class="order-summary-btn" data-fd-action="minus" data-fd-step="5" data-fd-id="${item.id}">-5</button>
+                <button type="button" class="order-summary-btn" data-fd-action="plus" data-fd-step="5" data-fd-id="${item.id}">+5</button>
               </div>
             </div>
           `;
@@ -5483,6 +5561,9 @@
         : '<div class="frontdesk-empty">No items match your filters.</div>';
 
       const selectedItem = frontdeskItems.find(item => item.id === frontdeskSelectedItemId);
+      if (selectedItem) {
+        quickSetAmountInput.value = String(Number(selectedItem.current || 0));
+      }
       historyList.innerHTML = selectedItem
         ? `
           <div class="frontdesk-panel-title">Recent Activity • ${selectedItem.name}</div>
@@ -5535,6 +5616,46 @@
         exportExcelBtn.addEventListener('click', () => {
           const reportDate = new Date().toISOString().slice(0, 10);
           downloadFrontdeskCsv(`front-desk-inventory-${reportDate}.csv`, frontdeskItems);
+        });
+
+        quickAddBtn.addEventListener('click', async () => {
+          const selected = frontdeskItems.find(item => item.id === frontdeskSelectedItemId);
+          if (!selected) {
+            quickMessageEl.textContent = 'Select an item first.';
+            return;
+          }
+          const amount = Math.max(1, parseInt(quickAdjustAmountInput.value, 10) || 0);
+          quickMessageEl.textContent = `Adding ${amount} to ${selected.name}...`;
+          await adjustFrontdeskStock(selected.id, amount);
+          quickMessageEl.textContent = `Added ${amount} to ${selected.name}.`;
+        });
+
+        quickRemoveBtn.addEventListener('click', async () => {
+          const selected = frontdeskItems.find(item => item.id === frontdeskSelectedItemId);
+          if (!selected) {
+            quickMessageEl.textContent = 'Select an item first.';
+            return;
+          }
+          const amount = Math.max(1, parseInt(quickAdjustAmountInput.value, 10) || 0);
+          quickMessageEl.textContent = `Removing ${amount} from ${selected.name}...`;
+          await adjustFrontdeskStock(selected.id, -amount);
+          quickMessageEl.textContent = `Removed ${amount} from ${selected.name}.`;
+        });
+
+        quickSetBtn.addEventListener('click', async () => {
+          const selected = frontdeskItems.find(item => item.id === frontdeskSelectedItemId);
+          if (!selected) {
+            quickMessageEl.textContent = 'Select an item first.';
+            return;
+          }
+          const amount = parseInt(quickSetAmountInput.value, 10);
+          if (!Number.isFinite(amount) || amount < 0) {
+            quickMessageEl.textContent = 'Enter a valid set amount.';
+            return;
+          }
+          quickMessageEl.textContent = `Setting ${selected.name} to ${amount}...`;
+          await setFrontdeskStock(selected.id, amount);
+          quickMessageEl.textContent = `${selected.name} is now ${amount}.`;
         });
 
         form.addEventListener('submit', async (event) => {
@@ -5619,7 +5740,8 @@
           event.stopPropagation();
           const itemId = button.getAttribute('data-fd-id');
           const action = button.getAttribute('data-fd-action');
-          adjustFrontdeskStock(itemId, action === 'plus' ? 1 : -1);
+          const step = parseInt(button.getAttribute('data-fd-step') || '1', 10) || 1;
+          adjustFrontdeskStock(itemId, action === 'plus' ? step : -step);
         });
       });
     }
