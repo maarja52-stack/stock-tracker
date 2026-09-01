@@ -3437,6 +3437,9 @@
     let qrHubEventsBound = false;
     let qrHubSelectedType = 'location';
     let qrHubSelectedTarget = '';
+    let pendingQrRoute = null;
+    let qrRouteResolved = false;
+    pendingQrRoute = parsePendingQrRouteFromUrl();
     const FRONTDESK_STOCK_TYPE = 'frontdesk_inventory';
     let currentStockLocation = null;
     let currentStockValue = 0;
@@ -3552,6 +3555,7 @@
         updatePublicEquipmentDisplay();
         renderFrontdeskInventory();
         renderQrHubBuilder();
+        tryApplyPendingQrRoute();
         
       }
     };
@@ -5571,6 +5575,51 @@
       return baseUrl.toString();
     }
 
+    function normalizeLocationKey(value) {
+      return String(value || '').trim().toLowerCase();
+    }
+
+    function getStockLocationSections() {
+      const sections = [
+        {
+          title: 'Floor 1 Storage (F1-01 to F1-13)',
+          locations: Array.from({ length: 13 }, (_, i) => `Storage F1-${String(i + 1).padStart(2, '0')}`)
+        },
+        {
+          title: 'Floor 2 Storage (F2-01 to F2-11)',
+          locations: Array.from({ length: 11 }, (_, i) => `Storage F2-${String(i + 1).padStart(2, '0')}`)
+        },
+        {
+          title: 'Floor 3 Storage (F3-01 to F3-11)',
+          locations: Array.from({ length: 11 }, (_, i) => `Storage F3-${String(i + 1).padStart(2, '0')}`)
+        },
+        {
+          title: 'Other Locations',
+          locations: ['Garage', 'Luggage Room']
+        }
+      ];
+
+      const known = new Set(sections.flatMap(section => section.locations.map(location => normalizeLocationKey(location))));
+      const extraLocations = Array.from(new Set(
+        stockLocationItems
+          .map(item => String(item.location_name || item.location || '').trim())
+          .filter(Boolean)
+      ))
+        .filter(location => !known.has(normalizeLocationKey(location)))
+        .sort((a, b) => a.localeCompare(b));
+
+      const otherSection = sections.find(section => section.title === 'Other Locations');
+      if (otherSection && extraLocations.length) {
+        otherSection.locations = Array.from(new Set([...otherSection.locations, ...extraLocations]));
+      }
+
+      return sections;
+    }
+
+    function getAllStockLocationNames() {
+      return getStockLocationSections().flatMap(section => section.locations);
+    }
+
     function buildQrDeepLink(type, targetValue) {
       const link = new URL(getQrHubBaseUrl());
       link.searchParams.set('qr', type);
@@ -5594,9 +5643,78 @@
           }));
       }
 
-      return stockLocationSections
-        .flatMap(section => section.locations)
+      return getAllStockLocationNames()
         .map(location => ({ value: location, label: location }));
+    }
+
+    function parsePendingQrRouteFromUrl() {
+      const params = new URLSearchParams(window.location.search || '');
+      const qrType = String(params.get('qr') || '').toLowerCase();
+      if (qrType === 'location') {
+        const location = String(params.get('location') || '').trim();
+        if (location) {
+          return { type: 'location', location };
+        }
+      }
+
+      if (qrType === 'item') {
+        const sku = normalizeFrontdeskSku(params.get('sku'));
+        if (sku) {
+          return { type: 'item', sku };
+        }
+      }
+
+      return null;
+    }
+
+    function clearQrRouteFromUrl() {
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.delete('qr');
+      nextUrl.searchParams.delete('location');
+      nextUrl.searchParams.delete('sku');
+      window.history.replaceState({}, '', nextUrl.toString());
+    }
+
+    function tryApplyPendingQrRoute() {
+      if (!pendingQrRoute || qrRouteResolved) return;
+
+      if (pendingQrRoute.type === 'location') {
+        const requestedKey = normalizeLocationKey(pendingQrRoute.location);
+        const match = getAllStockLocationNames().find(location => normalizeLocationKey(location) === requestedKey);
+        if (match) {
+          currentStockLocation = match;
+          qrRouteResolved = true;
+          clearQrRouteFromUrl();
+          navigateTo('stock-detail');
+          showToast(`Opened ${match} from QR link`, 'success');
+          return;
+        }
+
+        // Wait for synced locations before failing unknown location routes.
+        if (!stockLocationItems.length) {
+          return;
+        }
+
+        qrRouteResolved = true;
+        showToast('QR location not found', 'error');
+        return;
+      }
+
+      if (pendingQrRoute.type === 'item') {
+        const itemSource = frontdeskItems.length ? frontdeskItems : cloneDefaultFrontdeskItems();
+        const matchedItem = itemSource.find(item => normalizeFrontdeskSku(item.sku) === pendingQrRoute.sku);
+        if (matchedItem) {
+          frontdeskSelectedItemId = matchedItem.id;
+          qrRouteResolved = true;
+          clearQrRouteFromUrl();
+          navigateTo('frontdesk');
+          showToast(`Opened ${matchedItem.name} from QR link`, 'success');
+          return;
+        }
+
+        qrRouteResolved = true;
+        showToast('QR item not found', 'error');
+      }
     }
 
     async function copyQrText(text) {
@@ -6798,25 +6916,6 @@
       openRoomRegistryFromStockBtn.addEventListener('click', () => navigateTo('room-registry'));
     }
 
-    const stockLocationSections = [
-      {
-        title: 'Floor 1 Storage (F1-01 to F1-13)',
-        locations: Array.from({ length: 13 }, (_, i) => `Storage F1-${String(i + 1).padStart(2, '0')}`)
-      },
-      {
-        title: 'Floor 2 Storage (F2-01 to F2-11)',
-        locations: Array.from({ length: 11 }, (_, i) => `Storage F2-${String(i + 1).padStart(2, '0')}`)
-      },
-      {
-        title: 'Floor 3 Storage (F3-01 to F3-11)',
-        locations: Array.from({ length: 11 }, (_, i) => `Storage F3-${String(i + 1).padStart(2, '0')}`)
-      },
-      {
-        title: 'Other Locations',
-        locations: ['Garage', 'Luggage Room']
-      }
-    ];
-
     function formatStockDate(value) {
       if (!value) return 'Never';
       const parsed = new Date(value);
@@ -6841,6 +6940,7 @@
     function renderStockLocations() {
       if (!stockLocationsContainer) return;
       if (currentPage !== 'stock-locations') return;
+      const stockLocationSections = getStockLocationSections();
 
       const getSectionLabel = (title) => {
         const match = title.match(/^(Floor\s+\d+)/i);
@@ -9163,6 +9263,7 @@
     }
 
     // Initialize everything
+    tryApplyPendingQrRoute();
     initializeDataSDK();
     updateFooterVersion();
 
