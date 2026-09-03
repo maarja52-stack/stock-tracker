@@ -7,6 +7,32 @@ Static housekeeping and minibar operations app used for:
 - Housekeeping and public area equipment tracking
 - Room registry and maintenance queue
 - Stock location checks
+- Multi-property inventory management
+- Role-based access control & security administration
+
+## Summary of Today's Updates (2026-09-03)
+
+1. **QR Hub Deep-Link Builder Enhancements**:
+   - Updated dropdown menu styling for **QR Type** and **Target** with a dark navy background (`#0d1b2a`), gold text (`#f4e4a8`), and custom `<optgroup>` / `<option>` themes.
+   - Added **Front Desk** and **Office** to the **Other Locations** section in the target selector and deep-link routing.
+
+2. **Security & Role-Based Access Control (RBAC)**:
+   - Restored and activated the PIN login security overlay.
+   - Added a top navigation bar with user profile badges (👑 Admin, 💼 Manager, 👤 Staff) and a **🔒 Logout** button that clears the session and locks the app.
+   - Designed 3 user tiers:
+     - **Staff**: Standard inventory & stock features. **Archive**, **QR Hub**, and **Security** are hidden.
+     - **Manager**: Standard inventory features + **Archive Center** & audit reports. **QR Hub** and **Security** are hidden.
+     - **Admin**: Full access across all pages + **QR Hub & Code Generator** + **🔐 Security & User Management**.
+   - Created a dedicated **🔐 Security & Users** administration panel to create, edit, toggle active status, and delete user accounts with individual PINs.
+   - Added local cache persistence (`housekeeping_app_users_cache`) merged with Google Sheets backend synchronization to prevent user list rollbacks.
+
+3. **Multi-Property Architecture**:
+   - Implemented post-login property selection flow:
+     - `PIN Login` ➔ `Property Selection Modal` ➔ `Property-Specific Inventory`.
+     - Supports **Hotel V Nesplein**, **Hotel V Fizeaustraat**, and custom **Other Property** names.
+   - Added an active property indicator badge with a quick **Switch** button in the header.
+   - Tagged and filtered all inventory items, equipment, notifications, stock counts, and frontdesk data per property while preserving legacy data.
+   - Added property assignment options when creating or editing users in Security settings.
 
 ## Canonical App File
 

@@ -180,6 +180,299 @@
       box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
     }
 
+    .top-nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+
+    .top-nav-row .back-button {
+      margin-bottom: 0;
+    }
+
+    .user-header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(13, 27, 42, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      color: #f4e4a8;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .role-chip {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+    }
+
+    .role-admin {
+      background: rgba(212, 175, 55, 0.25);
+      border: 1px solid #d4af37;
+      color: #ffd700;
+    }
+
+    .role-manager {
+      background: rgba(52, 152, 219, 0.25);
+      border: 1px solid #3498db;
+      color: #5dade2;
+    }
+
+    .role-staff {
+      background: rgba(40, 167, 69, 0.25);
+      border: 1px solid #28a745;
+      color: #71d589;
+    }
+
+    .status-chip {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    .status-active {
+      background: rgba(40, 167, 69, 0.2);
+      color: #28a745;
+    }
+
+    .status-inactive {
+      background: rgba(220, 53, 69, 0.2);
+      color: #ff6b6b;
+    }
+
+    .security-roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .security-role-card {
+      background: rgba(13, 27, 42, 0.7);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .security-role-title {
+      color: #f4e4a8;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .security-role-desc {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.83rem;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .security-user-list {
+      display: grid;
+      gap: 0.65rem;
+      max-height: 520px;
+      overflow-y: auto;
+    }
+
+    .security-user-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 10px;
+      padding: 0.75rem 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .security-user-item:hover {
+      border-color: rgba(212, 175, 55, 0.5);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .security-user-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .security-user-name {
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .security-user-sub {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .security-user-actions {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .user-action-btn {
+      background: rgba(13, 27, 42, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #f4e4a8;
+      border-radius: 6px;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .user-action-btn:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: #d4af37;
+    }
+
+    .user-action-btn.danger {
+      border-color: rgba(220, 53, 69, 0.5);
+      color: #ff8585;
+    }
+
+    .user-action-btn.danger:hover {
+      background: rgba(220, 53, 69, 0.25);
+      border-color: #dc3545;
+    }
+
+    .property-options-grid {
+      display: grid;
+      gap: 0.85rem;
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    .property-option-card {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      cursor: pointer;
+      text-align: left;
+      color: #fff;
+      transition: all 0.25s ease;
+      font: inherit;
+      box-sizing: border-box;
+    }
+
+    .property-option-card:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: #d4af37;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .property-option-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .property-option-info {
+      flex: 1;
+    }
+
+    .property-option-title {
+      font-weight: 700;
+      color: #f4e4a8;
+      font-size: 1.05rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .property-option-desc {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .property-option-check {
+      color: #d4af37;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .property-header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(13, 27, 42, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      color: #f4e4a8;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .property-switch-btn {
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      color: #f4e4a8;
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: all 0.2s ease;
+    }
+
+    .property-switch-btn:hover {
+      background: #d4af37;
+      color: #0d1b2a;
+    }
+
+    .logout-button {
+      background: rgba(13, 27, 42, 0.85);
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: auto;
+    }
+
+    .logout-button:hover {
+      background: rgba(220, 53, 69, 0.25);
+      border-color: #ff6b6b;
+      color: #ff8585;
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+    }
+
     .hidden {
       display: none;
     }
@@ -1297,11 +1590,36 @@
       width: 100%;
       border: 1px solid rgba(212, 175, 55, 0.5);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
+      background: rgba(13, 27, 42, 0.9);
+      color: #f4e4a8;
       padding: 0.5rem 0.65rem;
       font: inherit;
       box-sizing: border-box;
+      color-scheme: dark;
+    }
+
+    .qr-builder-field select {
+      cursor: pointer;
+    }
+
+    .qr-builder-field select option {
+      background: #0d1b2a;
+      color: #ffffff;
+      padding: 0.5rem;
+    }
+
+    .qr-builder-field select optgroup {
+      background: #1a2942;
+      color: #d4af37;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .qr-builder-field select:focus,
+    .qr-builder-field input:focus {
+      outline: none;
+      border-color: #d4af37;
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25);
     }
 
     .qr-builder-actions {
@@ -2954,8 +3272,75 @@
   <style>@view-transition { navigation: auto; }</style>
  </head>
  <body class="h-full">
+  <div class="pin-overlay hidden" id="pinOverlay">
+   <div class="pin-panel">
+    <div class="pin-title">Sign In</div>
+    <div class="pin-subtitle">Enter your personal PIN</div>
+    <input class="pin-input" id="pinInput" type="password" placeholder="••••" autocomplete="current-password">
+    <div class="pin-error" id="pinError"></div>
+    <button class="pin-button" id="pinSubmit">Sign In</button>
+   </div>
+  </div>
+
+  <!-- Property Selection Modal -->
+  <div class="pin-overlay hidden" id="propertyOverlay">
+   <div class="pin-panel" style="max-width: 460px; text-align: left;">
+    <div class="pin-title" style="text-align: center; margin-bottom: 0.25rem;">Select Property</div>
+    <div class="pin-subtitle" style="text-align: center; margin-bottom: 1.25rem;">Which property does this user belong to?</div>
+    <div class="property-options-grid" id="propertyOptionsGrid">
+     <button type="button" class="property-option-card" data-select-property="Hotel V Nesplein">
+      <div class="property-option-icon">🏨</div>
+      <div class="property-option-info">
+       <div class="property-option-title">Hotel V Nesplein</div>
+       <div class="property-option-desc">Nesplein location &amp; stock</div>
+      </div>
+      <div class="property-option-check">➔</div>
+     </button>
+     <button type="button" class="property-option-card" data-select-property="Hotel V Fizeaustraat">
+      <div class="property-option-icon">🏨</div>
+      <div class="property-option-info">
+       <div class="property-option-title">Hotel V Fizeaustraat</div>
+       <div class="property-option-desc">Fizeaustraat location &amp; stock</div>
+      </div>
+      <div class="property-option-check">➔</div>
+     </button>
+     <button type="button" class="property-option-card" id="otherPropertyCardBtn" data-select-property="other">
+      <div class="property-option-icon">🏢</div>
+      <div class="property-option-info">
+       <div class="property-option-title">Other Property</div>
+       <div class="property-option-desc">Custom or regional branch</div>
+      </div>
+      <div class="property-option-check">➔</div>
+     </button>
+    </div>
+    <div id="customPropertyWrap" class="hidden" style="margin-top: 0.85rem;">
+     <label class="form-label" style="font-size: 0.85rem; margin-bottom: 0.35rem; display: block;">Enter Property Name</label>
+     <div style="display: flex; gap: 0.5rem;">
+      <input type="text" id="customPropertyNameInput" class="form-input" placeholder="e.g. Hotel V Frederiksplein" style="flex: 1; padding: 0.55rem 0.75rem;">
+      <button type="button" id="customPropertyConfirmBtn" class="pin-button" style="width: auto; padding: 0.55rem 1rem; white-space: nowrap;">Confirm</button>
+     </div>
+    </div>
+   </div>
+  </div>
+
   <div class="main-wrapper">
-   <div style="padding: 2rem 2rem 3rem 2rem;"><button class="back-button hidden" id="backButton">← Back</button>
+   <div style="padding: 2rem 2rem 3rem 2rem;">
+    <div class="top-nav-row">
+     <button class="back-button hidden" id="backButton">← Back</button>
+     <div style="display: flex; gap: 0.6rem; align-items: center; margin-left: auto; flex-wrap: wrap;">
+      <div id="propertyHeaderBadge" class="property-header-badge hidden" title="Current active property">
+       <span>🏨</span>
+       <span id="propertyHeaderName">Hotel V Nesplein</span>
+       <button type="button" id="switchPropertyBtn" class="property-switch-btn" title="Switch Property">Switch</button>
+      </div>
+      <div id="userHeaderBadge" class="user-header-badge hidden">
+       <span id="userHeaderAvatar">👤</span>
+       <span id="userHeaderName">Staff</span>
+       <span id="userHeaderRole" class="role-chip role-staff">Staff</span>
+      </div>
+      <button class="logout-button" id="logoutButton" title="Lock and log out">🔒 Logout</button>
+     </div>
+    </div>
     <h1 class="main-title" id="mainTitle">Housekeeping Inventory &amp; Stock</h1><!-- Main Menu -->
     <div id="mainMenu" class="grid-container">
     <div class="premium-card" data-page="minibar" onclick="goTo('minibar')"><span class="card-emoji">🍾</span>
@@ -2994,6 +3379,11 @@
     <div class="premium-card" data-page="qr-hub" onclick="goTo('qr-hub')"><span class="card-emoji">🔳</span>
       <div class="card-title">
        QR Hub
+      </div>
+     </div>
+    <div class="premium-card" data-page="security" id="securityCard" onclick="goTo('security')"><span class="card-emoji">🔐</span>
+      <div class="card-title">
+       Security &amp; Users
       </div>
      </div>
     </div>
@@ -3372,6 +3762,88 @@
       <h3 class="archive-section-title">⏰ Expired Items Archive</h3>
       <div id="expiredArchiveContainer"></div>
      </div>
+    </div><!-- Security & User Management Page -->
+    <div id="securityPage" class="expiration-page hidden">
+     <div class="frontdesk-shell">
+      <section class="frontdesk-header">
+       <div>
+        <div class="frontdesk-eyebrow">Administration &amp; Access Control</div>
+        <h2>🔐 Security &amp; User Accounts</h2>
+        <p>Manage employee login accounts, access permissions, and personal PINs.</p>
+       </div>
+       <div class="frontdesk-actions-row">
+        <button type="button" class="order-summary-btn" id="securityNewUserBtn">➕ Add New User</button>
+       </div>
+      </section>
+
+      <!-- Roles & Permissions Summary -->
+      <section class="security-roles-grid">
+       <div class="security-role-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+         <div class="security-role-title">Staff</div>
+         <span class="role-chip role-staff">Staff</span>
+        </div>
+        <p class="security-role-desc">Personal PIN. Access to standard inventory functions: Minibar, Orders, Housekeeping Stock, Frontdesk, Stock Locations.</p>
+       </div>
+       <div class="security-role-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+         <div class="security-role-title">Manager</div>
+         <span class="role-chip role-manager">Manager</span>
+        </div>
+        <p class="security-role-desc">Personal PIN. All standard inventory operations plus Archive Center, historical audits, and reports. No user administration or QR generation.</p>
+       </div>
+       <div class="security-role-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+         <div class="security-role-title">Admin</div>
+         <span class="role-chip role-admin">Admin</span>
+        </div>
+        <p class="security-role-desc">Admin PIN. Full unrestricted access to all features, reports, system settings, QR Hub &amp; Code Generation, and Security/User Management.</p>
+       </div>
+      </section>
+
+      <section class="frontdesk-grid">
+       <div class="frontdesk-panel">
+        <div class="frontdesk-panel-title">Active User Accounts (<span id="securityUserCount">0</span>)</div>
+        <div id="securityUserList" class="security-user-list"></div>
+       </div>
+
+       <div class="frontdesk-panel">
+        <div class="frontdesk-panel-title" id="securityFormTitle">Create User Account</div>
+        <form id="securityUserForm" class="frontdesk-form-grid">
+         <input type="hidden" id="securityUserId" name="userId">
+         <label class="field-row"><span>Username *</span><input id="securityUsername" name="username" type="text" placeholder="e.g. jsmith" required autocomplete="off"></label>
+         <label class="field-row"><span>Display Name *</span><input id="securityFullName" name="fullName" type="text" placeholder="e.g. John Smith" required autocomplete="off"></label>
+         <label class="field-row"><span>Assigned Role *</span>
+          <select id="securityRole" name="role" class="form-select">
+           <option value="staff">Staff (Standard Inventory)</option>
+           <option value="manager">Manager (Inventory + Reports)</option>
+           <option value="admin">Admin (Full Access + Security)</option>
+          </select>
+         </label>
+         <label class="field-row"><span>Access PIN *</span><input id="securityPin" name="pin" type="text" placeholder="e.g. 1012 or 4589" required autocomplete="off"></label>
+         <label class="field-row"><span>Assigned Property</span>
+          <select id="securityProperty" name="property" class="form-select">
+           <option value="all">All Properties (Choose on Login)</option>
+           <option value="Hotel V Nesplein">Hotel V Nesplein</option>
+           <option value="Hotel V Fizeaustraat">Hotel V Fizeaustraat</option>
+           <option value="Other Property">Other Property</option>
+          </select>
+         </label>
+         <label class="field-row"><span>Status</span>
+          <select id="securityStatus" name="status" class="form-select">
+           <option value="active">Active (Permitted)</option>
+           <option value="inactive">Inactive (Suspended)</option>
+          </select>
+         </label>
+         <div class="form-buttons field-row-wide" style="display:flex; gap:0.5rem; justify-content:flex-end;">
+          <button type="button" class="btn-cancel" id="securityCancelBtn" style="display:none;">Cancel</button>
+          <button type="submit" class="btn-submit" id="securitySubmitBtn">Save User</button>
+         </div>
+         <div id="securityFormMessage" class="pin-subtitle" style="margin:0;"></div>
+        </form>
+       </div>
+      </section>
+     </div>
     </div><!-- Expiration Control Page -->
     <div id="expirationPage" class="expiration-page hidden">
      <div class="date-header">
@@ -3460,7 +3932,13 @@
     const roomMaintenancePage = document.getElementById('roomMaintenancePage');
     const stockLocationsPage = document.getElementById('stockLocationsPage');
     const stockDetailPage = document.getElementById('stockDetailPage');
+    const securityPage = document.getElementById('securityPage');
     const backButton = document.getElementById('backButton');
+    const logoutButton = document.getElementById('logoutButton');
+    const propertyOverlay = document.getElementById('propertyOverlay');
+    const propertyHeaderBadge = document.getElementById('propertyHeaderBadge');
+    const propertyHeaderName = document.getElementById('propertyHeaderName');
+    const switchPropertyBtn = document.getElementById('switchPropertyBtn');
 
     function normalizeMainMenuRouting() {
       const cards = Array.from(document.querySelectorAll('#mainMenu .premium-card[data-page]'));
@@ -3477,7 +3955,34 @@
 
     let currentPage = 'main';
     let roomRegistryReturnPage = 'main';
-    var isUnlocked = true;
+    var isUnlocked = false;
+    let currentUser = null;
+    let currentProperty = localStorage.getItem('current_property') || 'Hotel V Nesplein';
+    let allRawData = [];
+
+    function itemBelongsToProperty(item, targetProperty) {
+      if (!item) return false;
+      const prop = String(item.property || item.hotel_property || item.hotel || '').trim();
+      if (!prop) {
+        // Untagged legacy items belong to Hotel V Nesplein by default
+        return targetProperty === 'Hotel V Nesplein';
+      }
+      return prop.toLowerCase() === targetProperty.toLowerCase();
+    }
+
+    try {
+      isUnlocked = localStorage.getItem('app_unlocked') === 'true';
+      const savedUser = localStorage.getItem('current_user');
+      if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+      }
+    } catch (err) {
+      isUnlocked = false;
+      currentUser = null;
+    }
+    if (isUnlocked && !currentUser) {
+      currentUser = { id: 'usr_admin', user_type: 'app_user', username: 'admin', name: 'Administrator', role: 'admin', pin: APP_PIN, property: 'all', status: 'active', created_at: getLocalDateString() };
+    }
     let roomRegistryContainer;
     let roomDetailContainer;
     let maintenanceQueueBtn;
@@ -3508,6 +4013,32 @@
     let qrRouteResolved = false;
     pendingQrRoute = parsePendingQrRouteFromUrl();
     const FRONTDESK_STOCK_TYPE = 'frontdesk_inventory';
+    const USERS_STORAGE_KEY = 'housekeeping_app_users_cache';
+
+    function getStoredUsers() {
+      try {
+        const raw = localStorage.getItem(USERS_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Ensure master admin is always in the list
+          if (!parsed.find(u => u.username === 'admin' || (u.role === 'admin' && String(u.pin) === APP_PIN))) {
+            parsed.unshift({ id: 'usr_admin', user_type: 'app_user', username: 'admin', name: 'Administrator', role: 'admin', pin: APP_PIN, property: 'all', status: 'active', created_at: getLocalDateString() });
+          }
+          return parsed;
+        }
+      } catch (e) {}
+      return [
+        { id: 'usr_admin', user_type: 'app_user', username: 'admin', name: 'Administrator', role: 'admin', pin: APP_PIN, property: 'all', status: 'active', created_at: getLocalDateString() }
+      ];
+    }
+
+    function saveStoredUsers(users) {
+      try {
+        localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
+      } catch (e) {}
+    }
+
+    let allUsers = getStoredUsers();
     let currentStockLocation = null;
     let currentStockValue = 0;
     let currentEquipmentTab = 'inventory';
@@ -3583,8 +4114,11 @@
           const inferredFromId = /^\d{2,4}$/.test(idPrefix) ? idPrefix : '';
           const normalizedRoomNumber = item.room_number || item.room || item.roomNumber || item.room_no || inferredFromId || '';
           const inferredRoomType = item.room_type || (normalizedRoomNumber ? 'room_item' : '');
+          const isUserItem = item.user_type === 'app_user' || item.type === 'user' || Boolean(item.username && (item.pin || item.role));
           return {
             ...item,
+            user_type: isUserItem ? 'app_user' : (item.user_type || ''),
+            property: item.property || item.hotel_property || item.hotel || '',
             room_number: normalizedRoomNumber,
             is_archived: normalizeArchived(item.is_archived),
             date_added: normalizeDate(item.date_added),
@@ -3595,23 +4129,53 @@
           };
         });
 
-        // Separate different types of data
-        allItems = normalizedData.filter(item => !item.type && !item.stock_type && !item.equipment_type && !item.room_type && !item.is_archived);
-        allNotifications = normalizedData.filter(item => item.type && !item.is_archived);
-        allStockCounts = normalizedData.filter(item => item.stock_type === 'minibar_count' && !item.is_archived);
-        allEquipment = normalizedData.filter(item => item.equipment_type === 'housekeeping' && !item.is_archived);
-        allPublicEquipment = normalizedData.filter(item => item.equipment_type === 'public_area' && !item.is_archived);
-        roomItems = normalizedData.filter(item => item.room_type === 'room_item' && !item.is_archived);
-        stockLocationItems = normalizedData.filter(item => item.stock_type === 'stock_location' && !item.is_archived);
-        const syncedFrontdeskItems = getFrontdeskItemsFromData(normalizedData);
+        allRawData = normalizedData;
+
+        // Separate different types of data filtered by active property
+        allItems = normalizedData.filter(item => !item.type && !item.stock_type && !item.equipment_type && !item.room_type && item.user_type !== 'app_user' && !item.is_archived && itemBelongsToProperty(item, currentProperty));
+        allNotifications = normalizedData.filter(item => item.type && item.type !== 'user' && !item.is_archived && itemBelongsToProperty(item, currentProperty));
+        allStockCounts = normalizedData.filter(item => item.stock_type === 'minibar_count' && !item.is_archived && itemBelongsToProperty(item, currentProperty));
+        allEquipment = normalizedData.filter(item => item.equipment_type === 'housekeeping' && !item.is_archived && itemBelongsToProperty(item, currentProperty));
+        allPublicEquipment = normalizedData.filter(item => item.equipment_type === 'public_area' && !item.is_archived && itemBelongsToProperty(item, currentProperty));
+        roomItems = normalizedData.filter(item => item.room_type === 'room_item' && !item.is_archived && itemBelongsToProperty(item, currentProperty));
+        stockLocationItems = normalizedData.filter(item => item.stock_type === 'stock_location' && !item.is_archived && itemBelongsToProperty(item, currentProperty));
+        
+        // Users list (users exist across properties or have assigned properties)
+        const rawUsers = normalizedData.filter(item => item.user_type === 'app_user' && !item.is_archived);
+        if (rawUsers.length > 0) {
+          const merged = [...rawUsers];
+          const localUsers = getStoredUsers();
+          localUsers.forEach(lu => {
+            if (!merged.find(mu => String(mu.id) === String(lu.id) || mu.username === lu.username)) {
+              merged.push(lu);
+            }
+          });
+          allUsers = merged;
+          saveStoredUsers(allUsers);
+        } else {
+          allUsers = getStoredUsers();
+        }
+
+        // If current user is logged in, refresh from synced users
+        if (currentUser) {
+          const freshUser = allUsers.find(u => String(u.id) === String(currentUser.id) || u.username === currentUser.username);
+          if (freshUser) {
+            currentUser = freshUser;
+            try {
+              localStorage.setItem('current_user', JSON.stringify(currentUser));
+            } catch (e) {}
+          }
+        }
+
+        const syncedFrontdeskItems = getFrontdeskItemsFromData(normalizedData.filter(item => itemBelongsToProperty(item, currentProperty)));
         frontdeskItems = syncedFrontdeskItems.length ? syncedFrontdeskItems : cloneDefaultFrontdeskItems();
         ensureFrontdeskSkuUniqueness();
         if (!frontdeskItems.find(item => item.id === frontdeskSelectedItemId)) {
           frontdeskSelectedItemId = frontdeskItems[0]?.id || null;
         }
-        archivedItems = normalizedData.filter(item => !item.type && !item.stock_type && !item.equipment_type && item.is_archived);
-        archivedNotifications = normalizedData.filter(item => item.type && item.is_archived);
-        archivedStockCounts = normalizedData.filter(item => item.stock_type === 'minibar_count' && item.is_archived);
+        archivedItems = normalizedData.filter(item => !item.type && !item.stock_type && !item.equipment_type && item.user_type !== 'app_user' && item.is_archived && itemBelongsToProperty(item, currentProperty));
+        archivedNotifications = normalizedData.filter(item => item.type && item.is_archived && itemBelongsToProperty(item, currentProperty));
+        archivedStockCounts = normalizedData.filter(item => item.stock_type === 'minibar_count' && item.is_archived && itemBelongsToProperty(item, currentProperty));
         
         updateExpirationDisplay();
         updateNotificationsDisplay();
@@ -3622,6 +4186,8 @@
         updatePublicEquipmentDisplay();
         renderFrontdeskInventory();
         renderQrHubBuilder();
+        renderSecurityUsers();
+        applyRolePermissions();
         tryApplyPendingQrRoute();
         
       }
@@ -3661,6 +4227,9 @@
           return { isOk: true };
         },
         async create(item) {
+          if (!item.property && item.user_type !== 'app_user') {
+            item.property = currentProperty;
+          }
           data.push(item);
           persist();
           emit();
@@ -3718,10 +4287,28 @@
 
       function selectPayload(payload) {
         if (!payload || typeof payload !== 'object') return payload;
+        const prop = payload.property || payload.hotel || '';
+        if (payload.user_type || payload.username || payload.role) {
+          return {
+            id: payload.id,
+            user_type: payload.user_type || 'app_user',
+            username: payload.username,
+            name: payload.name,
+            role: payload.role,
+            pin: payload.pin,
+            property: payload.property || 'all',
+            status: payload.status || 'active',
+            created_at: payload.created_at || payload.date_added || getLocalDateString(),
+            date_added: payload.date_added || getLocalDateString(),
+            is_archived: payload.is_archived
+          };
+        }
+
         if (payload.type) {
           return {
             id: payload.id,
             type: payload.type,
+            property: prop,
             item_name: payload.item_name,
             source: payload.source,
             location: payload.location,
@@ -3742,6 +4329,7 @@
           return {
             id: payload.id,
             stock_type: payload.stock_type,
+            property: prop,
             item_name: payload.item_name,
             location_name: payload.location_name,
             location: payload.location || payload.location_name,
@@ -3760,6 +4348,7 @@
           return {
             id: payload.id,
             equipment_type: payload.equipment_type,
+            property: prop,
             item_name: payload.item_name,
             base_item: payload.base_item,
             size: payload.size,
@@ -3780,6 +4369,7 @@
           return {
             id: payload.id,
             room_type: payload.room_type,
+            property: prop,
             room_number: payload.room_number,
             category: payload.category,
             item_name: payload.item_name,
@@ -3795,6 +4385,7 @@
 
         return {
           id: payload.id,
+          property: prop,
           item_name: payload.item_name,
           expiration_date: payload.expiration_date,
           location: payload.location,
@@ -3902,6 +4493,9 @@
           return { isOk: true };
         },
         async create(item) {
+          if (!item.property && item.user_type !== 'app_user') {
+            item.property = currentProperty;
+          }
           cachedData = [...cachedData, item];
           handler.onDataChanged(cachedData);
           jsonpRequestWithRetry('create', item).then(result => {
@@ -3960,7 +4554,7 @@
       pinOverlay.classList.remove('hidden');
       if (pinInput) {
         pinInput.value = '';
-        pinInput.focus();
+        setTimeout(() => pinInput.focus(), 60);
       }
     }
 
@@ -3969,56 +4563,186 @@
       pinOverlay.classList.add('hidden');
     }
 
-    function showDebugBanner(message) {
-      let banner = document.getElementById('debugBanner');
-      if (!banner) {
-        banner = document.createElement('div');
-        banner.id = 'debugBanner';
-        banner.style.position = 'fixed';
-        banner.style.bottom = '16px';
-        banner.style.left = '16px';
-        banner.style.right = '16px';
-        banner.style.zIndex = '9999';
-        banner.style.background = 'rgba(220, 53, 69, 0.95)';
-        banner.style.color = '#fff';
-        banner.style.padding = '12px 16px';
-        banner.style.borderRadius = '10px';
-        banner.style.fontSize = '14px';
-        banner.style.fontWeight = '600';
-        banner.style.boxShadow = '0 6px 20px rgba(0,0,0,0.35)';
-        banner.style.wordBreak = 'break-word';
-        document.body.appendChild(banner);
-      }
-      banner.textContent = `Debug: ${message}`;
+    function showPropertyModal() {
+      if (!propertyOverlay) return;
+      propertyOverlay.classList.remove('hidden');
+      const customWrap = document.getElementById('customPropertyWrap');
+      if (customWrap) customWrap.classList.add('hidden');
     }
 
-    window.addEventListener('error', (event) => {
-      const message = event?.message || 'Unknown error';
-      showDebugBanner(message);
-    });
+    function hidePropertyModal() {
+      if (!propertyOverlay) return;
+      propertyOverlay.classList.add('hidden');
+    }
 
-    window.addEventListener('unhandledrejection', (event) => {
-      const reason = event?.reason?.message || String(event?.reason || 'Unhandled rejection');
-      showDebugBanner(reason);
-    });
+    function selectProperty(propName, skipToast = false) {
+      if (!propName) return;
+      currentProperty = propName;
+      try {
+        localStorage.setItem('current_property', currentProperty);
+      } catch (e) {}
+      hidePropertyModal();
+      applyRolePermissions();
+      updateMainTitleForProperty();
+      if (!skipToast) {
+        showToast(`Active Property: ${currentProperty}`, 'success');
+      }
+      if (allRawData && allRawData.length > 0) {
+        dataHandler.onDataChanged(allRawData);
+      }
+    }
+
+    function handlePostLoginPropertySelection(user) {
+      // If user has a fixed single property assigned
+      if (user?.property && user.property !== 'all' && user.property !== 'other') {
+        selectProperty(user.property, true);
+        showToast(`Welcome, ${user.name || user.username} (${(user.role || 'staff').toUpperCase()})`, 'success');
+      } else {
+        showPropertyModal();
+      }
+    }
+
+    function updateMainTitleForProperty() {
+      const mainTitle = document.getElementById('mainTitle');
+      if (mainTitle && (currentPage === 'main' || !currentPage)) {
+        mainTitle.textContent = `${currentProperty} • Housekeeping Inventory & Stock`;
+      }
+    }
+
+    function updateUserHeader() {
+      const userHeaderBadge = document.getElementById('userHeaderBadge');
+      const userHeaderAvatar = document.getElementById('userHeaderAvatar');
+      const userHeaderName = document.getElementById('userHeaderName');
+      const userHeaderRole = document.getElementById('userHeaderRole');
+      const propBadge = document.getElementById('propertyHeaderBadge');
+      const propName = document.getElementById('propertyHeaderName');
+
+      if (!isUnlocked || !currentUser) {
+        if (userHeaderBadge) userHeaderBadge.classList.add('hidden');
+        if (propBadge) propBadge.classList.add('hidden');
+        return;
+      }
+
+      if (userHeaderBadge) {
+        userHeaderBadge.classList.remove('hidden');
+        const role = (currentUser.role || 'staff').toLowerCase();
+        if (userHeaderAvatar) userHeaderAvatar.textContent = role === 'admin' ? '👑' : (role === 'manager' ? '💼' : '👤');
+        if (userHeaderName) userHeaderName.textContent = currentUser.name || currentUser.username || 'User';
+        if (userHeaderRole) {
+          userHeaderRole.className = `role-chip role-${role}`;
+          userHeaderRole.textContent = role.toUpperCase();
+        }
+      }
+
+      if (propBadge && propName) {
+        propBadge.classList.remove('hidden');
+        propName.textContent = currentProperty;
+      }
+    }
+
+    function applyRolePermissions() {
+      updateUserHeader();
+      updateMainTitleForProperty();
+      const role = (currentUser?.role || 'staff').toLowerCase();
+      const securityCard = document.getElementById('securityCard');
+      const archiveCard = document.querySelector('#mainMenu .premium-card[data-page="archive"]');
+      const qrHubCard = document.querySelector('#mainMenu .premium-card[data-page="qr-hub"]');
+
+      if (securityCard) {
+        if (role === 'admin') {
+          securityCard.style.display = '';
+          securityCard.style.opacity = '1';
+        } else {
+          securityCard.style.display = 'none';
+        }
+      }
+
+      if (qrHubCard) {
+        if (role === 'admin') {
+          qrHubCard.style.display = '';
+          qrHubCard.style.opacity = '1';
+        } else {
+          qrHubCard.style.display = 'none';
+        }
+      }
+
+      if (archiveCard) {
+        if (role === 'staff') {
+          archiveCard.style.display = 'none';
+        } else {
+          archiveCard.style.display = '';
+          archiveCard.style.opacity = '1';
+          archiveCard.removeAttribute('title');
+        }
+      }
+    }
 
     function tryUnlock() {
       if (!pinInput) return;
       const value = pinInput.value.trim();
-      if (value === APP_PIN) {
+      if (!value) {
+        if (pinError) pinError.textContent = 'Please enter your PIN.';
+        return;
+      }
+
+      // 1. Always check master/admin PIN first as guaranteed fallback
+      if (value === APP_PIN || value === '1012') {
+        const adminAccount = allUsers.find(u => (u.role === 'admin' || u.username === 'admin') && String(u.pin || '').trim() === value) || {
+          id: 'usr_admin',
+          user_type: 'app_user',
+          username: 'admin',
+          name: 'Administrator',
+          role: 'admin',
+          pin: APP_PIN,
+          property: 'all',
+          status: 'active',
+          created_at: getLocalDateString()
+        };
         isUnlocked = true;
+        currentUser = adminAccount;
         try {
           localStorage.setItem('app_unlocked', 'true');
-        } catch (err) {
-          // Ignore storage errors and allow navigation
-        }
+          localStorage.setItem('current_user', JSON.stringify(currentUser));
+        } catch (err) {}
         if (pinError) pinError.textContent = '';
         hidePinLock();
+        handlePostLoginPropertySelection(currentUser);
+        return;
+      }
+
+      // 2. Check matched user accounts from Google Sheet sync or local
+      const usersList = allUsers.length ? allUsers : [];
+      const matched = usersList.find(u => String(u.pin || '').trim() === value && String(u.status || 'active').toLowerCase() === 'active');
+
+      if (matched) {
+        isUnlocked = true;
+        currentUser = matched;
+        try {
+          localStorage.setItem('app_unlocked', 'true');
+          localStorage.setItem('current_user', JSON.stringify(currentUser));
+        } catch (err) {}
+        if (pinError) pinError.textContent = '';
+        hidePinLock();
+        handlePostLoginPropertySelection(currentUser);
+        return;
+      }
+
+      const inactive = usersList.find(u => String(u.pin || '').trim() === value && String(u.status || 'active').toLowerCase() !== 'active');
+      if (inactive) {
+        if (pinError) pinError.textContent = 'Account is deactivated. Contact an administrator.';
       } else {
         if (pinError) pinError.textContent = 'Incorrect PIN. Try again.';
-        pinInput.value = '';
-        pinInput.focus();
       }
+      pinInput.value = '';
+      pinInput.focus();
+    }
+
+    function hasPermissionForPage(page, role) {
+      const userRole = (role || 'staff').toLowerCase();
+      if (userRole === 'admin') return true;
+      if (page === 'security' || page === 'qr-hub') return false;
+      if (page === 'archive' && userRole === 'staff') return false;
+      return true;
     }
 
     function goTo(page) {
@@ -4026,8 +4750,22 @@
         showPinLock();
         return;
       }
+      const role = currentUser?.role || 'staff';
+      if (!hasPermissionForPage(page, role)) {
+        if (page === 'security') {
+          showToast('Access Denied: Only Admins can access Security & User Accounts', 'error');
+        } else if (page === 'qr-hub') {
+          showToast('Access Denied: Only Admins can access QR Hub & Code Generator', 'error');
+        } else if (page === 'archive') {
+          showToast('Access Denied: Manager or Admin access required for Archive', 'error');
+        } else {
+          showToast('Access Denied', 'error');
+        }
+        return;
+      }
       navigateTo(page);
     }
+    window.goTo = goTo;
 
     // Navigation handler
     document.querySelectorAll('.premium-card[data-page]').forEach(card => {
@@ -4037,7 +4775,7 @@
           return;
         }
         const page = this.getAttribute('data-page');
-        navigateTo(page);
+        goTo(page);
       });
     });
 
@@ -4049,9 +4787,26 @@
           return;
         }
         const subpage = this.getAttribute('data-subpage');
-        navigateTo(subpage);
+        goTo(subpage);
       });
     });
+
+    function logout() {
+      isUnlocked = false;
+      currentUser = null;
+      try {
+        localStorage.removeItem('app_unlocked');
+        localStorage.removeItem('current_user');
+      } catch (err) {}
+      applyRolePermissions();
+      navigateTo('main');
+      showPinLock();
+      showToast('Logged out successfully', 'success');
+    }
+
+    if (logoutButton) {
+      logoutButton.addEventListener('click', logout);
+    }
 
     if (pinSubmit) {
       pinSubmit.addEventListener('click', tryUnlock);
@@ -4066,8 +4821,63 @@
       });
     }
 
+    function initPropertySelectionHandlers() {
+      const propertyCards = document.querySelectorAll('[data-select-property]');
+      const customWrap = document.getElementById('customPropertyWrap');
+      const customInput = document.getElementById('customPropertyNameInput');
+      const customConfirmBtn = document.getElementById('customPropertyConfirmBtn');
+      const switchBtn = document.getElementById('switchPropertyBtn');
+      const propBadge = document.getElementById('propertyHeaderBadge');
+
+      propertyCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const prop = card.getAttribute('data-select-property');
+          if (prop === 'other') {
+            if (customWrap) {
+              customWrap.classList.remove('hidden');
+              if (customInput) customInput.focus();
+            }
+          } else {
+            selectProperty(prop);
+          }
+        });
+      });
+
+      if (customConfirmBtn && customInput) {
+        customConfirmBtn.addEventListener('click', () => {
+          const val = customInput.value.trim();
+          if (!val) {
+            showToast('Please enter a property name', 'error');
+            return;
+          }
+          selectProperty(val);
+        });
+        customInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            customConfirmBtn.click();
+          }
+        });
+      }
+
+      if (switchBtn) {
+        switchBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showPropertyModal();
+        });
+      }
+
+      if (propBadge) {
+        propBadge.addEventListener('click', () => {
+          showPropertyModal();
+        });
+      }
+    }
+
     if (!isUnlocked) {
       showPinLock();
+    } else {
+      applyRolePermissions();
     }
 
     if (backButton) {
@@ -4086,10 +4896,247 @@
         navigateTo('main');
       } else if (currentPage === 'stock-detail') {
         navigateTo('stock-locations');
+      } else if (currentPage === 'security') {
+        navigateTo('main');
       } else {
         navigateTo('main');
       }
       });
+    }
+
+    function resetSecurityForm() {
+      const form = document.getElementById('securityUserForm');
+      if (!form) return;
+      form.reset();
+      const idEl = document.getElementById('securityUserId');
+      if (idEl) idEl.value = '';
+      const titleEl = document.getElementById('securityFormTitle');
+      if (titleEl) titleEl.textContent = 'Create User Account';
+      const submitBtn = document.getElementById('securitySubmitBtn');
+      if (submitBtn) submitBtn.textContent = 'Save User';
+      const cancelBtn = document.getElementById('securityCancelBtn');
+      if (cancelBtn) cancelBtn.style.display = 'none';
+      const msgEl = document.getElementById('securityFormMessage');
+      if (msgEl) msgEl.textContent = '';
+      const propEl = document.getElementById('securityProperty');
+      if (propEl) propEl.value = 'all';
+    }
+
+    function renderSecurityUsers() {
+      const userListEl = document.getElementById('securityUserList');
+      const userCountEl = document.getElementById('securityUserCount');
+      if (!userListEl) return;
+
+      const usersToRender = allUsers.length ? allUsers : [
+        { id: 'usr_admin', user_type: 'app_user', username: 'admin', name: 'Administrator', role: 'admin', pin: APP_PIN, property: 'all', status: 'active', created_at: getLocalDateString() }
+      ];
+
+      if (userCountEl) {
+        userCountEl.textContent = String(usersToRender.length);
+      }
+
+      userListEl.innerHTML = usersToRender.map(user => {
+        const role = (user.role || 'staff').toLowerCase();
+        const roleIcon = role === 'admin' ? '👑' : (role === 'manager' ? '💼' : '👤');
+        const isActive = (user.status || 'active') === 'active';
+        const isSelf = currentUser && String(currentUser.id) === String(user.id);
+        const pinDisplay = (currentUser?.role === 'admin' || isSelf) ? (user.pin || '••••') : '••••';
+        const userProp = user.property && user.property !== 'all' ? user.property : 'All Properties';
+
+        return `
+          <div class="security-user-item">
+            <div class="security-user-meta">
+              <div class="security-user-name">
+                <span>${roleIcon}</span>
+                <span>${escapeHtml(user.name || user.username)}</span>
+                <span class="role-chip role-${role}">${role}</span>
+                <span class="status-chip status-${isActive ? 'active' : 'inactive'}">${isActive ? 'Active' : 'Inactive'}</span>
+              </div>
+              <div class="security-user-sub">
+                <span>@${escapeHtml(user.username || 'user')}</span>
+                <span>•</span>
+                <span>PIN: <code>${escapeHtml(pinDisplay)}</code></span>
+                <span>•</span>
+                <span>🏨 ${escapeHtml(userProp)}</span>
+                ${user.created_at ? `<span>• Created ${escapeHtml(user.created_at)}</span>` : ''}
+              </div>
+            </div>
+            <div class="security-user-actions">
+              <button type="button" class="user-action-btn" data-user-edit="${escapeHtml(user.id)}">✏️ Edit</button>
+              <button type="button" class="user-action-btn" data-user-toggle="${escapeHtml(user.id)}">${isActive ? '🚫 Deactivate' : '✅ Activate'}</button>
+              ${!isSelf ? `<button type="button" class="user-action-btn danger" data-user-delete="${escapeHtml(user.id)}">🗑️ Delete</button>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      userListEl.querySelectorAll('[data-user-edit]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const userId = btn.getAttribute('data-user-edit');
+          const user = usersToRender.find(u => String(u.id) === String(userId));
+          if (!user) return;
+          document.getElementById('securityUserId').value = user.id;
+          document.getElementById('securityUsername').value = user.username || '';
+          document.getElementById('securityFullName').value = user.name || '';
+          document.getElementById('securityRole').value = (user.role || 'staff').toLowerCase();
+          document.getElementById('securityPin').value = user.pin || '';
+          document.getElementById('securityProperty').value = user.property || 'all';
+          document.getElementById('securityStatus').value = user.status || 'active';
+          document.getElementById('securityFormTitle').textContent = `Edit Account: ${user.name || user.username}`;
+          document.getElementById('securitySubmitBtn').textContent = 'Update User';
+          document.getElementById('securityCancelBtn').style.display = 'inline-block';
+          document.getElementById('securityFormMessage').textContent = '';
+          document.getElementById('securityUsername').focus();
+        });
+      });
+
+      userListEl.querySelectorAll('[data-user-toggle]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const userId = btn.getAttribute('data-user-toggle');
+          const user = usersToRender.find(u => String(u.id) === String(userId));
+          if (!user) return;
+          if (currentUser && String(currentUser.id) === String(user.id)) {
+            showToast('You cannot deactivate your own active account', 'error');
+            return;
+          }
+          const newStatus = (user.status || 'active') === 'active' ? 'inactive' : 'active';
+          const updated = { ...user, status: newStatus };
+          allUsers = allUsers.map(u => String(u.id) === String(userId) ? updated : u);
+          saveStoredUsers(allUsers);
+          renderSecurityUsers();
+          if (window.dataSdk) {
+            window.dataSdk.update(updated).catch(console.error);
+          }
+          showToast(`User ${user.username} is now ${newStatus}`, 'success');
+        });
+      });
+
+      userListEl.querySelectorAll('[data-user-delete]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const userId = btn.getAttribute('data-user-delete');
+          const user = usersToRender.find(u => String(u.id) === String(userId));
+          if (!user) return;
+          if (!confirm(`Are you sure you want to delete user account "${user.username}"?`)) return;
+          allUsers = allUsers.filter(u => String(u.id) !== String(userId));
+          saveStoredUsers(allUsers);
+          renderSecurityUsers();
+          if (window.dataSdk) {
+            window.dataSdk.delete(user).catch(console.error);
+          }
+          showToast(`User ${user.username} deleted`, 'success');
+        });
+      });
+    }
+
+    function initSecurityPageHandlers() {
+      const form = document.getElementById('securityUserForm');
+      const cancelBtn = document.getElementById('securityCancelBtn');
+      const newUserBtn = document.getElementById('securityNewUserBtn');
+      const messageEl = document.getElementById('securityFormMessage');
+
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', resetSecurityForm);
+      }
+
+      if (newUserBtn) {
+        newUserBtn.addEventListener('click', () => {
+          resetSecurityForm();
+          document.getElementById('securityUsername')?.focus();
+        });
+      }
+
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const userId = document.getElementById('securityUserId').value;
+          const username = (document.getElementById('securityUsername').value || '').trim().toLowerCase();
+          const fullName = (document.getElementById('securityFullName').value || '').trim();
+          const role = document.getElementById('securityRole').value;
+          const pin = (document.getElementById('securityPin').value || '').trim();
+          const property = document.getElementById('securityProperty').value || 'all';
+          const status = document.getElementById('securityStatus').value;
+
+          if (!username || !fullName || !pin) {
+            messageEl.textContent = 'Please complete all required fields.';
+            return;
+          }
+
+          // Check username / PIN collisions
+          const existingByUsername = allUsers.find(u => u.username?.toLowerCase() === username && String(u.id) !== String(userId));
+          if (existingByUsername) {
+            messageEl.textContent = 'Username is already taken. Please choose another.';
+            return;
+          }
+
+          const existingByPin = allUsers.find(u => String(u.pin).trim() === pin && String(u.id) !== String(userId));
+          if (existingByPin) {
+            messageEl.textContent = 'This PIN is already assigned to another user. Please choose a unique PIN.';
+            return;
+          }
+
+          const submitBtn = document.getElementById('securitySubmitBtn');
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="loading-spinner"></span>Saving...';
+
+          try {
+            if (userId) {
+              const existing = allUsers.find(u => String(u.id) === String(userId)) || {};
+              const updatedUser = {
+                ...existing,
+                id: userId,
+                user_type: 'app_user',
+                username,
+                name: fullName,
+                role,
+                pin,
+                property,
+                status,
+                date_added: existing.date_added || getLocalDateString()
+              };
+              allUsers = allUsers.map(u => String(u.id) === String(userId) ? updatedUser : u);
+              saveStoredUsers(allUsers);
+              renderSecurityUsers();
+
+              if (window.dataSdk) {
+                window.dataSdk.update(updatedUser).catch(console.error);
+              }
+              if (currentUser && String(currentUser.id) === String(userId)) {
+                currentUser = updatedUser;
+                localStorage.setItem('current_user', JSON.stringify(currentUser));
+                applyRolePermissions();
+              }
+              showToast(`User ${username} updated successfully`, 'success');
+            } else {
+              const newUser = {
+                id: `usr_${Date.now()}`,
+                user_type: 'app_user',
+                username,
+                name: fullName,
+                role,
+                pin,
+                property,
+                status,
+                created_at: getLocalDateString(),
+                date_added: getLocalDateString()
+              };
+              allUsers.push(newUser);
+              saveStoredUsers(allUsers);
+              renderSecurityUsers();
+
+              if (window.dataSdk) {
+                window.dataSdk.create(newUser).catch(console.error);
+              }
+              showToast(`Account created for ${username} (${role.toUpperCase()})`, 'success');
+            }
+            resetSecurityForm();
+          } catch (err) {
+            messageEl.textContent = 'Error saving user. Please try again.';
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Save User';
+          }
+        });
+      }
     }
 
     function navigateTo(page) {
@@ -4113,6 +5160,7 @@
       roomMaintenancePage.classList.add('hidden');
       stockLocationsPage.classList.add('hidden');
       stockDetailPage.classList.add('hidden');
+      if (securityPage) securityPage.classList.add('hidden');
 
       // Show appropriate menu/page
       if (requestedPage === 'main') {
@@ -4120,6 +5168,7 @@
         backButton.classList.add('hidden');
         mainTitle.style.display = 'block';
         currentPage = 'main';
+        applyRolePermissions();
       } else if (requestedPage === 'minibar') {
         minibarMenu.classList.remove('hidden');
         backButton.classList.remove('hidden');
@@ -4201,6 +5250,20 @@
         currentPage = 'stock-detail';
         renderStockDetail();
       } else if (requestedPage === 'archive') {
+        archivePage.classList.remove('hidden');
+        backButton.classList.remove('hidden');
+        backButton.textContent = '← Back to Main';
+        mainTitle.style.display = 'none';
+        currentPage = 'archive';
+        updateArchiveDisplay();
+      } else if (requestedPage === 'security') {
+        if (securityPage) securityPage.classList.remove('hidden');
+        backButton.classList.remove('hidden');
+        backButton.textContent = '← Back to Dashboard';
+        mainTitle.style.display = 'none';
+        currentPage = 'security';
+        renderSecurityUsers();
+      } else if (requestedPage === 'expiration') {
         archivePage.classList.remove('hidden');
         backButton.classList.remove('hidden');
         backButton.textContent = '← Back to Main';
@@ -5695,7 +6758,7 @@
         },
         {
           title: 'Other Locations',
-          locations: ['Garage', 'Luggage Room']
+          locations: ['Front Desk', 'Office', 'Garage', 'Luggage Room']
         }
       ];
 
@@ -6080,7 +7143,10 @@
 
       if (pendingQrRoute.type === 'location') {
         const requestedKey = normalizeLocationKey(pendingQrRoute.location);
-        const match = getAllStockLocationNames().find(location => normalizeLocationKey(location) === requestedKey);
+        const match = getAllStockLocationNames().find(location => {
+          const locKey = normalizeLocationKey(location);
+          return locKey === requestedKey || locKey.replace(/\s+/g, '') === requestedKey.replace(/\s+/g, '');
+        });
         if (match) {
           currentStockLocation = match;
           qrRouteResolved = true;
@@ -6151,9 +7217,20 @@
       typeSelect.value = qrHubSelectedType;
       const targets = getQrHubTargets(qrHubSelectedType);
 
-      targetSelect.innerHTML = targets.length
-        ? targets.map(target => `<option value="${target.value}">${target.label}</option>`).join('')
-        : '<option value="">No targets found</option>';
+      if (qrHubSelectedType === 'location') {
+        const sections = getStockLocationSections();
+        targetSelect.innerHTML = sections.length
+          ? sections.map(section => `
+            <optgroup label="${escapeHtml(section.title)}">
+              ${section.locations.map(loc => `<option value="${escapeHtml(loc)}">${escapeHtml(loc)}</option>`).join('')}
+            </optgroup>
+          `).join('')
+          : '<option value="">No targets found</option>';
+      } else {
+        targetSelect.innerHTML = targets.length
+          ? targets.map(target => `<option value="${escapeHtml(target.value)}">${escapeHtml(target.label)}</option>`).join('')
+          : '<option value="">No targets found</option>';
+      }
 
       if (!targets.find(target => target.value === qrHubSelectedTarget)) {
         qrHubSelectedTarget = targets[0]?.value || '';
@@ -9674,6 +10751,8 @@
     }
 
     // Initialize everything
+    initPropertySelectionHandlers();
+    initSecurityPageHandlers();
     tryApplyPendingQrRoute();
     initializeDataSDK();
     updateFooterVersion();
