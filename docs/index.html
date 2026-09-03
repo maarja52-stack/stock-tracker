@@ -3959,6 +3959,8 @@
     let currentUser = null;
     let currentProperty = localStorage.getItem('current_property') || 'Hotel V Nesplein';
     let allRawData = [];
+    let isBackendSyncReady = false;
+    let pendingUnlockPin = null;
 
     function itemBelongsToProperty(item, targetProperty) {
       if (!item) return false;
@@ -4114,10 +4116,14 @@
           const inferredFromId = /^\d{2,4}$/.test(idPrefix) ? idPrefix : '';
           const normalizedRoomNumber = item.room_number || item.room || item.roomNumber || item.room_no || inferredFromId || '';
           const inferredRoomType = item.room_type || (normalizedRoomNumber ? 'room_item' : '');
-          const isUserItem = item.user_type === 'app_user' || item.type === 'user' || Boolean(item.username && (item.pin || item.role));
+          const isUserItem = item.user_type === 'app_user' || item.type === 'user' || Boolean(item.username && (item.pin !== undefined && item.pin !== null && item.pin !== '' || item.role));
           return {
             ...item,
             user_type: isUserItem ? 'app_user' : (item.user_type || ''),
+            username: String(item.username || '').trim(),
+            pin: String(item.pin !== undefined && item.pin !== null ? item.pin : '').trim(),
+            role: String(item.role || 'staff').toLowerCase().trim(),
+            status: String(item.status || 'active').toLowerCase().trim(),
             property: item.property || item.hotel_property || item.hotel || '',
             room_number: normalizedRoomNumber,
             is_archived: normalizeArchived(item.is_archived),
@@ -4130,6 +4136,14 @@
         });
 
         allRawData = normalizedData;
+        isBackendSyncReady = true;
+
+        if (pendingUnlockPin && !isUnlocked) {
+          const pinToRetry = pendingUnlockPin;
+          pendingUnlockPin = null;
+          if (pinInput) pinInput.value = pinToRetry;
+          tryUnlock();
+        }
 
         // Separate different types of data filtered by active property
         allItems = normalizedData.filter(item => !item.type && !item.stock_type && !item.equipment_type && !item.room_type && item.user_type !== 'app_user' && !item.is_archived && itemBelongsToProperty(item, currentProperty));
@@ -4724,6 +4738,13 @@
         if (pinError) pinError.textContent = '';
         hidePinLock();
         handlePostLoginPropertySelection(currentUser);
+        return;
+      }
+
+      // If backend is still loading on mobile, don't immediately fail
+      if (!isBackendSyncReady) {
+        pendingUnlockPin = value;
+        if (pinError) pinError.textContent = 'Verifying credentials with server…';
         return;
       }
 
