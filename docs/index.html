@@ -6819,11 +6819,7 @@
 
       // Scanned QR codes cannot open local file:// paths on phones, so use the live site by default.
       if (baseUrl.protocol === 'file:') {
-        return 'https://minibartracker.space/docs/';
-      }
-
-      if (baseUrl.hostname === 'minibartracker.space' && /^\/$/.test(baseUrl.pathname)) {
-        baseUrl.pathname = '/docs/';
+        return 'https://minibartracker.space/';
       }
 
       return baseUrl.toString();
