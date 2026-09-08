@@ -6728,9 +6728,13 @@
       return (Array.isArray(data) ? data : [])
         .filter(item => item && typeof item === 'object' && String(item.stock_type || item.type || '').toLowerCase() === FRONTDESK_STOCK_TYPE && !item.is_archived)
         .map(item => {
-          const current = Number(item.current_stock ?? item.quantity ?? item.current ?? 0);
-          const minimum = Number(item.minimum_stock ?? item.min_stock ?? item.minimum ?? 0);
-          const maximum = Number(item.maximum_stock ?? item.max_stock ?? item.maximum ?? Math.max(minimum + 20, current + 20));
+          const firstStoredNumber = (...values) => {
+            const value = values.find(entry => entry !== null && entry !== undefined && String(entry).trim() !== '');
+            return Number(value ?? 0);
+          };
+          const current = firstStoredNumber(item.current_stock, item.quantity, item.current);
+          const minimum = firstStoredNumber(item.minimum_stock, item.min_stock, item.minimum);
+          const maximum = firstStoredNumber(item.maximum_stock, item.max_stock, item.maximum) || Math.max(minimum + 20, current + 20);
           return {
             id: String(item.id || item.sku || item.item_name || `frontdesk-${Date.now()}`),
             sku: String(item.sku || item.article_number || item.id || '').trim() || `FD-${String(Date.now()).slice(-6)}`,

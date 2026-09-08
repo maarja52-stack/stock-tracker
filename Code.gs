@@ -6,6 +6,7 @@ const USER_HEADERS = [
   'id', 'user_type', 'username', 'name', 'role', 'pin',
   'property', 'status', 'created_at', 'date_added', 'is_archived'
 ];
+const FRONTDESK_SHEET_NAME = 'Front Desk';
 
 function ensureUsersSheet(ss) {
   let sheet = ss.getSheetByName('Users');
@@ -28,11 +29,37 @@ function ensureUsersSheet(ss) {
   return sheet;
 }
 
+function ensureFrontDeskSheet(ss) {
+  let sheet = ss.getSheetByName(FRONTDESK_SHEET_NAME);
+  if (!sheet) {
+    sheet = ss.insertSheet(FRONTDESK_SHEET_NAME);
+  }
+  return sheet;
+}
+
+function isFrontDeskPayload(payload) {
+  return String(payload.type || payload.stock_type || '').toLowerCase() === 'frontdesk_inventory';
+}
+
 function getSheetForPayload(ss, payload) {
   if (payload.user_type === 'app_user' || payload.role || payload.username) {
     return ensureUsersSheet(ss);
   }
+  if (isFrontDeskPayload(payload)) {
+    return ensureFrontDeskSheet(ss);
+  }
   return ss.getSheets()[0];
+}
+
+function getSheetsForPayload(ss, payload) {
+  if (payload.user_type === 'app_user' || payload.role || payload.username) {
+    return [ensureUsersSheet(ss)];
+  }
+  if (isFrontDeskPayload(payload)) {
+    const frontDeskSheet = ensureFrontDeskSheet(ss);
+    return [frontDeskSheet, ...ss.getSheets().filter(sheet => sheet.getSheetId() !== frontDeskSheet.getSheetId())];
+  }
+  return ss.getSheets();
 }
 
 function ensurePayloadHeaders(sheet, payload) {
@@ -95,16 +122,14 @@ function doGet(e) {
       targetSheet.appendRow(row);
       responseData = { success: true, item: payload };
     } else if (action === 'update' || action === 'delete') {
-      const sheets = payload.user_type === 'app_user' || payload.role || payload.username
-        ? [ensureUsersSheet(ss)]
-        : ss.getSheets();
+      const sheets = getSheetsForPayload(ss, payload);
       let changed = false;
 
       sheets.some(sheet => {
-        const headers = ensurePayloadHeaders(sheet, payload);
         const data = sheet.getDataRange().getValues();
         if (!data.length) return false;
-        const idColIndex = headers.indexOf('id');
+        const existingHeaders = data[0].map(header => String(header).trim());
+        const idColIndex = existingHeaders.indexOf('id');
         if (idColIndex === -1) return false;
         const rowIndex = data.findIndex((row, index) => index > 0 && String(row[idColIndex]) === String(payload.id));
         if (rowIndex === -1) return false;
@@ -112,6 +137,7 @@ function doGet(e) {
         if (action === 'delete') {
           sheet.deleteRow(rowIndex + 1);
         } else {
+          const headers = ensurePayloadHeaders(sheet, payload);
           headers.forEach((header, columnIndex) => {
             if (payload[header] !== undefined) {
               sheet.getRange(rowIndex + 1, columnIndex + 1).setValue(payload[header]);
