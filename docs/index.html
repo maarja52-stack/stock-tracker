@@ -7544,6 +7544,22 @@
       }
     }
 
+    async function deleteFrontdeskItem(itemId) {
+      const item = frontdeskItems.find(entry => entry.id === itemId);
+      if (!item || !confirm(`Remove "${item.name}" from Front Desk inventory?`)) return;
+
+      const result = await window.dataSdk.delete(item);
+      if (!result?.isOk) {
+        showToast('Failed to remove inventory item', 'error');
+        return;
+      }
+
+      frontdeskItems = frontdeskItems.filter(entry => entry.id !== itemId);
+      frontdeskSelectedItemId = frontdeskItems[0]?.id || null;
+      renderFrontdeskInventory();
+      showToast(`${item.name} removed`, 'success');
+    }
+
     function renderFrontdeskInventory() {
       if (!frontdeskPage) return;
 
@@ -7626,6 +7642,7 @@
               <div class="frontdesk-item-actions">
                 <button type="button" class="order-summary-btn" data-fd-action="minus" data-fd-step="1" data-fd-id="${item.id}">-1</button>
                 <button type="button" class="order-summary-btn" data-fd-action="plus" data-fd-step="1" data-fd-id="${item.id}">+1</button>
+                <button type="button" class="order-summary-btn" data-fd-delete="${item.id}">Remove</button>
               </div>
             </div>
           `;
@@ -7829,6 +7846,13 @@
           const action = button.getAttribute('data-fd-action');
           const step = parseInt(button.getAttribute('data-fd-step') || '1', 10) || 1;
           adjustFrontdeskStock(itemId, action === 'plus' ? step : -step);
+        });
+      });
+
+      inventoryList.querySelectorAll('[data-fd-delete]').forEach(button => {
+        button.addEventListener('click', (event) => {
+          event.stopPropagation();
+          deleteFrontdeskItem(button.getAttribute('data-fd-delete'));
         });
       });
     }
