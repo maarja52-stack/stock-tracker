@@ -1477,6 +1477,20 @@
       box-sizing: border-box;
     }
 
+    .frontdesk-form-grid select,
+    .frontdesk-quick-row select {
+      background: #0d1b2a;
+      color: #fff;
+      color-scheme: dark;
+      cursor: pointer;
+    }
+
+    .frontdesk-form-grid select option,
+    .frontdesk-quick-row select option {
+      background: #0d1b2a;
+      color: #fff;
+    }
+
     .frontdesk-history-list {
       display: grid;
       gap: 0.45rem;
@@ -1517,7 +1531,8 @@
       margin-bottom: 0.6rem;
     }
 
-    .frontdesk-quick-row input {
+    .frontdesk-quick-row input,
+    .frontdesk-quick-row select {
       width: 100%;
       border: 1px solid rgba(212, 175, 55, 0.5);
       border-radius: 8px;
