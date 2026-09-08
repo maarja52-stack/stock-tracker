@@ -4427,6 +4427,10 @@
             clearTimeout(timeoutId);
             delete window[callbackName];
             script.remove();
+            if (data && !Array.isArray(data) && typeof data === 'object' && (data.success === false || data.isOk === false || data.error)) {
+              resolve({ isOk: false, error: data.error || 'Google Sheets rejected the request' });
+              return;
+            }
             resolve({ isOk: true, data });
           };
 
