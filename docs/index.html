@@ -1420,6 +1420,25 @@
       margin-top: 0.6rem;
     }
 
+    .frontdesk-inventory-disclosure summary {
+      color: #f4e4a8;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 700;
+      list-style-position: inside;
+    }
+
+    .frontdesk-inventory-disclosure[open] summary {
+      margin-bottom: 0.75rem;
+    }
+
+    .frontdesk-inventory-disclosure #frontdeskInventoryList {
+      max-height: 60vh;
+      overflow-y: auto;
+      padding-right: 0.35rem;
+      scrollbar-gutter: stable;
+    }
+
     .frontdesk-empty {
       color: rgba(255, 255, 255, 0.75);
       font-size: 0.92rem;
@@ -3501,8 +3520,10 @@
       </section>
       <section class="frontdesk-grid">
        <div class="frontdesk-panel">
-        <div class="frontdesk-panel-title">Inventory Items</div>
-        <div id="frontdeskInventoryList"></div>
+        <details class="frontdesk-inventory-disclosure">
+         <summary>Inventory Items</summary>
+         <div id="frontdeskInventoryList"></div>
+        </details>
        </div>
        <div class="frontdesk-panel">
         <div class="frontdesk-panel-title">Add / Update Item</div>
@@ -3525,7 +3546,7 @@
         <div class="frontdesk-quick-adjust" id="frontdeskQuickAdjust">
          <div class="frontdesk-panel-title" style="margin-top: 0.8rem;">Quick Stock Update</div>
          <div class="frontdesk-quick-row">
-          <label class="field-row"><span>Adjust by</span><input id="frontdeskAdjustAmount" type="number" min="1" value="1"></label>
+          <label class="field-row"><span>Adjust by</span><select id="frontdeskAdjustAmount"><option value="1" selected>1</option><option value="5">5</option><option value="10">10</option><option value="25">25</option></select></label>
           <label class="field-row"><span>Set exact stock</span><input id="frontdeskSetAmount" type="number" min="0" value="0"></label>
          </div>
          <div class="frontdesk-quick-actions">
