@@ -35,6 +35,25 @@ function getSheetForPayload(ss, payload) {
   return ss.getSheets()[0];
 }
 
+function ensurePayloadHeaders(sheet, payload) {
+  const lastColumn = sheet.getLastColumn();
+  if (lastColumn === 0) {
+    const headers = Object.keys(payload);
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    sheet.setFrozenRows(1);
+    return headers;
+  }
+
+  const headers = sheet.getRange(1, 1, 1, lastColumn).getValues()[0]
+    .map(header => String(header).trim());
+  const missingHeaders = Object.keys(payload).filter(header => header && !headers.includes(header));
+  if (missingHeaders.length) {
+    sheet.getRange(1, headers.length + 1, 1, missingHeaders.length).setValues([missingHeaders]);
+    headers.push(...missingHeaders);
+  }
+  return headers;
+}
+
 function sheetToObjects(sheet) {
   if (sheet.getLastRow() <= 1 || sheet.getLastColumn() === 0) return [];
 
@@ -71,8 +90,7 @@ function doGet(e) {
       responseData = ss.getSheets().flatMap(sheetToObjects);
     } else if (action === 'create') {
       const targetSheet = getSheetForPayload(ss, payload);
-      const headers = targetSheet.getRange(1, 1, 1, targetSheet.getLastColumn()).getValues()[0]
-        .map(header => String(header).trim());
+      const headers = ensurePayloadHeaders(targetSheet, payload);
       const row = headers.map(header => payload[header] !== undefined ? payload[header] : '');
       targetSheet.appendRow(row);
       responseData = { success: true, item: payload };
@@ -83,9 +101,9 @@ function doGet(e) {
       let changed = false;
 
       sheets.some(sheet => {
+        const headers = ensurePayloadHeaders(sheet, payload);
         const data = sheet.getDataRange().getValues();
         if (!data.length) return false;
-        const headers = data[0].map(header => String(header).trim());
         const idColIndex = headers.indexOf('id');
         if (idColIndex === -1) return false;
         const rowIndex = data.findIndex((row, index) => index > 0 && String(row[idColIndex]) === String(payload.id));
