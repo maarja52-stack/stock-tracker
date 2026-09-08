@@ -4349,6 +4349,37 @@
           };
         }
 
+        if (payload.type === FRONTDESK_STOCK_TYPE || payload.stock_type === FRONTDESK_STOCK_TYPE) {
+          return {
+            id: payload.id,
+            type: FRONTDESK_STOCK_TYPE,
+            stock_type: FRONTDESK_STOCK_TYPE,
+            property: prop,
+            item_name: payload.item_name,
+            sku: payload.sku,
+            category: payload.category,
+            location: payload.location,
+            location_name: payload.location_name,
+            current_stock: payload.current_stock,
+            quantity: payload.quantity,
+            minimum_stock: payload.minimum_stock,
+            min_stock: payload.min_stock,
+            maximum_stock: payload.maximum_stock,
+            max_stock: payload.max_stock,
+            reorder_qty: payload.reorder_qty,
+            order_quantity: payload.order_quantity,
+            supplier: payload.supplier,
+            unit: payload.unit,
+            notes: payload.notes,
+            updated_by: payload.updated_by,
+            updated_at: payload.updated_at,
+            last_checked: payload.last_checked,
+            added_timestamp: payload.added_timestamp,
+            date_added: payload.date_added,
+            is_archived: payload.is_archived
+          };
+        }
+
         if (payload.type) {
           return {
             id: payload.id,
