@@ -7,6 +7,7 @@ const USER_HEADERS = [
   'property', 'status', 'created_at', 'date_added', 'is_archived'
 ];
 const FRONTDESK_SHEET_NAME = 'Front Desk';
+const BACKEND_VERSION = 'frontdesk-sheet-v1';
 
 function ensureUsersSheet(ss) {
   let sheet = ss.getSheetByName('Users');
@@ -113,7 +114,9 @@ function doGet(e) {
   let responseData;
 
   try {
-    if (action === 'read') {
+    if (action === 'health') {
+      responseData = { success: true, version: BACKEND_VERSION };
+    } else if (action === 'read') {
       responseData = ss.getSheets().flatMap(sheetToObjects);
     } else if (action === 'create') {
       const targetSheet = getSheetForPayload(ss, payload);
