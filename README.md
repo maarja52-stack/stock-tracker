@@ -10,6 +10,25 @@ Static housekeeping and minibar operations app used for:
 - Multi-property inventory management
 - Role-based access control & security administration
 
+## Summary of Today's Updates (2026-09-08)
+
+1. **Authentication and Google Sheets Sync**:
+   - Corrected the frontend to use the deployed Google Apps Script web-app URL.
+   - Added `Code.gs` support for automatic `Users` sheet creation and the user fields required for cross-device PIN login.
+   - Added a health check at `?action=health` that returns the deployed backend version.
+
+2. **Front Desk Inventory**:
+   - Removed built-in preset items so only saved inventory is shown.
+   - Added one-unit `-1` / `+1` controls, item removal, a collapsible item list, and storage-location options for Front Desk Cabinet and Luggage Room.
+   - Fixed Front Desk sync to send all stock, SKU, minimum/maximum, and property fields to Google Sheets.
+   - Added a dedicated `Front Desk` sheet for new Front Desk inventory records while keeping legacy records editable.
+
+3. **QR Hub**:
+   - Corrected generated QR links to use the GitHub Pages public site root.
+   - Preserved QR query parameters through the repository root redirect for older printed codes.
+
+**Deployment reminder:** changes to `docs/index.html` publish through GitHub Pages after a Git push. Changes to `Code.gs` also require copying the file into the bound Apps Script project and deploying a new Web App version.
+
 ## Summary of Today's Updates (2026-09-03)
 
 1. **QR Hub Deep-Link Builder Enhancements**:
