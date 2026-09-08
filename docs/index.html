@@ -3525,7 +3525,7 @@
         <div class="frontdesk-quick-adjust" id="frontdeskQuickAdjust">
          <div class="frontdesk-panel-title" style="margin-top: 0.8rem;">Quick Stock Update</div>
          <div class="frontdesk-quick-row">
-          <label class="field-row"><span>Adjust by</span><input id="frontdeskAdjustAmount" type="number" min="1" value="5"></label>
+          <label class="field-row"><span>Adjust by</span><input id="frontdeskAdjustAmount" type="number" min="1" value="1"></label>
           <label class="field-row"><span>Set exact stock</span><input id="frontdeskSetAmount" type="number" min="0" value="0"></label>
          </div>
          <div class="frontdesk-quick-actions">
@@ -7592,8 +7592,8 @@
               </div>
               <div class="frontdesk-item-meta">Location: ${item.location} | Stock: ${item.current}/${item.minimum} min</div>
               <div class="frontdesk-item-actions">
-                <button type="button" class="order-summary-btn" data-fd-action="minus" data-fd-step="5" data-fd-id="${item.id}">-5</button>
-                <button type="button" class="order-summary-btn" data-fd-action="plus" data-fd-step="5" data-fd-id="${item.id}">+5</button>
+                <button type="button" class="order-summary-btn" data-fd-action="minus" data-fd-step="1" data-fd-id="${item.id}">-1</button>
+                <button type="button" class="order-summary-btn" data-fd-action="plus" data-fd-step="1" data-fd-id="${item.id}">+1</button>
               </div>
             </div>
           `;
