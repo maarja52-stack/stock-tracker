@@ -49,6 +49,7 @@ is intentionally a lightweight redirect to `docs/` to avoid maintaining two copi
 - `docs/index.html`: main app (HTML, CSS, JS)
 - `docs/CNAME`: custom domain for GitHub Pages
 - `index.html`: redirect page to `docs/`
+- `Code.gs`: Google Apps Script web-app backend for Google Sheets synchronization and user accounts
 
 ## Local Run
 
@@ -70,12 +71,30 @@ Then open:
 - Keep all app changes in `docs/index.html`.
 - Do not duplicate feature edits in root `index.html`.
 
+### Google Apps Script Backend
+
+The app's configured Google Apps Script web app provides inventory synchronization and PIN account storage. Copy `Code.gs` into the Apps Script project bound to the Google Sheet.
+
+The script creates a `Users` sheet automatically when the first account is saved. Each account requires these fields:
+
+`id`, `user_type`, `username`, `name`, `role`, `pin`, `property`, `status`, `created_at`, `date_added`, and `is_archived`.
+
+To publish backend changes:
+
+1. In the Google Sheet, select **Extensions** > **Apps Script**.
+2. Replace the Apps Script `Code.gs` with this repository's `Code.gs` and save.
+3. Select **Deploy** > **Manage deployments**, edit the web app, select **New version**, and deploy.
+4. Keep the deployed web-app URL aligned with `GOOGLE_APPS_SCRIPT_URL` in `docs/index.html`.
+
+GitHub Pages and Google Apps Script are separate deployments. Pushing to GitHub publishes the frontend only; redeploy Apps Script after changing `Code.gs`.
+
 ## Contributor Checklist
 
 Before opening a PR or pushing changes:
 
-1. Make feature and bugfix edits in `docs/index.html` only.
+1. Make frontend feature and bugfix edits in `docs/index.html` only.
 2. Leave root `index.html` as redirect-only.
-3. Run locally from `docs/` and verify the updated flow works.
-4. Confirm no accidental duplication of app logic in root files.
-5. Update this README if deployment or structure rules change.
+3. Update `Code.gs` when the Google Sheets backend contract changes, then redeploy the Apps Script web app.
+4. Run locally from `docs/` and verify the updated flow works.
+5. Confirm no accidental duplication of app logic in root files.
+6. Update this README if deployment or structure rules change.
