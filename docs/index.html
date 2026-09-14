@@ -4410,6 +4410,7 @@
             order_quantity: payload.order_quantity,
             supplier: payload.supplier,
             unit: payload.unit,
+            unit_cost: payload.unit_cost,
             notes: payload.notes,
             updated_by: payload.updated_by,
             updated_at: payload.updated_at,
@@ -4452,6 +4453,7 @@
             floor: payload.floor,
             quantity: payload.quantity,
             unit: payload.unit,
+            unit_cost: payload.unit_cost,
             notes: payload.notes,
             last_checked: payload.last_checked,
             added_timestamp: payload.added_timestamp,
@@ -4471,6 +4473,7 @@
             category: payload.category,
             quantity: payload.quantity,
             purchase_date: payload.purchase_date,
+            unit_cost: payload.unit_cost,
             status: payload.status,
             location: payload.location,
             notes: payload.notes,
@@ -6827,6 +6830,7 @@
             reorderQty: Number(item.reorder_qty ?? item.order_quantity ?? item.reorderQty ?? 10) || 10,
             supplier: item.supplier || 'Hotel Supplies Co.',
             unit: item.unit || 'units',
+            unitCost: Number.isFinite(Number(item.unit_cost)) && Number(item.unit_cost) >= 0 ? Number(item.unit_cost) : null,
             notes: item.notes || '',
             history: Array.isArray(item.history) && item.history.length
               ? item.history.map(entry => ({ ...entry }))
@@ -6939,6 +6943,7 @@
           location: item.location || 'Front Desk',
           quantity: Number(item.current) || 0,
           unit: item.unit || 'units',
+          unitCost: Number.isFinite(Number(item.unitCost)) && Number(item.unitCost) >= 0 ? Number(item.unitCost) : null,
           minimum: Number(item.minimum) || 0
         });
       });
@@ -6954,6 +6959,7 @@
           location: item.location_name || item.location || 'Unassigned',
           quantity: Number(item.quantity) || 0,
           unit: item.unit || 'units',
+          unitCost: Number.isFinite(Number(item.unit_cost)) && Number(item.unit_cost) >= 0 ? Number(item.unit_cost) : null,
           minimum: null
         });
       });
@@ -6969,6 +6975,7 @@
           location: item.location || 'Unassigned',
           quantity: Number(item.quantity) || 0,
           unit: 'units',
+          unitCost: Number.isFinite(Number(item.unit_cost)) && Number(item.unit_cost) >= 0 ? Number(item.unit_cost) : null,
           minimum: null
         });
       });
@@ -6984,6 +6991,7 @@
           location: item.location || 'Unassigned',
           quantity: Number(item.quantity) || 0,
           unit: 'units',
+          unitCost: Number.isFinite(Number(item.unit_cost)) && Number(item.unit_cost) >= 0 ? Number(item.unit_cost) : null,
           minimum: null
         });
       });
@@ -7034,6 +7042,38 @@
       return true;
     }
 
+    async function setGeneralInventoryUnitCost(key, nextCost) {
+      const item = getGeneralInventoryItemByKey(key);
+      const cost = Number(nextCost);
+      if (!item || !Number.isFinite(cost) || cost < 0) return false;
+
+      let result;
+      if (item.source === 'frontdesk') {
+        const sourceItem = frontdeskItems.find(entry => String(entry.id) === item.sourceId);
+        if (!sourceItem) return false;
+        sourceItem.unitCost = cost;
+        result = await upsertFrontdeskItem(sourceItem);
+      } else {
+        const sourceItems = item.source === 'stock' ? stockLocationItems : item.source === 'housekeeping' ? allEquipment : allPublicEquipment;
+        const sourceItem = sourceItems.find(entry => String(entry.id) === item.sourceId);
+        if (!sourceItem) return false;
+        const updatedItem = { ...sourceItem, unit_cost: cost };
+        result = await window.dataSdk.update(updatedItem);
+        if (result?.isOk) {
+          const index = sourceItems.findIndex(entry => String(entry.id) === item.sourceId);
+          if (index >= 0) sourceItems[index] = updatedItem;
+        }
+      }
+
+      if (!result?.isOk) {
+        showToast('Failed to save item price', 'error');
+        return false;
+      }
+
+      renderGeneralInventoryHub();
+      return true;
+    }
+
     function renderGeneralInventoryHub() {
       if (!generalInventoryHubPage || currentPage !== 'inventory-hub') return;
       const list = document.getElementById('generalInventoryList');
@@ -7051,12 +7091,14 @@
       });
       const lowStock = items.filter(item => item.minimum !== null && item.quantity < item.minimum).length;
       const totalUnits = items.reduce((sum, item) => sum + item.quantity, 0);
+      const pricedItems = items.filter(item => item.unitCost !== null);
+      const totalValue = pricedItems.reduce((sum, item) => sum + (item.quantity * item.unitCost), 0);
 
       summary.innerHTML = `
         <div class="frontdesk-summary-card"><strong>${items.length}</strong><span>General Items</span></div>
         <div class="frontdesk-summary-card"><strong>${totalUnits}</strong><span>Total Units</span></div>
         <div class="frontdesk-summary-card"><strong>${lowStock}</strong><span>Below Minimum</span></div>
-        <div class="frontdesk-summary-card"><strong>${filteredItems.length}</strong><span>Showing</span></div>`;
+        <div class="frontdesk-summary-card"><strong>€${totalValue.toFixed(2)}</strong><span>Total Stock Value</span></div>`;
 
       list.innerHTML = filteredItems.length
         ? filteredItems.map(item => `
@@ -7068,11 +7110,12 @@
               </div>
               <div class="frontdesk-status ${item.minimum !== null && item.quantity < item.minimum ? 'low-stock' : 'in-stock'}">${item.quantity} ${escapeHtml(item.unit)}</div>
             </div>
-            <div class="frontdesk-item-meta">Location: ${escapeHtml(item.location)}${item.minimum !== null ? ` • Minimum: ${item.minimum}` : ''}</div>
+            <div class="frontdesk-item-meta">Location: ${escapeHtml(item.location)}${item.minimum !== null ? ` • Minimum: ${item.minimum}` : ''} • Unit cost: ${item.unitCost === null ? 'Not set' : `€${item.unitCost.toFixed(2)}`} • Value: ${item.unitCost === null ? 'Not set' : `€${(item.quantity * item.unitCost).toFixed(2)}`}</div>
             <div class="frontdesk-item-actions">
               <button type="button" class="order-summary-btn" data-general-action="minus" data-general-id="${escapeHtml(item.key)}">-1</button>
               <button type="button" class="order-summary-btn" data-general-action="plus" data-general-id="${escapeHtml(item.key)}">+1</button>
               <button type="button" class="order-summary-btn" data-general-action="set" data-general-id="${escapeHtml(item.key)}">Set Amount</button>
+              <button type="button" class="order-summary-btn" data-general-action="price" data-general-id="${escapeHtml(item.key)}">Set Price</button>
             </div>
           </div>
         `).join('')
@@ -7104,6 +7147,12 @@
             const entered = window.prompt(`Set stock for ${item.name}`, String(item.quantity));
             if (entered === null) return;
             nextQuantity = Number(entered);
+          }
+          if (action === 'price') {
+            const entered = window.prompt(`Set unit cost for ${item.name} in EUR`, item.unitCost === null ? '' : item.unitCost.toFixed(2));
+            if (entered === null) return;
+            await setGeneralInventoryUnitCost(key, entered);
+            return;
           }
           await setGeneralInventoryQuantity(key, nextQuantity);
         });
@@ -7670,6 +7719,7 @@
         max_stock: String(item.maximum),
         reorder_qty: String(item.reorderQty),
         order_quantity: String(item.reorderQty),
+        unit_cost: item.unitCost === null || item.unitCost === undefined ? '' : String(item.unitCost),
         supplier: item.supplier,
         unit: item.unit,
         notes: item.notes,
