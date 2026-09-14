@@ -73,9 +73,18 @@
       font-weight: 700;
       color: #d4af37;
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 0.25rem;
       letter-spacing: 1px;
       text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    }
+
+    .main-subtitle {
+      color: #d4af37;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin: 0 0 3rem;
     }
 
     .footer-text {
@@ -3375,7 +3384,8 @@
       <button class="logout-button" id="logoutButton" title="Lock and log out">🔒 Logout</button>
      </div>
     </div>
-    <h1 class="main-title" id="mainTitle">Housekeeping Inventory &amp; Stock</h1><!-- Main Menu -->
+    <h1 class="main-title" id="mainTitle">VHI&amp;S</h1>
+    <div class="main-subtitle" id="mainSubtitle">V Hospitality inventory and stock</div><!-- Main Menu -->
     <div id="mainMenu" class="grid-container">
     <div class="premium-card" data-page="minibar" onclick="goTo('minibar')"><span class="card-emoji">🍾</span>
       <div class="card-title">
@@ -3957,7 +3967,7 @@
   </div>
   <script>
     const defaultConfig = {
-      main_title: "Housekeeping Inventory & Stock",
+      main_title: "VHI&S",
       footer_text: "© M.A.2026",
       background_color: "#0b1a33",
       accent_color: "#d4af37",
@@ -4714,7 +4724,7 @@
     function updateMainTitleForProperty() {
       const mainTitle = document.getElementById('mainTitle');
       if (mainTitle && (currentPage === 'main' || !currentPage)) {
-        mainTitle.textContent = `${currentProperty} • Housekeeping Inventory & Stock`;
+        mainTitle.textContent = 'VHI&S';
       }
     }
 
@@ -11055,7 +11065,7 @@
       const mainTitle = document.getElementById('mainTitle');
       const footerCopy = document.getElementById('footerCopy');
 
-      mainTitle.textContent = config.main_title || defaultConfig.main_title;
+      mainTitle.textContent = 'VHI&S';
       if (footerCopy) footerCopy.textContent = config.footer_text || defaultConfig.footer_text;
     }
 
