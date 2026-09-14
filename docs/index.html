@@ -3415,6 +3415,11 @@
        QR Hub
       </div>
      </div>
+    <div class="premium-card" data-page="inventory-hub" onclick="goTo('inventory-hub')"><span class="card-emoji">📊</span>
+      <div class="card-title">
+       General Inventory Hub
+      </div>
+     </div>
     <div class="premium-card" data-page="security" id="securityCard" onclick="goTo('security')"><span class="card-emoji">🔐</span>
       <div class="card-title">
        Security &amp; Users
@@ -3599,9 +3604,9 @@
          <article class="qr-hub-section">
         <div class="qr-hub-chip">Type B</div>
         <h3 class="qr-hub-title">Item QR</h3>
-        <p class="qr-hub-copy">Each code opens an individual item profile for fast stock updates.</p>
+        <p class="qr-hub-copy">Each code opens an individual general-inventory item for fast stock updates.</p>
         <div class="qr-hub-actions">
-         <button type="button" class="order-summary-btn" onclick="goTo('frontdesk')">Open Frontdesk Items</button>
+         <button type="button" class="order-summary-btn" onclick="goTo('inventory-hub')">Open General Inventory</button>
         </div>
          </article>
         </section>
@@ -3645,6 +3650,31 @@
          </div>
          <div id="qrHubMessage" class="pin-subtitle" style="margin: 0 0 0.6rem 0;"></div>
          <div id="qrLinkList" class="qr-link-list"></div>
+        </section>
+       </div>
+      </div>
+      <div id="generalInventoryHubPage" class="expiration-page hidden">
+       <div class="frontdesk-shell">
+        <section class="frontdesk-header">
+         <div>
+          <div class="frontdesk-eyebrow">General Inventory</div>
+          <h2>📊 Inventory Hub</h2>
+          <p>Update operational stock across frontdesk, storage, housekeeping, and public areas.</p>
+         </div>
+        </section>
+        <section class="frontdesk-summary-grid" id="generalInventorySummary"></section>
+        <section class="frontdesk-toolbar">
+         <input id="generalInventorySearch" type="text" class="form-input" placeholder="Search item, SKU, department, or location">
+         <select id="generalInventoryDepartment" class="form-select">
+          <option value="All">Department: All</option>
+          <option value="Front Desk">Front Desk</option>
+          <option value="Stock Locations">Stock Locations</option>
+          <option value="Housekeeping">Housekeeping</option>
+          <option value="Public Area">Public Area</option>
+         </select>
+        </section>
+        <section class="frontdesk-panel">
+         <div id="generalInventoryList"></div>
         </section>
        </div>
       </div>
@@ -3968,6 +3998,7 @@
     const roomMaintenancePage = document.getElementById('roomMaintenancePage');
     const stockLocationsPage = document.getElementById('stockLocationsPage');
     const stockDetailPage = document.getElementById('stockDetailPage');
+    const generalInventoryHubPage = document.getElementById('generalInventoryHubPage');
     const securityPage = document.getElementById('securityPage');
     const backButton = document.getElementById('backButton');
     const logoutButton = document.getElementById('logoutButton');
@@ -4049,6 +4080,8 @@
     let qrPreviewRenderedLabel = '';
     let pendingQrRoute = null;
     let qrRouteResolved = false;
+    let generalInventorySelectedId = null;
+    let generalInventoryEventsBound = false;
     pendingQrRoute = parsePendingQrRouteFromUrl();
     const FRONTDESK_STOCK_TYPE = 'frontdesk_inventory';
     const USERS_STORAGE_KEY = 'housekeeping_app_users_cache';
@@ -4230,6 +4263,7 @@
         updateEquipmentDisplay();
         updatePublicEquipmentDisplay();
         renderFrontdeskInventory();
+        renderGeneralInventoryHub();
         renderQrHubBuilder();
         renderSecurityUsers();
         applyRolePermissions();
@@ -4578,15 +4612,14 @@
           }
           cachedData = [...cachedData, item];
           handler.onDataChanged(cachedData);
-          jsonpRequestWithRetry('create', item).then(result => {
-            if (!result.isOk) {
-              showToast('Save failed. Sync will retry.', 'error');
-              scheduleRefresh(12000);
-              return;
-            }
-            scheduleRefresh(6000);
-          });
-          return { isOk: true, optimistic: true };
+          const result = await jsonpRequestWithRetry('create', item);
+          if (!result.isOk) {
+            showToast('Save failed. Sync will retry.', 'error');
+            scheduleRefresh(12000);
+            return result;
+          }
+          scheduleRefresh(6000);
+          return { ...result, optimistic: true };
         },
         async update(item) {
           const result = await jsonpRequestWithRetry('update', item);
@@ -5247,6 +5280,7 @@
       roomMaintenancePage.classList.add('hidden');
       stockLocationsPage.classList.add('hidden');
       stockDetailPage.classList.add('hidden');
+      if (generalInventoryHubPage) generalInventoryHubPage.classList.add('hidden');
       if (securityPage) securityPage.classList.add('hidden');
 
       // Show appropriate menu/page
@@ -5303,6 +5337,13 @@
         mainTitle.style.display = 'none';
         currentPage = 'qr-hub';
         renderQrHubBuilder();
+      } else if (requestedPage === 'inventory-hub') {
+        if (generalInventoryHubPage) generalInventoryHubPage.classList.remove('hidden');
+        backButton.classList.remove('hidden');
+        backButton.textContent = '← Back to Dashboard';
+        mainTitle.style.display = 'none';
+        currentPage = 'inventory-hub';
+        renderGeneralInventoryHub();
       } else if (requestedPage === 'room-registry') {
         if (previousPage === 'stock-locations') {
           roomRegistryReturnPage = 'stock-locations';
@@ -6443,12 +6484,10 @@
         const today = getLocalDateString();
 
         try {
-          autoArchiveOldStockCounts(today).catch(error => {
-            console.error('Auto-archive failed:', error);
-          });
+          await autoArchiveOldStockCounts(today);
 
           const newStockCount = {
-            id: Date.now().toString(),
+            id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
             stock_type: 'minibar_count',
             item_name: itemName,
             floor: floor,
@@ -6509,7 +6548,7 @@
 
       itemCounts.forEach(count => {
         if (totals[count.floor] !== undefined) {
-          totals[count.floor] += count.quantity;
+          totals[count.floor] += Number(count.quantity) || 0;
         }
       });
 
@@ -6583,7 +6622,8 @@
       const todayCounts = allStockCounts.filter(sc => sc.date_added === today);
       const totalUnits = todayCounts.reduce((sum, sc) => sum + (Number(sc.quantity) || 0), 0);
       const lowStockNotifications = allNotifications.filter(notif => notif.type === 'low_stock');
-      const orderItems = getOrderSummaryItems().slice(0, 8);
+      const orderItems = getMinibarOrderSummaryItems();
+      const visibleOrderItems = orderItems.slice(0, 8);
 
       panel.innerHTML = `
         <div class="minibar-overview-header">
@@ -6606,7 +6646,7 @@
         </div>
         ${orderItems.length === 0
           ? '<div class="minibar-overview-empty">No low-stock items currently need ordering.</div>'
-          : `<div class="minibar-overview-orders">${orderItems
+          : `<div class="minibar-overview-orders">${visibleOrderItems
               .map(item => `<div class="minibar-overview-order-item"><span>${item.item}</span><span class="minibar-overview-order-qty">${item.qty} units</span></div>`)
               .join('')}</div>`
         }
@@ -6822,6 +6862,12 @@
         return 'https://minibartracker.space/';
       }
 
+      // GitHub Pages publishes the docs folder at the domain root, not at /docs/.
+      if (baseUrl.hostname === 'minibartracker.space') {
+        baseUrl.pathname = '/';
+        return baseUrl.toString();
+      }
+
       return baseUrl.toString();
     }
 
@@ -6870,6 +6916,191 @@
       return getStockLocationSections().flatMap(section => section.locations);
     }
 
+    function getGeneralInventoryItems() {
+      const items = [];
+
+      frontdeskItems.forEach(item => {
+        items.push({
+          key: `frontdesk:${item.id}`,
+          source: 'frontdesk',
+          sourceId: String(item.id),
+          sku: normalizeFrontdeskSku(item.sku),
+          name: item.name,
+          department: 'Front Desk',
+          location: item.location || 'Front Desk',
+          quantity: Number(item.current) || 0,
+          unit: item.unit || 'units',
+          minimum: Number(item.minimum) || 0
+        });
+      });
+
+      stockLocationItems.forEach(item => {
+        items.push({
+          key: `stock:${item.id}`,
+          source: 'stock',
+          sourceId: String(item.id),
+          sku: `SL-${String(item.id)}`,
+          name: item.item_name || 'Unnamed Item',
+          department: 'Stock Locations',
+          location: item.location_name || item.location || 'Unassigned',
+          quantity: Number(item.quantity) || 0,
+          unit: item.unit || 'units',
+          minimum: null
+        });
+      });
+
+      allEquipment.forEach(item => {
+        items.push({
+          key: `housekeeping:${item.id}`,
+          source: 'housekeeping',
+          sourceId: String(item.id),
+          sku: `HK-${String(item.id)}`,
+          name: item.item_name || 'Unnamed Item',
+          department: 'Housekeeping',
+          location: item.location || 'Unassigned',
+          quantity: Number(item.quantity) || 0,
+          unit: 'units',
+          minimum: null
+        });
+      });
+
+      allPublicEquipment.forEach(item => {
+        items.push({
+          key: `public:${item.id}`,
+          source: 'public',
+          sourceId: String(item.id),
+          sku: `PA-${String(item.id)}`,
+          name: item.item_name || 'Unnamed Item',
+          department: 'Public Area',
+          location: item.location || 'Unassigned',
+          quantity: Number(item.quantity) || 0,
+          unit: 'units',
+          minimum: null
+        });
+      });
+
+      return items;
+    }
+
+    function getGeneralInventoryItemByKey(key) {
+      return getGeneralInventoryItems().find(item => item.key === key) || null;
+    }
+
+    async function setGeneralInventoryQuantity(key, nextQuantity) {
+      const item = getGeneralInventoryItemByKey(key);
+      const quantity = Math.max(0, Math.floor(Number(nextQuantity)));
+      if (!item || !Number.isFinite(quantity)) return false;
+
+      let result;
+      if (item.source === 'frontdesk') {
+        const sourceItem = frontdeskItems.find(entry => String(entry.id) === item.sourceId);
+        if (!sourceItem) return false;
+        sourceItem.current = quantity;
+        sourceItem.history = Array.isArray(sourceItem.history) ? sourceItem.history : [];
+        sourceItem.history.unshift({
+          title: 'Stock adjusted',
+          detail: `${item.quantity} -> ${quantity} ${sourceItem.unit || 'units'}`,
+          date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        });
+        result = await upsertFrontdeskItem(sourceItem);
+      } else {
+        const sourceItems = item.source === 'stock' ? stockLocationItems : item.source === 'housekeeping' ? allEquipment : allPublicEquipment;
+        const sourceItem = sourceItems.find(entry => String(entry.id) === item.sourceId);
+        if (!sourceItem) return false;
+        const updatedItem = { ...sourceItem, quantity };
+        result = await window.dataSdk.update(updatedItem);
+        if (result?.isOk) {
+          const index = sourceItems.findIndex(entry => String(entry.id) === item.sourceId);
+          if (index >= 0) sourceItems[index] = updatedItem;
+        }
+      }
+
+      if (!result?.isOk) {
+        showToast('Failed to save inventory quantity', 'error');
+        return false;
+      }
+
+      generalInventorySelectedId = item.key;
+      renderGeneralInventoryHub();
+      return true;
+    }
+
+    function renderGeneralInventoryHub() {
+      if (!generalInventoryHubPage || currentPage !== 'inventory-hub') return;
+      const list = document.getElementById('generalInventoryList');
+      const summary = document.getElementById('generalInventorySummary');
+      const searchInput = document.getElementById('generalInventorySearch');
+      const departmentInput = document.getElementById('generalInventoryDepartment');
+      if (!list || !summary || !searchInput || !departmentInput) return;
+
+      const items = getGeneralInventoryItems();
+      const search = searchInput.value.trim().toLowerCase();
+      const department = departmentInput.value || 'All';
+      const filteredItems = items.filter(item => {
+        const haystack = `${item.name} ${item.sku} ${item.department} ${item.location}`.toLowerCase();
+        return (!search || haystack.includes(search)) && (department === 'All' || item.department === department);
+      });
+      const lowStock = items.filter(item => item.minimum !== null && item.quantity < item.minimum).length;
+      const totalUnits = items.reduce((sum, item) => sum + item.quantity, 0);
+
+      summary.innerHTML = `
+        <div class="frontdesk-summary-card"><strong>${items.length}</strong><span>General Items</span></div>
+        <div class="frontdesk-summary-card"><strong>${totalUnits}</strong><span>Total Units</span></div>
+        <div class="frontdesk-summary-card"><strong>${lowStock}</strong><span>Below Minimum</span></div>
+        <div class="frontdesk-summary-card"><strong>${filteredItems.length}</strong><span>Showing</span></div>`;
+
+      list.innerHTML = filteredItems.length
+        ? filteredItems.map(item => `
+          <div class="frontdesk-item ${item.key === generalInventorySelectedId ? 'selected' : ''}" data-general-item="${escapeHtml(item.key)}">
+            <div class="frontdesk-item-top">
+              <div>
+                <div class="frontdesk-item-name">${escapeHtml(item.name)}</div>
+                <div class="frontdesk-item-meta">${escapeHtml(item.sku)} • ${escapeHtml(item.department)}</div>
+              </div>
+              <div class="frontdesk-status ${item.minimum !== null && item.quantity < item.minimum ? 'low-stock' : 'in-stock'}">${item.quantity} ${escapeHtml(item.unit)}</div>
+            </div>
+            <div class="frontdesk-item-meta">Location: ${escapeHtml(item.location)}${item.minimum !== null ? ` • Minimum: ${item.minimum}` : ''}</div>
+            <div class="frontdesk-item-actions">
+              <button type="button" class="order-summary-btn" data-general-action="minus" data-general-id="${escapeHtml(item.key)}">-1</button>
+              <button type="button" class="order-summary-btn" data-general-action="plus" data-general-id="${escapeHtml(item.key)}">+1</button>
+              <button type="button" class="order-summary-btn" data-general-action="set" data-general-id="${escapeHtml(item.key)}">Set Amount</button>
+            </div>
+          </div>
+        `).join('')
+        : '<div class="frontdesk-empty">No general inventory items match your filters.</div>';
+
+      if (!generalInventoryEventsBound) {
+        generalInventoryEventsBound = true;
+        searchInput.addEventListener('input', renderGeneralInventoryHub);
+        departmentInput.addEventListener('change', renderGeneralInventoryHub);
+      }
+
+      list.querySelectorAll('[data-general-item]').forEach(card => {
+        card.addEventListener('click', () => {
+          generalInventorySelectedId = card.getAttribute('data-general-item');
+          renderGeneralInventoryHub();
+        });
+      });
+      list.querySelectorAll('[data-general-action]').forEach(button => {
+        button.addEventListener('click', async event => {
+          event.stopPropagation();
+          const key = button.getAttribute('data-general-id');
+          const item = getGeneralInventoryItemByKey(key);
+          if (!item) return;
+          let nextQuantity = item.quantity;
+          const action = button.getAttribute('data-general-action');
+          if (action === 'plus') nextQuantity += 1;
+          if (action === 'minus') nextQuantity = Math.max(0, nextQuantity - 1);
+          if (action === 'set') {
+            const entered = window.prompt(`Set stock for ${item.name}`, String(item.quantity));
+            if (entered === null) return;
+            nextQuantity = Number(entered);
+          }
+          await setGeneralInventoryQuantity(key, nextQuantity);
+        });
+      });
+    }
+
     function buildQrDeepLink(type, targetValue) {
       const link = new URL(getQrHubBaseUrl());
       link.searchParams.set('qr', type);
@@ -6883,13 +7114,12 @@
 
     function getQrHubTargets(type) {
       if (type === 'item') {
-        const itemSource = frontdeskItems.length ? frontdeskItems : cloneDefaultFrontdeskItems();
-        return itemSource
+        return getGeneralInventoryItems()
           .slice()
           .sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')))
           .map(item => ({
             value: item.sku,
-            label: `${item.sku} - ${item.name}`
+            label: `${item.sku} - ${item.name} (${item.department})`
           }));
       }
 
@@ -7254,13 +7484,17 @@
       }
 
       if (pendingQrRoute.type === 'item') {
-        const itemSource = frontdeskItems.length ? frontdeskItems : cloneDefaultFrontdeskItems();
-        const matchedItem = itemSource.find(item => normalizeFrontdeskSku(item.sku) === pendingQrRoute.sku);
+        // Frontdesk items arrive asynchronously; do not resolve the QR route before the first sync.
+        if (!isBackendSyncReady) {
+          return;
+        }
+
+        const matchedItem = getGeneralInventoryItems().find(item => normalizeFrontdeskSku(item.sku) === pendingQrRoute.sku);
         if (matchedItem) {
-          frontdeskSelectedItemId = matchedItem.id;
+          generalInventorySelectedId = matchedItem.key;
           qrRouteResolved = true;
           clearQrRouteFromUrl();
-          navigateTo('frontdesk');
+          navigateTo('inventory-hub');
           showToast(`Opened ${matchedItem.name} from QR link`, 'success');
           return;
         }
@@ -9088,15 +9322,33 @@
       });
     }
 
+    function getMinibarOrderSummaryItems(date = getLocalDateString()) {
+      const totalsByItem = new Map();
+      allStockCounts
+        .filter(count => count.date_added === date)
+        .forEach(count => {
+          const itemName = String(count.item_name || 'Unknown Item').trim() || 'Unknown Item';
+          totalsByItem.set(itemName, (totalsByItem.get(itemName) || 0) + (Number(count.quantity) || 0));
+        });
+
+      return Array.from(totalsByItem.entries())
+        .map(([item, total]) => ({ item, qty: Math.max(0, 40 - total), total }))
+        .filter(item => item.qty > 0)
+        .sort((a, b) => b.qty - a.qty);
+    }
+
     function getOrderSummaryItems() {
       const summary = new Map();
       allNotifications
-        .filter(notif => notif.type === 'low_stock')
+        .filter(notif => notif.type === 'low_stock' && notif.source !== 'Minibar Stock')
         .forEach(notif => {
           const key = notif.item_name || 'Unknown Item';
           const current = summary.get(key) || 0;
-          summary.set(key, current + (notif.order_quantity || 0));
+          summary.set(key, current + (Number(notif.order_quantity) || 0));
         });
+      getMinibarOrderSummaryItems().forEach(item => {
+        summary.set(item.item, (summary.get(item.item) || 0) + item.qty);
+      });
       return Array.from(summary.entries())
         .map(([item, qty]) => ({ item, qty }))
         .sort((a, b) => b.qty - a.qty);

@@ -83,9 +83,9 @@ function ensurePayloadHeaders(sheet, payload) {
 }
 
 function sheetToObjects(sheet) {
-  if (sheet.getLastRow() <= 1 || sheet.getLastColumn() === 0) return [];
-
   const data = sheet.getDataRange().getValues();
+  if (data.length <= 1 || data[0].length === 0) return [];
+
   const headers = data[0].map(header => String(header).trim());
   return data.slice(1).map(row => {
     const item = {};
@@ -141,11 +141,10 @@ function doGet(e) {
           sheet.deleteRow(rowIndex + 1);
         } else {
           const headers = ensurePayloadHeaders(sheet, payload);
-          headers.forEach((header, columnIndex) => {
-            if (payload[header] !== undefined) {
-              sheet.getRange(rowIndex + 1, columnIndex + 1).setValue(payload[header]);
-            }
-          });
+          const updatedRow = headers.map((header, columnIndex) =>
+            payload[header] !== undefined ? payload[header] : (data[rowIndex][columnIndex] ?? '')
+          );
+          sheet.getRange(rowIndex + 1, 1, 1, headers.length).setValues([updatedRow]);
         }
         changed = true;
         return true;
