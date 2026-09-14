@@ -3395,11 +3395,6 @@
        Housekeeping Stock
       </div>
      </div>
-    <div class="premium-card" data-page="archive" onclick="goTo('archive')"><span class="card-emoji">📚</span>
-      <div class="card-title">
-       Archive
-      </div>
-     </div>
     <div class="premium-card" data-page="frontdesk" onclick="goTo('frontdesk')"><span class="card-emoji">🧾</span>
       <div class="card-title">
        Frontdesk
@@ -3468,7 +3463,7 @@
     </div><!-- Order Management / Notification Center Page -->
     <div id="ordersPage" class="expiration-page hidden">
      <h2 style="font-size: 2rem; font-weight: 700; color: #d4af37; text-align: center; margin-bottom: 2rem;">Notification Center</h2>
-         <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;"><button class="btn-submit" id="addNotificationBtn" style="width: auto;">➕ Add Notification</button></div>
+         <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-bottom: 1rem;"><button class="order-summary-btn" onclick="goTo('archive')">📚 Open Archive</button><button class="btn-submit" id="addNotificationBtn" style="width: auto;">➕ Add Notification</button></div>
      <div class="order-summary" id="orderSummaryContainer">
       <div class="order-summary-header">
        <div class="order-summary-title">Order Summary</div>
@@ -4022,6 +4017,7 @@
 
     let currentPage = 'main';
     let roomRegistryReturnPage = 'main';
+    let archiveReturnPage = 'main';
     var isUnlocked = false;
     let currentUser = null;
     let currentProperty = localStorage.getItem('current_property') || 'Hotel V Nesplein';
@@ -5006,6 +5002,8 @@
         navigateTo('minibar');
       } else if (currentPage === 'orders') {
         navigateTo('main');
+      } else if (currentPage === 'archive') {
+        navigateTo(archiveReturnPage);
       } else if (currentPage === 'housekeeping-equipment' || currentPage === 'public-area-equipment') {
         navigateTo('housekeeping');
       } else if (currentPage === 'room-registry') {
@@ -5378,9 +5376,10 @@
         currentPage = 'stock-detail';
         renderStockDetail();
       } else if (requestedPage === 'archive') {
+        archiveReturnPage = previousPage === 'orders' ? 'orders' : 'main';
         archivePage.classList.remove('hidden');
         backButton.classList.remove('hidden');
-        backButton.textContent = '← Back to Main';
+        backButton.textContent = archiveReturnPage === 'orders' ? '← Back to Order Management' : '← Back to Main';
         mainTitle.style.display = 'none';
         currentPage = 'archive';
         updateArchiveDisplay();
