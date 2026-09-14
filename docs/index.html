@@ -1788,6 +1788,16 @@
         grid-template-columns: 1fr;
       }
 
+      #frontdeskPage .frontdesk-form-grid,
+      #frontdeskPage .frontdesk-quick-row {
+        grid-template-columns: 1fr;
+      }
+
+      #frontdeskPage .frontdesk-form-grid .form-buttons {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
       .frontdesk-summary-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 0.5rem;
@@ -1805,6 +1815,12 @@
 
       .frontdesk-item-top {
         align-items: flex-start;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .frontdesk-item-actions {
+        flex-wrap: wrap;
       }
 
       .frontdesk-item-actions,
