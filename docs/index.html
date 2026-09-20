@@ -6570,11 +6570,11 @@
       }
     }
 
-    async function autoArchiveOldStockCounts(today) {
-      const todayStockCounts = allStockCounts.filter(item => item.date_added === today);
-      if (allStockCounts.length === 0 || todayStockCounts.length > 0) return;
+    async function autoArchiveOldStockCounts(today, countsBeforeSave = allStockCounts) {
+      const todayStockCounts = countsBeforeSave.filter(item => item.date_added === today);
+      if (countsBeforeSave.length === 0 || todayStockCounts.length > 0) return;
 
-      const itemsToArchive = [...allStockCounts];
+      const itemsToArchive = [...countsBeforeSave];
       let failed = 0;
 
       for (const item of itemsToArchive) {
@@ -6605,10 +6605,9 @@
         saveStockBtn.innerHTML = '<span class="loading-spinner"></span>Saving...';
 
         const today = getLocalDateString();
+        const countsBeforeSave = [...allStockCounts];
 
         try {
-          await autoArchiveOldStockCounts(today);
-
           const newStockCount = {
             id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
             stock_type: 'minibar_count',
@@ -6640,6 +6639,11 @@
           displayNumber.textContent = '0';
           showToast(`${itemName} saved for ${floor}`, 'success');
           updateStockProgress();
+
+          // Archive the previous day's counts after the new count is saved.
+          autoArchiveOldStockCounts(today, countsBeforeSave).catch(archiveError => {
+            console.error('Failed to archive previous minibar stock counts:', archiveError);
+          });
 
           // Check for low stock and create notification
           checkLowStockAndNotify(itemName, today).catch(notifyError => {
