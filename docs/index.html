@@ -4447,6 +4447,18 @@
           persist();
           emit();
           return { isOk: true };
+        },
+        async archiveOldStockCounts(today) {
+          const changed = data.map(item => {
+            if (item.stock_type === 'minibar_count' && item.date_added !== today) {
+              return { ...item, is_archived: true };
+            }
+            return item;
+          });
+          data = changed;
+          persist();
+          emit();
+          return { isOk: true };
         }
       };
     }
@@ -4630,7 +4642,9 @@
       function jsonpRequest(action, payload, timeoutMs = JSONP_TIMEOUT_MS) {
         return new Promise((resolve) => {
           const callbackName = `__gsCallback_${Date.now()}_${Math.random().toString(16).slice(2)}`;
-          const compacted = compactPayload(selectPayload(payload));
+          const compacted = action === 'archive_old_stock_counts'
+            ? compactPayload(payload)
+            : compactPayload(selectPayload(payload));
           const payloadParam = compacted ? `&payload=${encodeURIComponent(JSON.stringify(compacted))}` : '';
           const script = document.createElement('script');
           const timeoutId = setTimeout(() => {
@@ -4760,6 +4774,14 @@
             handler.onDataChanged(cachedData);
             scheduleRefresh(6000);
           }
+          return result;
+        },
+        async archiveOldStockCounts(today) {
+          const result = await jsonpRequestWithRetry('archive_old_stock_counts', {
+            today,
+            property: currentProperty
+          });
+          if (result.isOk) scheduleRefresh(1000);
           return result;
         }
       };
@@ -6574,19 +6596,12 @@
       const todayStockCounts = countsBeforeSave.filter(item => item.date_added === today);
       if (countsBeforeSave.length === 0 || todayStockCounts.length > 0) return;
 
-      const itemsToArchive = [...countsBeforeSave];
-      let failed = 0;
-
-      for (const item of itemsToArchive) {
-        const archiveResult = await sdkCallWithTimeout(
-          () => window.dataSdk.update({ ...item, is_archived: true }),
-          12000
-        );
-        if (!archiveResult || archiveResult.isOk === false) failed++;
-      }
-
-      if (failed > 0) {
-        showToast(`Archived old counts with ${failed} sync issue(s).`, 'error');
+      const archiveResult = await sdkCallWithTimeout(
+        () => window.dataSdk.archiveOldStockCounts(today),
+        25000
+      );
+      if (!archiveResult || archiveResult.isOk === false) {
+        showToast('Previous stock counts could not be archived.', 'error');
       }
     }
 

@@ -96,6 +96,47 @@ function sheetToObjects(sheet) {
   }).filter(item => item.id);
 }
 
+function archiveOldStockCounts(ss, payload) {
+  const today = String(payload.today || '').slice(0, 10);
+  const targetProperty = String(payload.property || '').trim().toLowerCase();
+  let archived = 0;
+
+  ss.getSheets().forEach(sheet => {
+    const data = sheet.getDataRange().getValues();
+    if (data.length <= 1) return;
+
+    const headers = data[0].map(header => String(header).trim());
+    const stockTypeIndex = headers.indexOf('stock_type');
+    const dateIndex = headers.indexOf('date_added');
+    const propertyIndex = headers.indexOf('property');
+    const archivedIndex = headers.indexOf('is_archived');
+    if (stockTypeIndex === -1 || dateIndex === -1 || archivedIndex === -1) return;
+
+    const rows = data.slice(1);
+    const updatedRows = rows.map(row => {
+      const rowDate = row[dateIndex] instanceof Date
+        ? Utilities.formatDate(row[dateIndex], ss.getSpreadsheetTimeZone(), 'yyyy-MM-dd')
+        : String(row[dateIndex] || '').slice(0, 10);
+      const rowProperty = propertyIndex === -1 ? '' : String(row[propertyIndex] || '').trim().toLowerCase();
+      const propertyMatches = !targetProperty || !rowProperty || rowProperty === targetProperty;
+      const shouldArchive = String(row[stockTypeIndex]).toLowerCase() === 'minibar_count'
+        && rowDate !== today
+        && propertyMatches
+        && !['true', 'yes', '1'].includes(String(row[archivedIndex]).toLowerCase());
+
+      if (shouldArchive) {
+        row[archivedIndex] = true;
+        archived++;
+      }
+      return row;
+    });
+
+    sheet.getRange(2, 1, updatedRows.length, headers.length).setValues(updatedRows);
+  });
+
+  return { success: true, archived };
+}
+
 function doGet(e) {
   const action = e?.parameter?.action || 'read';
   const callback = e?.parameter?.callback || '';
@@ -124,6 +165,8 @@ function doGet(e) {
       const row = headers.map(header => payload[header] !== undefined ? payload[header] : '');
       targetSheet.appendRow(row);
       responseData = { success: true, item: payload };
+    } else if (action === 'archive_old_stock_counts') {
+      responseData = archiveOldStockCounts(ss, payload);
     } else if (action === 'update' || action === 'delete') {
       const sheets = getSheetsForPayload(ss, payload);
       let changed = false;
