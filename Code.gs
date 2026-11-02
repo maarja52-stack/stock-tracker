@@ -137,6 +137,42 @@ function archiveOldStockCounts(ss, payload) {
   return { success: true, archived };
 }
 
+/**
+ * Runs automatically via a time-based trigger to archive the previous day's
+ * minibar stock counts across all properties. Set up the trigger once by
+ * running ensureDailyArchiveTrigger() from the Apps Script editor.
+ */
+function dailyAutoArchive() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const today = Utilities.formatDate(new Date(), ss.getSpreadsheetTimeZone(), 'yyyy-MM-dd');
+  const result = archiveOldStockCounts(ss, { today });
+  console.log('Daily auto-archive result: ' + JSON.stringify(result));
+  return result;
+}
+
+/**
+ * One-time setup: creates the daily 00:01 trigger for dailyAutoArchive if it
+ * doesn't already exist. Run this manually once from the Apps Script editor.
+ */
+function ensureDailyArchiveTrigger() {
+  const alreadyExists = ScriptApp.getProjectTriggers()
+    .some(trigger => trigger.getHandlerFunction() === 'dailyAutoArchive');
+
+  if (alreadyExists) {
+    console.log('Daily archive trigger already exists.');
+    return;
+  }
+
+  ScriptApp.newTrigger('dailyAutoArchive')
+    .timeBased()
+    .atHour(0)
+    .nearMinute(1)
+    .everyDays(1)
+    .create();
+
+  console.log('Daily archive trigger created.');
+}
+
 function doGet(e) {
   const action = e?.parameter?.action || 'read';
   const callback = e?.parameter?.callback || '';
@@ -160,11 +196,26 @@ function doGet(e) {
     } else if (action === 'read') {
       responseData = ss.getSheets().flatMap(sheetToObjects);
     } else if (action === 'create') {
-      const targetSheet = getSheetForPayload(ss, payload);
-      const headers = ensurePayloadHeaders(targetSheet, payload);
-      const row = headers.map(header => payload[header] !== undefined ? payload[header] : '');
-      targetSheet.appendRow(row);
-      responseData = { success: true, item: payload };
+      const lock = LockService.getScriptLock();
+      lock.waitLock(10000);
+      try {
+        const targetSheet = getSheetForPayload(ss, payload);
+        const headers = ensurePayloadHeaders(targetSheet, payload);
+        const idColumn = headers.indexOf('id');
+        const existingRows = targetSheet.getDataRange().getValues();
+        const alreadyCreated = payload.id && idColumn !== -1
+          && existingRows.slice(1).some(row => String(row[idColumn]) === String(payload.id));
+
+        if (alreadyCreated) {
+          responseData = { success: true, item: payload, duplicate: true };
+        } else {
+          const row = headers.map(header => payload[header] !== undefined ? payload[header] : '');
+          targetSheet.appendRow(row);
+          responseData = { success: true, item: payload };
+        }
+      } finally {
+        lock.releaseLock();
+      }
     } else if (action === 'archive_old_stock_counts') {
       responseData = archiveOldStockCounts(ss, payload);
     } else if (action === 'update' || action === 'delete') {
