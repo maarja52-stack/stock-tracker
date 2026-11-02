@@ -1,5 +1,19 @@
 # Housekeeping Inventory Stock Tracker
 
+## Version v198 (2026-09-14)
+
+Today's release (`bb746b9`) includes:
+
+- Added a separate **General Inventory Hub** for Frontdesk, Stock Locations, Housekeeping, and Public Area inventory.
+- Added item QR routing for general inventory and fixed public-root links and legacy `/docs/` QR redirects.
+- Added shared stock controls for adding, removing, and setting quantities from the General Inventory Hub.
+- Added optional EUR unit costs, per-item stock value, and total value for priced general inventory.
+- Kept Minibar Tracker counting and reorder logic separate; room inventory remains reserved for a future room hub.
+- Improved Google Sheets save reliability and backend update performance.
+- Moved Archive under Order Management with correct return navigation.
+- Updated dashboard branding to **VHI&S** with the subtitle **V Hospitality inventory and stock**.
+- Improved mobile layouts for the General Inventory Hub, Frontdesk, QR Hub, Order Management, and Archive controls.
+
 Static housekeeping and minibar operations app used for:
 - Expiration control
 - Minibar stock counting
@@ -9,6 +23,8 @@ Static housekeeping and minibar operations app used for:
 - Stock location checks
 - Multi-property inventory management
 - Role-based access control & security administration
+
+Minibar recounts replace the existing daily count for the same item and location. Order quantities and stock reports use the latest count for each item across F1, F2, F3, and Office.
 
 ## Summary of Today's Updates (2026-09-08)
 
