@@ -6623,19 +6623,30 @@
         const countsBeforeSave = [...allStockCounts];
 
         try {
-          const newStockCount = {
-            id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          const existingCount = getLatestMinibarCounts(
+            countsBeforeSave.filter(count =>
+              count.date_added === today
+              && count.floor === floor
+              && count.item_name === itemName
+            )
+          )[0];
+          const stockCount = {
+            ...(existingCount || {}),
+            id: existingCount?.id || `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
             stock_type: 'minibar_count',
             item_name: itemName,
             floor: floor,
             quantity: quantity,
             added_timestamp: new Date().toISOString(),
             date_added: today,
+            property: existingCount?.property || currentProperty,
             is_archived: false
           };
 
           const result = await sdkCallWithTimeout(
-            () => window.dataSdk.create(newStockCount),
+            () => existingCount
+              ? window.dataSdk.update(stockCount)
+              : window.dataSdk.create(stockCount),
             25000
           );
           const failed = result && result.isOk === false;
@@ -6645,14 +6656,10 @@
             return;
           }
 
-          if (!allStockCounts.find(item => String(item.id) === String(newStockCount.id))) {
-            allStockCounts.push(newStockCount);
-          }
-
           // Reset for next entry - but keep item selected
           currentStockValue = 0;
           displayNumber.textContent = '0';
-          showToast(`${itemName} saved for ${floor}`, 'success');
+          showToast(`${itemName} ${existingCount ? 'updated' : 'saved'} for ${floor}`, 'success');
           updateStockProgress();
 
           // Archive the previous day's counts after the new count is saved.
@@ -6675,10 +6682,9 @@
     }
 
     async function checkLowStockAndNotify(itemName, date) {
-      // Get all counts for this item on this date
-      const itemCounts = allStockCounts.filter(sc => 
+      const itemCounts = getLatestMinibarCounts(allStockCounts.filter(sc =>
         sc.item_name === itemName && sc.date_added === date
-      );
+      ));
 
       // Calculate totals per floor
       const totals = {
@@ -6690,7 +6696,7 @@
 
       itemCounts.forEach(count => {
         if (totals[count.floor] !== undefined) {
-          totals[count.floor] += Number(count.quantity) || 0;
+          totals[count.floor] = Number(count.quantity) || 0;
         }
       });
 
@@ -6744,11 +6750,9 @@
 
     function updateStockProgress() {
       const today = getLocalDateString();
-      const todayCount = allStockCounts.filter(sc => sc.date_added === today).length;
-      
-      // Calculate total unique items that need counting (20 items across 4 floors = 80 max)
-      const uniqueItems = new Set(allStockCounts.filter(sc => sc.date_added === today).map(sc => `${sc.floor}-${sc.item_name}`));
-      
+      const todayCounts = getLatestMinibarCounts(allStockCounts.filter(sc => sc.date_added === today));
+      const uniqueItems = new Set(todayCounts.map(sc => `${sc.floor}-${sc.item_name}`));
+
       document.getElementById('stockProgress').textContent = 
         `Progress: ${uniqueItems.size}/80 items entered ✓`;
       
@@ -6761,7 +6765,7 @@
       if (!panel) return;
 
       const today = getLocalDateString();
-      const todayCounts = allStockCounts.filter(sc => sc.date_added === today);
+      const todayCounts = getLatestMinibarCounts(allStockCounts.filter(sc => sc.date_added === today));
       const totalUnits = todayCounts.reduce((sum, sc) => sum + (Number(sc.quantity) || 0), 0);
       const lowStockNotifications = allNotifications.filter(notif => notif.type === 'low_stock');
       const orderItems = getMinibarOrderSummaryItems();
@@ -6802,7 +6806,8 @@
     function updateTodayStockBanner() {
       const bannerContainer = document.getElementById('todayStockCountBanner');
       const today = getLocalDateString();
-      const todayCounts = allStockCounts.filter(sc => sc.date_added === today);
+      const allTodayCounts = allStockCounts.filter(sc => sc.date_added === today);
+      const todayCounts = getLatestMinibarCounts(allTodayCounts);
 
       if (todayCounts.length === 0) {
         bannerContainer.innerHTML = `
@@ -6825,12 +6830,12 @@
             <div class="date-banner-left">
               <span class="expand-arrow" id="arrow-stock-today">▶</span>
               <span class="date-title">${formattedDate}</span>
-              <span class="item-count-badge">${todayCounts.length} entries</span>
+              <span class="item-count-badge">${todayCounts.length} locations counted</span>
             </div>
             <div class="date-banner-actions">
               <button class="btn-save-pdf" onclick="event.stopPropagation(); saveActiveStockCountPDF('${today}')">📥 Save PDF</button>
-              <button class="btn-archive" onclick="event.stopPropagation(); confirmArchiveStockGroup('${today}', ${todayCounts.length})">📁 Archive All</button>
-              <button class="btn-delete-all" onclick="event.stopPropagation(); confirmDeleteStockGroup('${today}', ${todayCounts.length})">🗑️ Delete All</button>
+              <button class="btn-archive" onclick="event.stopPropagation(); confirmArchiveStockGroup('${today}', ${allTodayCounts.length})">📁 Archive All</button>
+              <button class="btn-delete-all" onclick="event.stopPropagation(); confirmDeleteStockGroup('${today}', ${allTodayCounts.length})">🗑️ Delete All</button>
             </div>
           </div>
           <div class="notifications-list" id="list-stock-today">
@@ -6853,12 +6858,19 @@
       btn.disabled = true;
       btn.innerHTML = '<span class="loading-spinner"></span>Deleting...';
 
-      const result = await window.dataSdk.delete(count);
+      const matchingCounts = allStockCounts.filter(item =>
+        item.date_added === count.date_added
+        && item.item_name === count.item_name
+        && item.floor === count.floor
+      );
+      let failedDeletes = 0;
+      for (const matchingCount of matchingCounts) {
+        const result = await window.dataSdk.delete(matchingCount);
+        if (!result || result.isOk === false) failedDeletes++;
+      }
 
-      if (!result.isOk) {
-        btn.disabled = false;
-        btn.innerHTML = '  ️ Delete';
-        showToast('Failed to delete item', 'error');
+      if (failedDeletes > 0) {
+        showToast(`Failed to delete ${failedDeletes} of ${matchingCounts.length} counts for ${count.item_name} at ${count.floor}.`, 'error');
       }
     }
 
@@ -9511,10 +9523,22 @@
       });
     }
 
+    function getLatestMinibarCounts(counts) {
+      const latestByLocation = new Map();
+      counts.forEach(count => {
+        const key = JSON.stringify([count.date_added, count.item_name, count.floor]);
+        const timestamp = Date.parse(count.added_timestamp || '') || 0;
+        const existing = latestByLocation.get(key);
+        if (!existing || timestamp >= existing.timestamp) {
+          latestByLocation.set(key, { count, timestamp });
+        }
+      });
+      return Array.from(latestByLocation.values(), entry => entry.count);
+    }
+
     function getMinibarOrderSummaryItems(date = getLocalDateString()) {
       const totalsByItem = new Map();
-      allStockCounts
-        .filter(count => count.date_added === date)
+      getLatestMinibarCounts(allStockCounts.filter(count => count.date_added === date))
         .forEach(count => {
           const itemName = String(count.item_name || 'Unknown Item').trim() || 'Unknown Item';
           totalsByItem.set(itemName, (totalsByItem.get(itemName) || 0) + (Number(count.quantity) || 0));
@@ -10755,7 +10779,7 @@
 
     // PDF Generation Functions for Stock Counts
     window.saveActiveStockCountPDF = function(date) {
-      const counts = allStockCounts.filter(c => c.date_added === date);
+      const counts = getLatestMinibarCounts(allStockCounts.filter(c => c.date_added === date));
       if (counts.length === 0) {
         showToast('No stock counts to save', 'error');
         return;
@@ -10772,7 +10796,7 @@
         if (!groupedByItem[count.item_name]) {
           groupedByItem[count.item_name] = { F1: 0, F2: 0, F3: 0, Office: 0 };
         }
-        groupedByItem[count.item_name][count.floor] += count.quantity;
+        groupedByItem[count.item_name][count.floor] += Number(count.quantity) || 0;
       });
 
       Object.keys(groupedByItem).sort().forEach(itemName => {
@@ -10795,7 +10819,8 @@
     };
 
     window.saveStockCountPDF = function(date) {
-      const counts = archivedStockCounts.filter(c => c.date_added === date);
+      const allCounts = archivedStockCounts.filter(c => c.date_added === date);
+      const counts = getLatestMinibarCounts(allCounts);
       const formattedDate = new Date(date).toLocaleDateString('en-US', {
         year: 'numeric', month: 'long', day: 'numeric'
       });
@@ -10809,7 +10834,7 @@
         if (!groupedByItem[count.item_name]) {
           groupedByItem[count.item_name] = { F1: 0, F2: 0, F3: 0, Office: 0 };
         }
-        groupedByItem[count.item_name][count.floor] += count.quantity;
+        groupedByItem[count.item_name][count.floor] += Number(count.quantity) || 0;
       });
 
       Object.keys(groupedByItem).sort().forEach(itemName => {
@@ -10822,7 +10847,7 @@
         pdfContent += '─'.repeat(60) + '\n';
       });
 
-      const entryLines = counts
+      const entryLines = allCounts
         .slice()
         .sort((a, b) => {
           const nameCompare = String(a.item_name || '').localeCompare(String(b.item_name || ''));
@@ -10852,6 +10877,7 @@
 
     window.printStockCountPDF = function(date) {
       const counts = archivedStockCounts.filter(c => c.date_added === date);
+      const latestCounts = getLatestMinibarCounts(counts);
       const formattedDate = new Date(date).toLocaleDateString('en-US', {
         year: 'numeric', month: 'long', day: 'numeric'
       });
@@ -10876,11 +10902,11 @@
 
       // Group by item
       const groupedByItem = {};
-      counts.forEach(count => {
+      latestCounts.forEach(count => {
         if (!groupedByItem[count.item_name]) {
           groupedByItem[count.item_name] = { F1: 0, F2: 0, F3: 0, Office: 0 };
         }
-        groupedByItem[count.item_name][count.floor] += count.quantity;
+        groupedByItem[count.item_name][count.floor] += Number(count.quantity) || 0;
       });
 
       Object.keys(groupedByItem).sort().forEach(itemName => {
